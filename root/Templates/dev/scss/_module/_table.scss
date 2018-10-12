@@ -1,0 +1,35 @@
+@charset "utf-8";
+//====================================================================================================
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+//
+//    version: 1.0
+//    created: 2015/01/23
+//    update : -
+//
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+//====================================================================================================
+.m_table {
+    table {
+        box-sizing: border-box;
+        border: solid currentColor;
+        border-width: 0 0 1px 1px;
+        width: 100%;
+        th, td {
+            border: solid currentColor;
+            border-width: 1px 1px 0 0;
+        }
+    }
+    &[class*="_fixed"] table {
+        table-layout: fixed;
+    }
+
+    @media screen and (min-width: $rwdBreakPoint01 + 1) {
+    }
+
+    @media screen and (max-width: $rwdBreakPoint01) {
+        overflow: auto;
+        table th{
+            white-space: nowrap;
+        }
+    }
+}

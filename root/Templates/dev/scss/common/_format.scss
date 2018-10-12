@@ -1,0 +1,157 @@
+@charset "utf-8";
+//====================================================================================================
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+//
+//    version: 1.0
+//    created: 2017/01/01
+//    update : -
+//
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+//====================================================================================================
+
+/*====================================================================================================
+
+    format
+
+====================================================================================================*/
+html {
+    overflow-y: scroll;
+    font-size: 10px;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: $baseFontFamily;
+    -webkit-text-size-adjust: 100%;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-size: 100%;
+}
+
+p {
+    margin: 0 0 1.5em;
+}
+
+ul,
+ol {
+    margin: 0 0 1.5em;
+    padding-left: 0;
+    letter-spacing: -0.5em;
+}
+
+ul,
+ol {
+    list-style: none;
+}
+
+li {
+    letter-spacing: 0;
+}
+
+table {
+    margin: 0 0 1.5em;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+table th,
+table td {
+    @include lastElement;
+}
+
+hr {
+    display: none;
+}
+
+img {
+    border: 0;
+    vertical-align: middle;
+}
+
+li img {
+    vertical-align: middle;
+}
+
+button,
+input,
+select,
+textarea {
+    font-family: $baseFontFamily;
+    @include fts();
+    vertical-align: middle;
+}
+button,
+input[type="button"],
+input[type="submit"],
+input[type="reset"]{
+    cursor: pointer;
+}
+button{
+    display: inline;
+    border: none;
+    padding: 0;
+    background: none;
+}
+button::-moz-focus-inner {
+    padding: 0;
+    border: 0;
+}
+:placeholder-shown {
+    color: $placeholderColor;
+}
+::-webkit-input-placeholder {
+    color: $placeholderColor;
+}
+::-moz-placeholder {
+    color: $placeholderColor;
+    opacity: 1;
+}
+:-ms-input-placeholder {
+    color: $placeholderColor;
+}
+em,
+address,
+small{
+    font-style: normal;
+}
+
+em {
+    font-weight: bold;
+}
+
+article,
+aside,
+dialog,
+figure,
+footer,
+header,
+menu,
+nav,
+section,
+mark,
+audio,
+video,
+main {
+    display: block;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+}
+
+fieldset {
+    margin: 0;
+    padding: 0;
+    border: none;
+}
+
+nav ul {
+    list-style: none;
+}

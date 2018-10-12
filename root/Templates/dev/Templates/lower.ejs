@@ -1,0 +1,42 @@
+<%
+var pageName = "個別title";
+var pageID = "個別ID";
+var pageTitle = "個別Title";
+var pageDescription = "個別Description";
+%><!DOCTYPE html>
+<html lang="ja">
+<head prefix="og:http://ogp.me/ns# fb:http://ogp.me/ns/fb# article:http://ogp.me/ns/article#">
+<meta charset="utf-8">
+<% include ../include/common/meta %>
+<link rel="stylesheet" type="text/css" href="../css/common/styles.min.css">
+</head>
+<body>
+<div id="document" class="<%= pageID %>">
+<% include ../include/common/header %>
+<% include ../include/common/gnav %>
+
+<div id="container">
+<nav id="breadcrumb">
+<ol>
+<li><a href="../"><span>HOME</span></a></li>
+<li><a href="../"><span>breadcrumb</span></a></li>
+<li><em><%= pageTitle %></em></li>
+<!-- /.breadcrumb --></ol>
+</nav>
+<main>
+<article id="mainContents">
+
+main contents area
+
+<p class="pagetop"><a href="#document">top</a></p>
+<!-- /#mainContents ==========--></article>
+</main>
+
+<% include ../include/common/subContents %>
+<!-- /#container ==========--></div>
+
+<% include ../include/common/footer %>
+<!-- /#document ==========--></div>
+<% include ../include/common/script %>
+</body>
+</html>

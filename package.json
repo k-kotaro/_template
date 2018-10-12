@@ -1,0 +1,37 @@
+{
+  "name": "templates-dev",
+  "version": "1.0.0",
+  "description": "",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://meta_kotaro@bitbucket.org/meta_kotaro/tenpureto.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "homepage": "https://bitbucket.org/meta_kotaro/tenpureto#readme",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^6.0.0",
+    "gulp-cached": "^1.1.1",
+    "gulp-changed": "^3.2.0",
+    "gulp-csscomb": "^3.0.8",
+    "gulp-cssmin": "^0.2.0",
+    "gulp-ejs": "^3.2.0",
+    "gulp-iconfont": "^10.0.2",
+    "gulp-iconfont-css": "^2.3.0",
+    "gulp-imagemin": "^4.1.0",
+    "gulp-inline-image": "^1.0.0",
+    "gulp-plumber": "^1.2.0",
+    "gulp-rename": "^1.4.0",
+    "gulp-sass": "^4.0.1",
+    "gulp-uglify": "^3.0.1",
+    "gulp.spritesmith": "^6.9.0",
+    "imagemin-pngquant": "^6.0.0",
+    "run-sequence": "^2.2.1",
+    "watchify": "^3.11.0"
+  }
+}

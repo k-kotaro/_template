@@ -1,0 +1,26 @@
+@charset "utf-8";
+//====================================================================================================
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+//
+//    version: 1.0
+//    created: 2016/02/19
+//    update : -
+//
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+//====================================================================================================
+// base width
+$contentWidth: 1024px;
+$maxContentWidth: 1200px;
+$spContentWidth: 320px;
+$rwdBreakPoint01: 768px;
+$rwdBreakPoint02: 980px;
+
+// base color
+$baseColorType01: #000000; //base font color
+$baseColorType02: #004ba5; //link color
+$baseColorType03: #02a0e9; //point color
+$placeholderColor: #cccccc; //placeholder color
+
+// base font
+$baseFontFamily: "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "メイリオ", Meiryo, sans-serif;
+$baseFontSize: 14;

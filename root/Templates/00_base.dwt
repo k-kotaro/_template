@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+<meta charset="utf-8">
+<meta name="keywords" content="@@(keywords)@@">
+<meta name="description" content="@@(description)@@">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:url" content="@@(ogpURL)@@">
+<meta property="og:title" content="@@(pageTitle)@@">
+<meta property="og:description" content="@@(description)@@">
+<meta property="og:image" content="">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="">
+<meta name="twitter:creator" content="">
+<meta name="twitter:title" content="@@(pageTitle)@@">
+<meta name="twitter:description" content="@@(description)@@">
+<meta name="twitter:image:src" content="">
+<meta name="format-detection" content="telephone=no, email=no, address=no">
+<title>@@(pageTitle)@@</title>
+<link rel="stylesheet" type="text/css" href="../css/common/styles.min.css"><!-- TemplateBeginEditable name="css" --><!-- TemplateEndEditable -->
+<!-- TemplateParam name="pageID" type="text" value="" --><!-- TemplateParam name="categoryID" type="text" value="" --><!-- TemplateParam name="pageName" type="text" value="" --><!-- TemplateParam name="pageTitle" type="text" value="" --><!-- TemplateParam name="keywords" type="text" value="" --><!-- TemplateParam name="description" type="text" value="" --><!-- TemplateParam name="ogpURL" type="text" value="" -->
+</head>
+<body>
+<div id="document"@@((pageID=='')?'':' class="'+_document['pageID']+'"')@@>
+<header id="gheader">
+<div class="content">
+<!-- TemplateBeginIf cond="pageID == 'home'" --><h1 class="logo"><a href="./"><span>xxxxxx</span></a></h1><!-- TemplateEndIf --><!-- TemplateBeginIf cond="pageID != 'home'" --><p class="logo"><a href="../"><span>xxxxxx</span></a></p><!-- TemplateEndIf -->
+<ul class="unav">
+<li><a href="">ユーティリティ01</a></li>
+<li><a href="">ユーティリティ02</a></li>
+<!-- /.unav --></ul>
+<!-- /.content --></div>
+<!-- /#gheader ==========--></header>
+
+<nav id="gnav">
+<div class="menu"><button><span>メニュー</span></button></div>
+<ul>
+<li><a href="">メニュー01</a></li>
+<li><a href="">メニュー02</a></li>
+<li><a href="">メニュー03</a></li>
+<li><a href="">メニュー04</a></li>
+<li><a href="">メニュー05</a></li>
+<li><a href="">メニュー06</a></li>
+</ul>
+<!-- /#gnav ==========--></nav>
+
+<div id="container"><!-- TemplateBeginEditable name="container" -->
+<main>
+<article id="mainContents">
+
+container
+
+<p class="pagetop"><a href="#document">top</a></p>
+<!-- /#mainContents --></article>
+</main><!-- TemplateEndEditable -->
+<!-- /#container ==========--></div>
+
+<footer id="gfooter">
+<div class="content">
+<ul class="unav">
+<li><a href="">ユーティリティ01</a></li>
+<li><a href="">ユーティリティ02</a></li>
+<li><a href="">ユーティリティ03</a></li>
+<li><a href="">ユーティリティ04</a></li>
+<li><a href="">ユーティリティ05</a></li>
+<li><a href="">ユーティリティ06</a></li>
+<!-- /.unav --></ul>
+<p class="copyright"><small>Copyright&copy;<script>myDate = new Date();myYear = myDate.getFullYear();document.write(myYear);document.write("&nbsp;");</script> xxxxxxxxx All Rights Reserved.</small></p>
+<!-- /.content --></div>
+<!-- /#gfooter ==========--></footer>
+<!-- /#document ==========--></div>
+<script src="../scripts/common/jquery.min.js"></script>
+<script src="../scripts/common/common.min.js"></script><!-- TemplateBeginEditable name="javascript" --><!-- TemplateEndEditable -->
+<!-- TemplateBeginEditable name="analytics" --><!-- TemplateEndEditable -->
+</body>
+</html>

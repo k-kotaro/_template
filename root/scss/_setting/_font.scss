@@ -1,0 +1,62 @@
+@font-face {
+    font-family: "icon";
+    src: url('../../fonts/icon.woff');
+//    src: url('../../fonts/icon.eot');
+//    src: url('../../fonts/icon.eot?#iefix') format('eot'),
+//        url('../../fonts/icon.woff2') format('woff2'),
+//        url('../../fonts/icon.woff') format('woff'),
+//        url('../../fonts/icon.ttf') format('truetype'),
+//        url('../../fonts/icon.svg#icon') format('svg');
+}
+
+@mixin icon-styles {
+    font-family: "icon";
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: normal;
+    // speak: none; // only necessary if not using the private unicode range (firstGlyph option)
+    text-decoration: none;
+    text-transform: none;
+}
+
+%icon {
+    @include icon-styles;
+}
+
+@function icon-char($filename) {
+    $char: "";
+
+    @if $filename == mod_ico_minus {
+        $char: "\E001";
+    }
+
+    @return $char;
+}
+
+@mixin icon($filename, $size: null, $color: null, $insert: before, $extend: true) {
+    &::#{$insert} {
+        @if $extend {
+            @extend %icon;
+        } @else {
+            @include icon-styles;
+        }
+        color: $color;
+        font-size: $size;
+        vertical-align: middle;
+        content: icon-char($filename);
+    }
+}
+
+@mixin iconChar($filename, $size: null, $insert: before) {
+    &::#{$insert} {
+        font-size: $size;
+        content: icon-char($filename);
+    }
+}
+
+//.icon-mod_ico_minus {
+//    @include icon(mod_ico_minus);
+//}
+//
