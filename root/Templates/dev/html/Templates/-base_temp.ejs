@@ -7,13 +7,13 @@ var pageDescription = "個別Description";
 <html lang="ja">
 <head prefix="og:http://ogp.me/ns# fb:http://ogp.me/ns/fb# article:http://ogp.me/ns/article#">
 <meta charset="utf-8">
-<% include ../include/common/meta %>
+<% include ../include/common/-meta %>
 <link rel="stylesheet" type="text/css" href="css/common/styles.min.css">
 </head>
 <body>
 <div id="document" class="<%= pageID %>">
-<% include ../include/common/header %>
-<% include ../include/common/gnav %>
+<% include ../include/common/-header %>
+<% include ../include/common/-gnav %>
 
 <div id="container">
 
@@ -23,8 +23,8 @@ container
 
 <!-- /#container ==========--></div>
 
-<% include ../include/common/footer %>
+<% include ../include/common/-footer %>
 <!-- /#document ==========--></div>
-<% include ../include/common/script %>
+<% include ../include/common/-script %>
 </body>
 </html>

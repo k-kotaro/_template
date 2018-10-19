@@ -1,5 +1,3 @@
-//【npm init npm】 → 【npm install -D gulp】
-//npm install --save-dev gulp-plumber gulp.spritesmith gulp-rename gulp-sass gulp-inline-image gulp-imagemin imagemin-pngquant gulp-cssmin run-sequence gulp-changed watchify gulp-csscomb gulp-autoprefixer gulp-iconfont-css gulp-iconfont gulp-uglify gulp-cached gulp-ejs
 var fs = require('fs');
 var path = require('path');
 var gulp = require('gulp');
@@ -21,8 +19,10 @@ var autoprefixer = require('gulp-autoprefixer');
 var iconfontCss = require('gulp-iconfont-css');
 var iconfont = require('gulp-iconfont');
 var ejs = require("gulp-ejs");
+var browserSync = require('browser-sync');
 
 var project = '_templates';
+var subdomain = true;
 var minify = true;
 var dir  = {
     root: 'root/',
@@ -45,13 +45,11 @@ var getFolders = function (dir) {
     });
 }
 
-var fs = require('fs');
-var json = JSON.parse(fs.readFileSync(dir.root + dir.dev + dir.json + 'data.json'));
-
 gulp.task('htmlBuild', function(callback) {
 	runSequence('ejs',
 				'imagemin',
 				'copy',
+				'reload',
 				callback);
 });
 
@@ -60,13 +58,15 @@ gulp.task('cssBuild', function(callback) {
         runSequence(['iconfont', 'sprite'],
                     'sass',
                     ['imagemin', 'cssmin'],
-                    'copy',
+					'copy',
+					'reload',
                     callback);
     }else{
         runSequence(['iconfont', 'sprite'],
                     'sass',
                     'imagemin',
-                    'copy',
+					'copy',
+					'reload',
                     callback);
     }
 });
@@ -74,25 +74,17 @@ gulp.task('cssBuild', function(callback) {
 gulp.task('jsBuild', function(callback) {
     if(minify == true){
         runSequence('jsmin',
-                    'copy',
+					'copy',
+					'reload',
                     callback);
     }
 });
 
 gulp.task('ejs', function() {
-	var metas = json.meta;
-	return gulp.src(dir.root + dir.div)
-		.pipe(ejs(
-		{
-			jsonData: metas // JSONのデータをejsに渡す
-		},
-		{
-			ext: '.html'
-		}
-	))
-	.pipe(plumber())
+  return gulp.src([dir.root + dir.dev + dir.html + '**/*.ejs', '!' + dir.root + dir.dev + dir.html + '**/-*.ejs'])
+	.pipe(ejs())
 	.pipe(rename({extname: '.html'}))
-	.pipe(gulp.dest(dir.root + dir.html));
+	.pipe(gulp.dest(dir.root));
 });
 
 gulp.task('iconfont', function(){
@@ -191,7 +183,7 @@ gulp.task('imagemin', function(){
 });
 
 gulp.task('copy', function(callback) {
-    var dstDir = '../../../../../xampp/htdocs/' + project;
+  	var dstDir = '/xampp/htdocs/' + project;
     //var dstDir = '/Applications/XAMPP/xamppfiles/htdocs/' + project;
     return gulp.src([
         dir.root + '**/*'
@@ -201,10 +193,25 @@ gulp.task('copy', function(callback) {
     callback();
 });
 
+gulp.task('browser-sync', function() {
+	browserSync.init({
+	  	notify: false,
+	  	port: 3001,
+		server: {
+			baseDir: dir.root,
+			index: "index.html"
+		}
+	});
+});
+
+gulp.task('reload', function () {
+	browserSync.reload();
+});
+
 gulp.task('watchify', function(){
-    gulp.watch([dir.root + dir.dev + '**/*.ejs'], ['htmlBuild']);
+	gulp.watch([dir.root + dir.dev + dir.html + '**/*.ejs'], ['htmlBuild']);
     gulp.watch([dir.root + dir.dev + dir.scss + '**/*.scss'], ['cssBuild']);
     gulp.watch([dir.root + dir.dev + dir.js + '**/*.js'], ['jsBuild']);
 });
 
-gulp.task('default', ['watchify']);
+gulp.task('default', ['watchify', 'browser-sync']);

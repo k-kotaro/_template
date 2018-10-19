@@ -6,13 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://meta_kotaro@bitbucket.org/meta_kotaro/tenpureto.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "homepage": "https://bitbucket.org/meta_kotaro/tenpureto#readme",
+  "author": "metaphase XD",
   "devDependencies": {
     "gulp": "^3.9.1",
     "gulp-autoprefixer": "^6.0.0",
@@ -32,6 +26,7 @@
     "gulp.spritesmith": "^6.9.0",
     "imagemin-pngquant": "^6.0.0",
     "run-sequence": "^2.2.1",
+    "browser-sync": "^2.24.6",
     "watchify": "^3.11.0"
   }
 }

@@ -145,13 +145,15 @@ list-style:none;
     base
 
 ====================================================================================================*/
+body{
+color:#dddddd;
+}
 @media screen and (min-width: 769px){
 body{
 font-size:1.4rem;
 line-height:1.71429;
 }
 }
-
 @media screen and (max-width: 768px){
 body{
 font-size:1.2rem;

@@ -17,6 +17,7 @@
 html {}
 
 body {
+	color: #ddd;
     @media screen and (min-width: $rwdBreakPoint01 + 1) {
         @include fts($lin: 24);
     }
