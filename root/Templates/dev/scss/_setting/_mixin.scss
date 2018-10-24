@@ -11,12 +11,11 @@
 
 // インラインブロック要素の縦位置配置
 //     $valign: 行揃え (top / middle / bottom)
-// @include ilBox(top);
-@mixin ilBox($valign: null) {
+// @include iblock(top);
+@mixin iblock($valign: null) {
 	display: inline-block;
 	vertical-align: $valign;
 }
-
 
 // テキストリンクの:hover時の挙動
 //     $hoverStyle: :hoverの時 (underline / none)
@@ -202,7 +201,7 @@
 //     $posBottom: 要素の下 (true / false)
 //     $posLeft: 要素の左 (true / false)
 //     $insert: 疑似要素 (before / after)
-//     @include dotted(#000, 3px, 2px,  $posBottom: true);
+// @include dotted(#000, 3px, 2px,  $posBottom: true);
 @mixin dashed($color, $spacing: 5px, $dotsize: 1px, $posTop: false, $posRight: false, $posBottom: false, $posLeft: false, $insert: before) {
 	$bgAttr: (
 		top: linear-gradient(to left, $color, $color $dotsize, transparent $dotsize, transparent $spacing) repeat-x 0 0,
@@ -219,10 +218,10 @@
 }
 
 // フォント調整
-// 　　　　$fts: フォントサイズ。pxのサイズを単位抜いて入力
-// 　　　　$lin: 行間。pxのサイズを単位抜いて入力。px指定の場合は'**px'で入力
-// 　　　　@include fts(16, 32);
-// 　　　　@include fts(16, '40px');
+//     $fts: フォントサイズ。pxのサイズを単位抜いて入力
+//     $lin: 行間。pxのサイズを単位抜いて入力。px指定の場合は'**px'で入力
+// @include fts(16, 32);
+// @include fts(16, '40px');
 @mixin fts($fts: $baseFontSize, $lin: null) {
 	$rem: $fts / 10;
 	@if type-of($fts) == 'string'{
@@ -240,11 +239,15 @@
 
 // テキストの縁取り
 //     $width: 縁の幅。2pxぐらいがきれいに見えるギリギリ
+//     @include textBorder(#000, 2px);
 @mixin textBorder($color, $width: 2px){
 	text-shadow: 0 $width 0 $color, $width 0 0 $color, 0 -#{$width} 0 $color, -#{$width} 0 0 $color, -#{$width} -#{$width} 0 $color, $width -#{$width} 0 $color, -#{$width} $width 0 $color, $width $width 0 $color;
 }
 
 // 画像サイズを画面比率に対してリキッド指定（SP用）
+//     $width: 画像幅（実寸）
+//     $baseWidth: 切り出したPSDの幅
+//     @include textBorder(#000, 2px);
 @mixin variableImage($width, $baseWidth: 750){
 	width: ($width / $baseWidth * 100) * 1vw;
 	height: auto;
