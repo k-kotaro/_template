@@ -93,7 +93,7 @@ gulp.task('iconfont', function(){
     .pipe(iconfontCss({
         fontName: 'icon',
         path: dir.root + dir.dev + dir.scss + '_temp/_font.scss',
-		targetPath: '../' + dir.dev + dir.scss + '_setting/_font.scss',
+        targetPath: '../' + dir.dev + dir.scss + '_setting/_font.scss',
         fontPath: '../../fonts/'
     }))
     .pipe(iconfont({
@@ -209,7 +209,7 @@ gulp.task('reload', function () {
 });
 
 gulp.task('watchify', function(){
-	gulp.watch([dir.root + dir.dev + dir.html + '**/*.ejs'], ['htmlBuild']);
+    gulp.watch([dir.root + dir.dev + dir.html + '**/*.ejs'], ['htmlBuild']);
     gulp.watch([dir.root + dir.dev + dir.scss + '**/*.scss'], ['cssBuild']);
     gulp.watch([dir.root + dir.dev + dir.js + '**/*.js'], ['jsBuild']);
 });
