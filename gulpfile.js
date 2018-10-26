@@ -1,6 +1,7 @@
+//- gulpモジュール
+var gulp = require('gulp');
 var fs = require('fs');
 var path = require('path');
-var gulp = require('gulp');
 var plumber = require('gulp-plumber');
 var sprite = require('gulp.spritesmith');
 var rename = require("gulp-rename");
@@ -21,6 +22,7 @@ var iconfont = require('gulp-iconfont');
 var ejs = require("gulp-ejs");
 var browserSync = require('browser-sync');
 
+//- プロジェクト設定
 var project = '_templates';
 var subdomain = true;
 var minify = true;
@@ -45,14 +47,16 @@ var getFolders = function (dir) {
 	});
 }
 
+//- HTMLパブリッシュタスク
 gulp.task('htmlBuild', function(callback) {
 	runSequence('ejs',
-				'imagemin',
-				'copy',
-				'reload',
-				callback);
+		'imagemin',
+		'copy',
+		'reload',
+		callback);
 });
 
+//- CSSパブリッシュタスク
 gulp.task('cssBuild', function(callback) {
 	if(minify == true){
 		runSequence(['iconfont', 'sprite'],
@@ -71,6 +75,7 @@ gulp.task('cssBuild', function(callback) {
 	}
 });
 
+//- JSパブリッシュタスク
 gulp.task('jsBuild', function(callback) {
 	if(minify == true){
 		runSequence('jsmin',
@@ -80,32 +85,16 @@ gulp.task('jsBuild', function(callback) {
 	}
 });
 
+//- EJSタスク
 gulp.task('ejs', function() {
 	return gulp.src([dir.root + dir.dev + dir.html + '**/*.ejs', '!' + dir.root + dir.dev + dir.html + '**/-*.ejs'])
-		.pipe(ejs())
-		.pipe(rename({extname: '.html'}))
-		.pipe(gulp.dest(dir.root));
+	.pipe(ejs())
+	.pipe(rename({extname: '.html'}))
+	.pipe(gulp.dest(dir.root));
 });
 
+//- アイコンフォント作成タスク
 gulp.task('iconfont', function(){
-<<<<<<< HEAD
-    var srcGlob = dir.root + dir.dev + dir.font + '*.svg';
-    return gulp.src(srcGlob)
-    .pipe(iconfontCss({
-        fontName: 'icon',
-        path: dir.root + dir.dev + dir.scss + '_temp/_font.scss',
-        targetPath: '../' + dir.dev + dir.scss + '_setting/_font.scss',
-        fontPath: '../../fonts/'
-    }))
-    .pipe(iconfont({
-        normalize: true,
-        fontHeight: 128,
-        fontName: 'icon',
-        formats: ['woff'],
-        appendCodepoints:false
-    }))
-    .pipe(gulp.dest(dir.root + dir.font));
-=======
 	var srcGlob = dir.root + dir.dev + dir.font + '*.svg';
 	return gulp.src(srcGlob)
 	.pipe(iconfontCss({
@@ -122,25 +111,26 @@ gulp.task('iconfont', function(){
 		appendCodepoints:false
 	}))
 	.pipe(gulp.dest(dir.root + dir.font));
->>>>>>> develop
 });
 
+//- スプライト画像、mixin作成タスク
 gulp.task('sprite', function() {
 	var srcGlob = dir.root + dir.dev + dir.spriteImg;
 	return getFolders(srcGlob).forEach(function(folder){
-		var spriteData = gulp.src(dir.root + dir.dev + dir.spriteImg + folder + '/*.png')
-		.pipe(cache('sprite'))
-		.pipe(sprite({
-			imgName: 'mod_img_sprite.png',
-			imgPath: dir.img + folder + '/' + 'mod_img_sprite.png',
-			cssName: '_' + folder + '.scss',
-			padding: 10
-		}));
-		spriteData.img.pipe(gulp.dest(dir.root + dir.dev + dir.img + folder));
-		spriteData.css.pipe(gulp.dest(dir.root + dir.dev + dir.scss + '_sprite'));
+	var spriteData = gulp.src(dir.root + dir.dev + dir.spriteImg + folder + '/*.png')
+	.pipe(cache('sprite'))
+	.pipe(sprite({
+		imgName: 'mod_img_sprite.png',
+		imgPath: dir.img + folder + '/' + 'mod_img_sprite.png',
+		cssName: '_' + folder + '.scss',
+		padding: 10
+	}));
+	spriteData.img.pipe(gulp.dest(dir.root + dir.dev + dir.img + folder));
+	spriteData.css.pipe(gulp.dest(dir.root + dir.dev + dir.scss + '_sprite'));
 	});
 });
 
+//- sassファイルコンパイルタスク
 gulp.task('sass', function () {
 	var pubDir = (minify == true)? dir.root + dir.dev + dir.css : dir.root + dir.css;
 	return gulp.src(dir.root + dir.dev + dir.scss + '**/*.scss')
@@ -155,6 +145,7 @@ gulp.task('sass', function () {
 	.pipe(gulp.dest(pubDir));
 });
 
+//- CSS圧縮タスク
 gulp.task('cssmin', function() {
 	return gulp.src(dir.root + dir.dev + dir.css + '**/*.css')
 	.pipe(changed(dir.root + dir.css))
@@ -168,11 +159,14 @@ gulp.task('cssmin', function() {
 	.pipe(gulp.dest(dir.root + dir.css));
 });
 
+//- JS圧縮タスク
 gulp.task('jsmin', function(){
 	var pubDir = (minify == true)? dir.root + dir.dev + dir.js : dir.root + dir.js;
 	return gulp.src(dir.root + dir.dev + dir.js + '**/*.js')
 	.pipe(plumber())
-	.pipe(uglify())
+	.pipe(uglify({
+		mangle: true
+	}))
 	.pipe(rename(function(path){
 		if(!(path.basename.match('.min'))){
 			path.basename += '.min';
@@ -182,6 +176,7 @@ gulp.task('jsmin', function(){
 	.pipe(gulp.dest(pubDir));
 });
 
+//- 画像圧縮タスク
 gulp.task('imagemin', function(){
 	var srcGlob = dir.root + dir.dev + dir.img + '/**/*.+(jpg|jpeg|png|gif|svg)';
 	var imageminOptions = {
@@ -189,18 +184,19 @@ gulp.task('imagemin', function(){
 	};
 
 	return gulp.src(srcGlob)
-	.pipe(plumber())
+	.pipe(changed(srcGlob))
 	.pipe(imagemin([
-		imageminPngquant({
-			quality: '65-80',
-			speed: 1,
-			floyd:0
-		})
+	imageminPngquant({
+		quality: '65-80',
+		speed: 1,
+		floyd:0
+	})
 	], imageminOptions))
 	.pipe(imagemin(imageminOptions))
 	.pipe(gulp.dest(dir.root + dir.img));
 });
 
+//- ファイルコピータスク
 gulp.task('copy', function(callback) {
 	var dstDir = '/xampp/htdocs/' + project;
 	//var dstDir = '/Applications/XAMPP/xamppfiles/htdocs/' + project;
@@ -212,6 +208,7 @@ gulp.task('copy', function(callback) {
 	callback();
 });
 
+//- ブラウザ同期表示設定
 gulp.task('browser-sync', function() {
 	browserSync.init({
 		notify: false,
@@ -223,20 +220,16 @@ gulp.task('browser-sync', function() {
 	});
 });
 
+//- ブラウザリロードタスク
 gulp.task('reload', function () {
-	browserSync.reload();
+  browserSync.reload();
 });
 
+//- 監視タスク
 gulp.task('watchify', function(){
-<<<<<<< HEAD
-    gulp.watch([dir.root + dir.dev + dir.html + '**/*.ejs'], ['htmlBuild']);
-    gulp.watch([dir.root + dir.dev + dir.scss + '**/*.scss'], ['cssBuild']);
-    gulp.watch([dir.root + dir.dev + dir.js + '**/*.js'], ['jsBuild']);
-=======
 	gulp.watch([dir.root + dir.dev + dir.html + '**/*.ejs'], ['htmlBuild']);
 	gulp.watch([dir.root + dir.dev + dir.scss + '**/*.scss'], ['cssBuild']);
 	gulp.watch([dir.root + dir.dev + dir.js + '**/*.js'], ['jsBuild']);
->>>>>>> develop
 });
 
 gulp.task('default', ['watchify', 'browser-sync']);
