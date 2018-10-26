@@ -247,7 +247,7 @@
 // 画像サイズを画面比率に対してリキッド指定（SP用）
 //     $width: 画像幅（実寸）
 //     $baseWidth: 切り出したPSDの幅
-//     @include textBorder(#000, 2px);
+// @include textBorder(#000, 2px);
 @mixin variableImage($width, $baseWidth: 750){
 	width: ($width / $baseWidth * 100) * 1vw;
 	height: auto;

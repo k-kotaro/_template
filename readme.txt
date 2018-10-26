@@ -15,9 +15,9 @@ root/
 ├Templates/
 │├dev/ 開発ディレクトリ
 ││├css/ SASSで出力されたCSSがディレクトリごとパブリッシュされます。※minify前
-││├datauri/ base64でCSSに埋め込む画像を格納。CSSファイルが大きくなりすぎるので要注意
+││├datauri/ base64でCSSに埋め込む画像を格納。埋め込む画像次第ではCSSファイルが大きくなりすぎるので要注意
 ││├fonts/ フォント化させるSVGファイルを格納
-││├html/ 開発用HTML。現在はEJS（暫定）
+││├html/ 開発用テンプレートエンジンのファイルを格納。現在はEJS（暫定）
 ││├images/ 切り出した画像はここに配置
 ││├scripts/ 開発用JS
 ││├scss/ 開発用SCSSファイル※
@@ -33,6 +33,7 @@ root/
 
 
 ■開発用SCSSファイル
+sass用scssファイルの置き方と説明。
 
 _base
 ベースファイルディレクトリ。ヘッダフッタなどのテンプレート部分の開発ファイル
@@ -42,11 +43,11 @@ _module
 
 _setting
 SASS設定ファイルディレクトリ。サイト共通変数やmixin、functionなど
-_font.scssはgulpから出力されるので触らないこと
+_font.scssはgulpから出力されるアイコンフォント用mixinなので触らないこと
 
 _sprite
 CSSスプライト設定ファイルディレクトリ。CSSスプライトで使うmixinファイルがここに出力されます
-gulpから出力されるので触らないこと
+gulpでパブリッシュされるファイルなので触らないこと
 
 _temp
 アイコンフォント設定ファイル。触らない
@@ -61,6 +62,7 @@ CSSの基本設定ディレクトリ。
 
 
 ■gulp設定
+gulpfile.jsに書いてある各gulpタスクの説明。
 
 -gulp変数
 基本以外のgulpを追加したときは一番下に追記
