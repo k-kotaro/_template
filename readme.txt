@@ -64,9 +64,9 @@ CSSの基本設定ディレクトリ。
 ■gulp設定
 gulpfile.jsに書いてある各gulpタスクの説明。
 
--gulpモジュール
-基本以外のgulpモジュールを追加するときは一番下に追記。
-それぞれの説明は下記
+-gulp変数
+基本以外のgulpを追加したときは一番下に追記
+基本変数の説明は下記
 
 -プロジェクト設定
 project：値に開発用のディレクトリ名設定。XAMPPのhtdocsに入れるディレクトリ名と同じものをいれること
@@ -86,33 +86,23 @@ JS最小化→htdocsにコピー→リロード
 JSはよほどのことがない限り最小化すること。最小化しない場合は/scriptsへ直接書く
 
 -SASSタスク
-SASSファイルのコンパイル。背景画像のbase64埋め込み、整形、接頭辞付与も同時に行う
-autoprefixerで対象ブラウザを設定することでそれに合わせた接頭辞付与ができる
+autoprefixerで対象ブラウザの設定ができる
 
--CSS圧縮タスク
-CSSをminify化し、ファイル名に.minを付与してCSSディレクトリにパブリッシュ
-
--JS圧縮タスク
-JSをminify化し、ファイル名に.minを付与してJSディレクトリにパブリッシュ
-uglify()のmangleオプションで変数の難読化の設定が可。デフォルトは難読化
-
--画像圧縮タスク
+-画像最小化タスク
 画像圧縮率の設定などは画像があれたりgulpタスクの遅延につながるのでこのまま
 
 -ファイルコピータスク
 XAMPPのhtdocsへコピーされます。Win用とMac用あるのでそれぞれ開発環境によって切り替えること
 
--ブラウザ同期表示設定
+-browser-syncタスク
 portの値は開発中のものとかぶらないように注意
 
 
 
-■gulpモジュール
-各基本モジュールの説明。
-
-var gulp = require('gulp'); →基本モジュール。
+■gulp変数
 var fs = require('fs'); →ファイルやディレクトリの操作を行います。
 var path = require('path'); →パスの正規化やパスの中からディレクトリ部分・ファイル名の部分だけ取得します。
+var gulp = require('gulp'); →基本モジュール。
 var plumber = require('gulp-plumber'); →エラーをハンドリングしてプロセスが落ちるのを防ぎます。
 var sprite = require('gulp.spritesmith'); →CSSスプライト画像・スプライト用mixinを生成します。
 var rename = require("gulp-rename"); →ストリームのファイルパスを変更します。
