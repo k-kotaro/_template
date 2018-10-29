@@ -3,18 +3,17 @@ var pageName = "テンプレート";
 var pageID = "template";
 var pageTitle = "個別Title";
 var pageDescription = "個別Description";
-var path = "../";
 %><!DOCTYPE html>
 <html lang="ja">
 <head prefix="og:http://ogp.me/ns# fb:http://ogp.me/ns/fb# article:http://ogp.me/ns/article#">
 <meta charset="utf-8">
-<% include ../include/common/-meta %>
+<% include ../include/common/meta %>
 <link rel="stylesheet" type="text/css" href="../css/common/styles.min.css">
 </head>
 <body>
 <div id="document" class="<%= pageID %>">
-<% include ../include/common/-header %>
-<% include ../include/common/-gnav %>
+<% include ../include/common/header %>
+<% include ../include/common/gnav %>
 
 <div id="container">
 <nav id="breadcrumb">
@@ -273,12 +272,11 @@ var path = "../";
 <!-- /#mainContents ==========--></article>
 </main>
 
-<% include ../include/common/-subContents %>
+<% include ../include/common/subContents %>
 <!-- /#container ==========--></div>
 
-<% include ../include/common/-footer %>
+<% include ../include/common/footer %>
 <!-- /#document ==========--></div>
-<% include ../include/common/-script %>
-<script src="../scripts/test/bundle.js"></script>
+<% include ../include/common/script %>
 </body>
 </html>
