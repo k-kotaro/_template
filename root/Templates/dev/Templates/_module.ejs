@@ -1,0 +1,282 @@
+<%
+var pageName = "テンプレート";
+var pageID = "template";
+var pageTitle = "個別Title";
+var pageDescription = "個別Description";
+%><!DOCTYPE html>
+<html lang="ja">
+<head prefix="og:http://ogp.me/ns# fb:http://ogp.me/ns/fb# article:http://ogp.me/ns/article#">
+<meta charset="utf-8">
+<% include ../include/common/meta %>
+<link rel="stylesheet" type="text/css" href="../css/common/styles.min.css">
+</head>
+<body>
+<div id="document" class="<%= pageID %>">
+<% include ../include/common/header %>
+<% include ../include/common/gnav %>
+
+<div id="container">
+<nav id="breadcrumb">
+<ol>
+<li><a href="../"><span>HOME</span></a></li>
+<li><a href="../"><span>breadcrumb</span></a></li>
+<li><em><%= pageTitle %></em></li>
+<!-- /.breadcrumb --></ol>
+</nav>
+<main>
+<article id="mainContents">
+
+<h1 class="templatesHead">見出し</h1>
+
+<p class="templatesName">見出し（.m_textHeading）</p>
+<h2 class="m_textHeading">見出し</h2>
+
+<p class="templatesName">見出し（.m_imageHeading）</p>
+<h2 class="m_imageHeading"><img src="http://placehold.it/750x50/cccccc/ffffff?text=Hello+World" alt=""></h2>
+
+
+
+<h1 class="templatesHead">セクション</h1>
+<p class="templatesName">セクション（.m_section）</p>
+<div class="m_section">
+<div class="m_box">
+<p>私も多数いくらこの妨害士というののところが買うずまし。</p>
+<p>もし次第を話院ははたしてその説明んたまでからなるけれどもいならには乱暴さですでて、そうには提げんですたな。違がぶつかるないのは人知れず十月に恐らくでうた。</p>
+<!-- /.m_box --></div>
+<!-- /.m_section --></div>
+<div class="m_box s_border_nobg option">
+<ul class="m_list s_unstyled">
+<li>.s_borderTop：上罫線</li>
+<li>.s_borderBottom：下罫線</li>
+<li>.s_fullBg：エリア全面背景</li>
+<!-- /.m_list --></ul>
+<!-- /.m_box --></div>
+
+
+
+<h1 class="templatesHead">ボックス</h1>
+<p class="templatesName">ボックス（.m_box）</p>
+<div class="m_box">
+<p>私も多数いくらこの妨害士というののところが買うずまし。</p>
+<p>もし次第を話院ははたしてその説明んたまでからなるけれどもいならには乱暴さですでて、そうには提げんですたな。違がぶつかるないのは人知れず十月に恐らくでうた。</p>
+<!-- /.m_box --></div>
+<div class="m_box s_border_nobg option">
+<ul class="m_list s_unstyled">
+<li>.s_border：罫線class。太さ、色などはサイトごとに設定</li>
+<!-- /.m_list --></ul>
+<!-- /.m_box --></div>
+
+<p class="templatesName">画像付きボックス（.m_media）</p>
+<div class="m_media">
+<figure class="image"><img src="http://placehold.it/250x250/cccccc/ffffff" alt="" width="250" height="200"></figure>
+<div class="body">
+<p>私も多数いくらこの妨害士というののところが買うずまし。</p>
+<p>もし次第を話院ははたしてその説明んたまでからなるけれどもいならには乱暴さですでて、そうには提げんですたな。違がぶつかるないのは人知れず十月に恐らくでうた。</p>
+<!-- /.body --></div>
+<!-- /.m_media --></div>
+<div class="m_media">
+<div class="body">
+<p>私も多数いくらこの妨害士というののところが買うずまし。</p>
+<p>もし次第を話院ははたしてその説明んたまでからなるけれどもいならには乱暴さですでて、そうには提げんですたな。違がぶつかるないのは人知れず十月に恐らくでうた。</p>
+<!-- /.body --></div>
+<figure class="image"><img src="http://placehold.it/250x250/cccccc/ffffff" alt="" width="250" height="200"></figure>
+<!-- /.m_media --></div>
+<div class="m_box s_border_nobg option">
+<ul class="m_list s_unstyled">
+<li>.s_flipped：画像とテキスト要素を反転</li>
+<li>.s_alignTop：画像とテキストを上揃え</li>
+<li>.s_alignMiddle：画像とテキストを中央揃え</li>
+<li>.s_alignBottom：画像とテキストを下揃え</li>
+<!-- /.m_list --></ul>
+<!-- /.m_box --></div>
+
+<p class="templatesName">カラム（.m_column）</p>
+<div class="m_column l_col2">
+<div class="column">
+<p>私も多数いくらこの妨害士というののところが買うずまし。</p>
+<p>もし次第を話院ははたしてその説明んたまでからなるけれどもいならには乱暴さですでて、そうには提げんですたな。違がぶつかるないのは人知れず十月に恐らくでうた。</p>
+<!-- /.column --></div>
+<div class="column">
+<p>私も多数いくらこの妨害士というののところが買うずまし。</p>
+<p>もし次第を話院ははたしてその説明んたまでからなるけれどもいならには乱暴さですでて、そうには提げんですたな。違がぶつかるないのは人知れず十月に恐らくでうた。</p>
+<!-- /.column --></div>
+<!-- /.m_column --></div>
+<div class="m_box s_border_nobg option">
+<ul class="m_list s_unstyled">
+<li>.l_col*：カラム幅均等。2～4カラムまで</li>
+<li>.l_spCol：SPレイアウト時に2カラム表示</li>
+<!-- /.m_list --></ul>
+<!-- /.m_box --></div>
+
+
+
+<h1 class="templatesHead">リスト</h1>
+<p class="templatesName">通常リスト（.m_list）</p>
+<ul class="m_list">
+<li>私も多数いくらこの妨害士というののところが買うずまし。</li>
+<li>私も多数いくらこの妨害士というののところが買うずまし。</li>
+<li>私も多数いくらこの妨害士というののところが買うずまし。</li>
+<!-- /.m_list --></ul>
+<div class="m_box s_border_nobg option">
+<ul class="m_list s_unstyled">
+<li>.s_unstyled：ビュレット無し</li>
+<!-- /.m_list --></ul>
+<!-- /.m_box --></div>
+
+<p class="templatesName">番号付きリスト（.m_numberList）</p>
+<ul class="m_numberList">
+<li>私も多数いくらこの妨害士というののところが買うずまし。</li>
+<li>私も多数いくらこの妨害士というののところが買うずまし。</li>
+<li>私も多数いくらこの妨害士というののところが買うずまし。</li>
+<!-- /.m_numberList --></ul>
+
+<p class="templatesName">注記リスト（.m_notesList）</p>
+<ul class="m_notesList">
+<li>私も多数いくらこの妨害士というののところが買うずまし。</li>
+<li>私も多数いくらこの妨害士というののと<br>ころが買うずまし。</li>
+<li class="s_small">私も多数いくらこの妨害士というののところが買うずまし。</li>
+<!-- /.m_notesList --></ul>
+<div class="m_box s_border_nobg option">
+<ul class="m_list s_unstyled">
+<li>.s_small：ビュレットの「※」を「*」に変更。ulまたはolに設定で全体に、li要素で個別に設定可</li>
+<!-- /.m_list --></ul>
+<!-- /.m_box --></div>
+
+<p class="templatesName">ビュレット部分変更可能リスト（.m_notesList.s_mark）</p>
+<ul class="m_notesList s_mark">
+<li><span class="mark">*1</span>私も多数いくらこの妨害士というののところが買うずまし。</li>
+<li><span class="mark">※2</span>私も多数いくらこの妨害士というののところが買うずまし。</li>
+<!-- /.m_notesList --></ul>
+
+<p class="templatesName">リンクリスト（.m_linkList）</p>
+<ul class="m_linkList">
+<li><a href="">ショッピング</a></li>
+<li><a href="">グルメ</a></li>
+<li><a href="">エンターテインメント</a></li>
+<!-- /.m_linkList --></ul>
+<div class="m_box s_border_nobg option">
+<ul class="m_list s_unstyled">
+<li>.s_horizontal：横並び。リスト系モジュールすべて適用可能</li>
+<!-- /.m_list --></ul>
+<!-- /.m_box --></div>
+
+<p class="templatesName">画像一覧（.m_imageList）</p>
+<ul class="m_imageList l_col4_spCol">
+<li>
+<figure>
+<span class="image"><img src="http://placehold.it/230x153/cccccc/ffffff" alt="" width="230" height="153"></span>
+<figcaption class="title">JPホットサンド<br>パストラミビーフ</figcaption>
+<p class="summary">430円（税込）</p>
+</figure>
+</li>
+<li>
+<figure>
+<span class="image"><img src="http://placehold.it/230x153/cccccc/ffffff" alt="" width="230" height="153"></span>
+<figcaption class="title">JPホットサンド<br>パストラミビーフ</figcaption>
+<p class="summary">430円（税込）</p>
+</figure>
+</li>
+<li>
+<figure>
+<span class="image"><img src="http://placehold.it/230x153/cccccc/ffffff" alt="" width="230" height="153"></span>
+<figcaption class="title">JPホットサンド<br>パストラミビーフ</figcaption>
+<p class="summary">430円（税込）</p>
+</figure>
+</li>
+<li>
+<figure>
+<span class="image"><img src="http://placehold.it/230x153/cccccc/ffffff" alt="" width="230" height="153"></span>
+<figcaption class="title">JPホットサンド<br>パストラミビーフ</figcaption>
+<p class="summary">430円（税込）</p>
+</figure>
+</li>
+<!-- /.imageList --></ul>
+<div class="m_box s_border_nobg option">
+<ul class="m_list s_unstyled">
+<li>.l_col*：カラム幅均等。2～4カラムまで</li>
+<li>.l_spCol：SPレイアウト時に2カラム表示</li>
+<!-- /.m_list --></ul>
+<!-- /.m_box --></div>
+
+
+
+<h1 class="templatesHead">テーブル</h1>
+<p class="templatesName">テーブル（.m_table）</p>
+<div class="m_table">
+<table>
+<thead>
+<tr>
+<th scope="col">th</th>
+<th scope="col">th</th>
+<th scope="col">th</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th scope="row">th</th>
+<td>td</td>
+<td>td</td>
+</tr>
+<tr>
+<th scope="row">th</th>
+<td>td</td>
+<td>td</td>
+</tr>
+</tbody>
+</table>
+<!-- /.table --></div>
+<div class="m_box s_border_nobg option">
+<ul class="m_list s_unstyled">
+<li>.s_fixed：セル幅均等</li>
+<!-- /.m_list --></ul>
+<!-- /.m_box --></div>
+
+
+
+<h1 class="templatesHead">ナビゲーション</h1>
+<p class="templatesName">ボタン（.m_button）</p>
+<p class="m_button"><a href="">ボタン</a></p>
+<ul class="m_button">
+<li><a href="">ボタン</a></li>
+<li><button>ボタン</button></li>
+<li><input type="submit" value="ボタン"></li>
+<li><input type="submit" value="ボタン" class="disabled" disabled></li>
+<!-- /.m_button --></ul>
+<div class="m_box s_border_nobg option">
+<ul class="m_list s_unstyled">
+<li>.s_fixed：セル幅均等</li>
+<!-- /.m_list --></ul>
+<!-- /.m_box --></div>
+
+<p class="templatesName">ページャー（.m_pager）</p>
+<ul class="m_pager">
+<li class="first"><a href=""><span>最初へ</span></a></li>
+<li class="prev"><a href=""><span>前へ</span></a></li>
+<li><a href="">1</a></li>
+<li><a href="">2</a></li>
+<li class="is_active"><a href="">3</a></li>
+<li><a href="">4</a></li>
+<li><a href="">5</a></li>
+<li class="next"><a href=""><span>次へ</span></a></li>
+<li class="last"><a href=""><span>最後へ</span></a></li>
+<!-- /.m_pager --></ul>
+
+
+<h1 class="templatesHead">インライン</h1>
+<p class="templatesName">リンクアイコン</p>
+<p><span class="blank"><a href="" target="_blank">別窓リンク</a></span></p>
+<p><span class="pdf"><a href=".pdf" target="_blank">PDFリンク</a></span></p>
+
+
+<p class="pagetop"><a href="#document">top</a></p>
+<!-- /#mainContents ==========--></article>
+</main>
+
+<% include ../include/common/subContents %>
+<!-- /#container ==========--></div>
+
+<% include ../include/common/footer %>
+<!-- /#document ==========--></div>
+<% include ../include/common/script %>
+</body>
+</html>
