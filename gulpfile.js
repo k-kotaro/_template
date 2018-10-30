@@ -192,12 +192,14 @@ gulp.task('imagemin', function(){
 //- ファイルコピータスク
 gulp.task('copy', function(callback) {
 	var dstDir = '/xampp/htdocs/' + project;
+	var ccDir = '/Users/kitajima/Creative Cloud Files/works_html/' + project;
 	//var dstDir = '/Applications/XAMPP/xamppfiles/htdocs/' + project;
 	return gulp.src([
 		dir.root + '**/*'
 	])
 	.pipe(changed(dstDir))
-	.pipe(gulp.dest(dstDir));
+	.pipe(gulp.dest(dstDir))
+	.pipe(gulp.dest(ccDir));
 	callback();
 });
 
