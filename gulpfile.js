@@ -10,7 +10,6 @@ var inlineimage = require('gulp-inline-image');
 var imagemin = require('gulp-imagemin');
 var imageminPngquant = require('imagemin-pngquant');
 var cssmin = require('gulp-cssmin');
-var uglify = require('gulp-uglify');
 var runSequence = require('run-sequence');
 var changed = require('gulp-changed');
 var cache = require('gulp-cached');
@@ -21,11 +20,14 @@ var iconfontCss = require('gulp-iconfont-css');
 var iconfont = require('gulp-iconfont');
 var ejs = require("gulp-ejs");
 var browserSync = require('browser-sync');
+var webpackStream = require('webpack-stream');
+var webpack = require('webpack');
 
 //- プロジェクト設定
 var project = '_templates';
 var subdomain = true;
 var minify = true;
+var webpackConfig = require('./webpack.config');
 var dir  = {
 	root: 'root/',
 	html:   'html/',
@@ -78,7 +80,7 @@ gulp.task('cssBuild', function(callback) {
 //- JSパブリッシュタスク
 gulp.task('jsBuild', function(callback) {
 	if(minify == true){
-		runSequence('jsmin',
+	  	runSequence('bundle',
 			'copy',
 			'reload',
 			callback);
@@ -159,20 +161,11 @@ gulp.task('cssmin', function() {
 	.pipe(gulp.dest(dir.root + dir.css));
 });
 
-//- JS圧縮タスク
-gulp.task('jsmin', function(){
-	var pubDir = (minify == true)? dir.root + dir.dev + dir.js : dir.root + dir.js;
-	return gulp.src(dir.root + dir.dev + dir.js + '**/*.js')
+//- webpackタスク
+gulp.task('bundle', function(){
+  var pubDir = (minify == true)? dir.root + dir.dev + dir.js : dir.root + dir.js;
+	return webpackStream(webpackConfig, webpack)
 	.pipe(plumber())
-	.pipe(uglify({
-		mangle: true
-	}))
-	.pipe(rename(function(path){
-		if(!(path.basename.match('.min'))){
-			path.basename += '.min';
-			path.extname = '.js';
-		}
-	}))
 	.pipe(gulp.dest(pubDir));
 });
 
@@ -199,12 +192,14 @@ gulp.task('imagemin', function(){
 //- ファイルコピータスク
 gulp.task('copy', function(callback) {
 	var dstDir = '/xampp/htdocs/' + project;
+	var ccDir = '/Users/kitajima/Creative Cloud Files/works_html/' + project;
 	//var dstDir = '/Applications/XAMPP/xamppfiles/htdocs/' + project;
 	return gulp.src([
 		dir.root + '**/*'
 	])
 	.pipe(changed(dstDir))
-	.pipe(gulp.dest(dstDir));
+	.pipe(gulp.dest(dstDir))
+	.pipe(gulp.dest(ccDir));
 	callback();
 });
 
