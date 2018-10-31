@@ -1,17 +1,19 @@
 <%
 var pageName = "個別title";
 var pageID = "個別ID";
+var categoryID = "カテゴリID";
 var pageTitle = "個別Title";
 var pageDescription = "個別Description";
+var path = "./";
 %><!DOCTYPE html>
 <html lang="ja">
 <head prefix="og:http://ogp.me/ns# fb:http://ogp.me/ns/fb# article:http://ogp.me/ns/article#">
 <meta charset="utf-8">
 <% include ../include/common/-meta %>
-<link rel="stylesheet" type="text/css" href="css/common/styles.min.css">
+<link rel="stylesheet" type="text/css" href="<%= path %>css/common/styles.min.css">
 </head>
 <body>
-<div id="document" class="<%= pageID %>">
+<div id="document" class="<%= pageID %> <%= categoryID %>">
 <% include ../include/common/-header %>
 <% include ../include/common/-gnav %>
 
@@ -25,6 +27,6 @@ container
 
 <% include ../include/common/-footer %>
 <!-- /#document ==========--></div>
-<% include ../include/common/-script %>
+<script src="<%= path %>scripts/common/bundle.js"></script>
 </body>
 </html>

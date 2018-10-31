@@ -1,6 +1,7 @@
 <%
 var pageName = "テンプレート";
-var pageID = "template";
+var pageID = "module";
+var categoryID = "templates";
 var pageTitle = "個別Title";
 var pageDescription = "個別Description";
 var path = "../";
@@ -9,19 +10,19 @@ var path = "../";
 <head prefix="og:http://ogp.me/ns# fb:http://ogp.me/ns/fb# article:http://ogp.me/ns/article#">
 <meta charset="utf-8">
 <% include ../include/common/-meta %>
-<link rel="stylesheet" type="text/css" href="../css/common/styles.min.css">
+<link rel="stylesheet" type="text/css" href="<%= path %>css/common/styles.min.css">
 </head>
 <body>
-<div id="document" class="<%= pageID %>">
+<div id="document" class="<%= pageID %> <%= categoryID %>">
 <% include ../include/common/-header %>
 <% include ../include/common/-gnav %>
 
 <div id="container">
 <nav id="breadcrumb">
 <ol>
-<li><a href="../"><span>HOME</span></a></li>
-<li><a href="../"><span>breadcrumb</span></a></li>
-<li><em><%= pageTitle %></em></li>
+<li><a href="<%= path %>"><span>HOME</span></a></li>
+<li><a href="<%= path %>"><span>breadcrumb</span></a></li>
+<li><em><%= pageName %></em></li>
 <!-- /.breadcrumb --></ol>
 </nav>
 <main>
@@ -278,7 +279,6 @@ var path = "../";
 
 <% include ../include/common/-footer %>
 <!-- /#document ==========--></div>
-<% include ../include/common/-script %>
-<script src="../scripts/test/bundle.js"></script>
+<script src="<%= path %>scripts/common/bundle.js"></script>
 </body>
 </html>
