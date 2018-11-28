@@ -11,6 +11,7 @@ var imagemin = require('gulp-imagemin');
 var imageminPngquant = require('imagemin-pngquant');
 var mozjpeg  = require('imagemin-mozjpeg');
 var cssmin = require('gulp-cssmin');
+var uglify = require('gulp-uglify');
 var runSequence = require('run-sequence');
 var changed = require('gulp-changed');
 var cache = require('gulp-cached');
@@ -81,7 +82,7 @@ gulp.task('cssBuild', function(callback) {
 //- JSパブリッシュタスク
 gulp.task('jsBuild', function(callback) {
     if(minify == true){
-          runSequence('bundle',
+		runSequence('jsmin',
             'copy',
             'reload',
             callback);
@@ -165,12 +166,27 @@ gulp.task('cssmin', function() {
 });
 
 //- webpackタスク
-gulp.task('bundle', function(){
-  var pubDir = (minify == true)? dir.root + dir.dev + dir.js : dir.root + dir.js;
-    return webpackStream(webpackConfig, webpack)
-    .pipe(cache('bundle'))
-    .pipe(plumber())
-    .pipe(gulp.dest(pubDir));
+//gulp.task('bundle', function(){
+//  var pubDir = (minify == true)? dir.root + dir.dev + dir.js : dir.root + dir.js;
+//    return webpackStream(webpackConfig, webpack)
+//    .pipe(cache('bundle'))
+//    .pipe(plumber())
+//    .pipe(gulp.dest(pubDir));
+//});
+
+//- JS圧縮タスク
+gulp.task('jsmin', function(){
+	return gulp.src(dir.root + dir.dev + dir.js + '**/*.js')
+		.pipe(changed(dir.root + dir.js))
+		.pipe(plumber())
+		.pipe(uglify())
+		.pipe(rename(function(path){
+		if(!(path.basename.match('.min'))){
+			path.basename += '.min';
+			path.extname = '.js';
+		}
+	}))
+	.pipe(gulp.dest(dir.root + dir.js));
 });
 
 //- 画像圧縮タスク
