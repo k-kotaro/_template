@@ -9,6 +9,7 @@ var sass = require('gulp-sass');
 var inlineimage = require('gulp-inline-image');
 var imagemin = require('gulp-imagemin');
 var imageminPngquant = require('imagemin-pngquant');
+var mozjpeg  = require('imagemin-mozjpeg');
 var cssmin = require('gulp-cssmin');
 var runSequence = require('run-sequence');
 var changed = require('gulp-changed');
@@ -182,15 +183,19 @@ gulp.task('imagemin', function(){
     return gulp.src(srcGlob)
     .pipe(cache('imagemin'))
     .pipe(imagemin({
-        plugins: [
-            imageminPngquant({
-                quality: '65-80',
-                speed: 1,
-                floyd:0
-            })
-        ]
-    }))
-    .pipe(imagemin(imageminOptions))
+		plugins: [
+			imageminPngquant({
+				quality: '65-80',
+				speed: 1,
+				floyd: 0
+			}),
+			mozjpeg({
+				quality: 80,
+				progressive: true
+			})
+		]
+	}, imageminOptions))
+    .pipe(imagemin())
     .pipe(gulp.dest(dir.root + dir.img));
 });
 
