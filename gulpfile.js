@@ -81,15 +81,17 @@ gulp.task('cssBuild', function(callback) {
 
 //- JSパブリッシュタスク
 gulp.task('jsBuild', function(callback) {
-	runSequence('bundle',
-		'copy',
-		'reload',
-		callback);
+    if(minify == true){
+		runSequence('jsmin',
+            'copy',
+            'reload',
+            callback);
+    }
 });
 
 //- EJSタスク
 gulp.task('ejs', function() {
-    return gulp.src([dir.root + dir.dev + '**/*.ejs', '!' + dir.root + dir.dev + '**/-*.ejs'])
+    return gulp.src([dir.root + dir.dev + dir.html + '**/*.ejs', '!' + dir.root + dir.dev + dir.html + '**/-*.ejs'])
     .pipe(ejs())
     .pipe(rename({extname: '.html'}))
     .pipe(gulp.dest(dir.root));
@@ -164,13 +166,13 @@ gulp.task('cssmin', function() {
 });
 
 //- webpackタスク
-gulp.task('bundle', function(){
-  var pubDir = (minify == true)? dir.root + dir.dev + dir.js : dir.root + dir.js;
-    return webpackStream(webpackConfig, webpack)
-    .pipe(cache('bundle'))
-    .pipe(plumber())
-    .pipe(gulp.dest(pubDir));
-});
+//gulp.task('bundle', function(){
+//  var pubDir = (minify == true)? dir.root + dir.dev + dir.js : dir.root + dir.js;
+//    return webpackStream(webpackConfig, webpack)
+//    .pipe(cache('bundle'))
+//    .pipe(plumber())
+//    .pipe(gulp.dest(pubDir));
+//});
 
 //- JS圧縮タスク
 gulp.task('jsmin', function(){
@@ -244,7 +246,7 @@ gulp.task('reload', function () {
 
 //- 監視タスク
 gulp.task('watchify', function(){
-    gulp.watch([dir.root + dir.dev + '**/*.ejs'], ['htmlBuild']);
+    gulp.watch([dir.root + dir.dev + dir.html + '**/*.ejs'], ['htmlBuild']);
     gulp.watch([dir.root + dir.dev + dir.scss + '**/*.scss'], ['cssBuild']);
     gulp.watch([dir.root + dir.dev + dir.js + '**/*.js'], ['jsBuild']);
 });
