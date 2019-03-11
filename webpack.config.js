@@ -43,10 +43,10 @@ module.exports = {
 			$: 'jquery',
 			jQuery: 'jquery'
 		})
-	],
+	]
 
-	devtool: 'source-map'/*,
-	plugins: [
+	//devtool: 'source-map',
+	/*plugins: [
         new UglifyEsPlugin(),
 	]*/
 };

@@ -1,5 +1,5 @@
+// libs js
 import echo from './libs/echo.min';
-import common from './common';
 
 class Entry {
 	constructor() {
@@ -165,9 +165,9 @@ class Entry {
 			//preLoad();
 
 			// echo.jsの実行
-			//echo.init({
-			//	offset: 300    // オフセット値
-			//});
+			echo.init({
+				offset: 300    // オフセット値
+			});
 		});
 
 		$(window).on('load', function(){
