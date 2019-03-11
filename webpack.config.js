@@ -1,6 +1,7 @@
 const webpack = require('webpack');
 const path = require('path');
 const glob = require('glob');
+const UglifyEsPlugin = require('uglify-es-webpack-plugin');
 
 const entries = {};
 glob.sync("./root/Templates/dev/**/entry.js", {
@@ -42,12 +43,10 @@ module.exports = {
 			$: 'jquery',
 			jQuery: 'jquery'
 		})
-	]/*,
+	],
 
-	devtool: 'source-map',
+	devtool: 'source-map'/*,
 	plugins: [
-		new webpack.optimize.UglifyJsPlugin({
-			sourceMap: true
-		})
+        new UglifyEsPlugin(),
 	]*/
 };
