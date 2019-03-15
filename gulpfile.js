@@ -55,8 +55,7 @@ var getFolders = function (dir) {
 gulp.task('htmlBuild', function(callback) {
     runSequence('ejs',
         'imagemin',
-        'copy',
-        'reload',
+        ['copy', 'reload'],
         callback);
 });
 
@@ -66,15 +65,13 @@ gulp.task('cssBuild', function(callback) {
         runSequence(['iconfont', 'sprite'],
             'sass',
             ['imagemin', 'cssmin'],
-            'copy',
-            'reload',
+            ['copy', 'reload'],
             callback);
     }else{
         runSequence(['iconfont', 'sprite'],
             'sass',
             'imagemin',
-            'copy',
-            'reload',
+            ['copy', 'reload'],
             callback);
     }
 });
@@ -82,8 +79,7 @@ gulp.task('cssBuild', function(callback) {
 //- JSパブリッシュタスク
 gulp.task('jsBuild', function(callback) {
 	runSequence('bundle',
-		'copy',
-		'reload',
+		['copy', 'reload'],
 		callback);
 });
 
@@ -229,7 +225,7 @@ gulp.task('copy', function(callback) {
 gulp.task('browser-sync', function() {
     browserSync.init({
         notify: false,
-        port: 3001,
+        port: 10000,
         server: {
             baseDir: dir.root,
             index: "index.html"

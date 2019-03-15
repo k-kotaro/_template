@@ -164,7 +164,7 @@ const imageSwitch = {
 // 画像遅延読み込み
 const layzr = Layzr({
 	normal: 'data-normal',
-	threshold: 0
+	threshold: 10
 });
 layzr.on('src:after', image => {
 	// 画像の書き換えをした後に実行
