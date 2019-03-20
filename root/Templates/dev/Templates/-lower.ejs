@@ -9,12 +9,12 @@ var path = "../";
 <html lang="ja">
 <head prefix="og:http://ogp.me/ns# fb:http://ogp.me/ns/fb# article:http://ogp.me/ns/article#">
 <meta charset="utf-8">
-<%- include(path + 'include/common/-meta',{path:path, pageTitle:pageTitle, pageDescription:pageDescription}) %>
+<%- include(path + 'include/common/-meta',{path, pageTitle, pageDescription}) %>
 </head>
 <body>
 <div id="document" class="<%= pageID %> <%= categoryID %>">
-<%- include(path + 'include/common/-header',{path:path}) %>
-<%- include(path + 'include/common/-gnav',{path:path, pageID:pageID, categoryID:categoryID}) %>
+<%- include(path + 'include/common/-header',{path, pageID}) %>
+<%- include(path + 'include/common/-gnav',{path, pageID, categoryID}) %>
 
 <div id="container">
 <nav id="breadcrumb">
@@ -33,11 +33,11 @@ main contents area
 <!-- /#mainContents ==========--></article>
 </main>
 
-<%- include(path + 'include/common/-subContents',{path:path}) %>
+<%- include(path + 'include/common/-subContents',{path}) %>
 <!-- /#container ==========--></div>
 
-<%- include(path + 'include/common/-footer',{path:path}) %>
+<%- include(path + 'include/common/-footer',{path}) %>
 <!-- /#document ==========--></div>
-<script src="<%= path %>scripts/common/bundle.js"></script>
+<script src="<%= path %>scripts/common/bundle.js" defer></script>
 </body>
 </html>
