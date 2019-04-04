@@ -13,26 +13,26 @@
 //     $valign: 行揃え (top / middle / bottom)
 // @include iblock(top);
 @mixin iblock($valign: null) {
-	display: inline-block;
-	vertical-align: $valign;
+    display: inline-block;
+    vertical-align: $valign;
 }
 
 // テキストリンクの:hover時の挙動
 //     $hoverStyle: :hoverの時 (underline / none)
 // @include hovertext($hoverStyle: null);
 @mixin hovertext($hoverStyle: null) {
-	@if $hoverStyle==underline {
-	  text-decoration: none;
-	  &:hover {
-		text-decoration: $hoverStyle;
-	  }
-	}
-	@else if $hoverStyle==none {
-	  text-decoration: underline;
-	  &:hover {
-		text-decoration: $hoverStyle;
-	  }
-	}
+    @if $hoverStyle==underline {
+      text-decoration: none;
+      &:hover {
+        text-decoration: $hoverStyle;
+      }
+    }
+    @else if $hoverStyle==none {
+      text-decoration: underline;
+      &:hover {
+        text-decoration: $hoverStyle;
+      }
+    }
 }
 
 // CSSの罫線で作る三角形
@@ -41,27 +41,27 @@
 //     $triangleWidth: 底辺の幅
 // @include triangle(top, #000000, 10px, 10px);
 @mixin triangle($shape: null, $color: #000000, $triangleHeight: 0, $triangleWidth: 0) {
-	content: "";
-	display: block;
-	border: solid $color;
-  	@if $shape == top{
-	  border-color: transparent transparent $color;
-	  border-width: 0 ($triangleWidth / 2) $triangleHeight;
-  	}
-  	@else if $shape == bottom{
-	  border-color: $color transparent transparent;
-	  border-width: $triangleHeight ($triangleWidth / 2) 0;
-  	}
-  	@else if $shape == right{
-	  border-color: transparent transparent transparent $color;
-	  border-width: ($triangleWidth / 2) 0 ($triangleWidth / 2) $triangleHeight;
-	}
-  	@else if $shape == left{
-	  border-color: transparent $color transparent transparent;
-	  border-width: ($triangleWidth / 2) $triangleHeight ($triangleWidth / 2) 0;
-	}
-	width: 0;
-	line-height: 1;
+    content: "";
+    display: block;
+    border: solid $color;
+      @if $shape == top{
+      border-color: transparent transparent $color;
+      border-width: 0 ($triangleWidth / 2) $triangleHeight;
+      }
+      @else if $shape == bottom{
+      border-color: $color transparent transparent;
+      border-width: $triangleHeight ($triangleWidth / 2) 0;
+      }
+      @else if $shape == right{
+      border-color: transparent transparent transparent $color;
+      border-width: ($triangleWidth / 2) 0 ($triangleWidth / 2) $triangleHeight;
+    }
+      @else if $shape == left{
+      border-color: transparent $color transparent transparent;
+      border-width: ($triangleWidth / 2) $triangleHeight ($triangleWidth / 2) 0;
+    }
+    width: 0;
+    line-height: 1;
 }
 
 // CSSスプライト用のボックスを形成
@@ -69,64 +69,66 @@
 //     $valign: vertical-alignプロパティ
 // @include spriteBox();
 @mixin spriteBox($display: inline-block, $valign: middle) {
-	overflow: hidden;
-	display: $display;
-	text-indent: 200%;
-	white-space: nowrap;
-	vertical-align: $valign;
-	line-height: 1;
+    overflow: hidden;
+    display: $display;
+    text-indent: 200%;
+    white-space: nowrap;
+    vertical-align: $valign;
+    line-height: 1;
 }
 
 // 疑似要素の絶対配置
-// 　　　　$insert: 疑似要素 (before / after)
+// 　　　　$top: topプロパティの値
+// 　　　　$right: rightプロパティの値
+// 　　　　$bottom: bottomプロパティの値
+// 　　　　$left: leftプロパティの値
 // @include createContent(0, 0, 0, 0);
-@mixin createContent($top: null, $right: null, $bottom: null, $left: null, $insert: before) {
-	&::#{$insert} {
-		position: absolute;
-		top: $top;
-		right: $right;
-		bottom: $bottom;
-		left: $left;
-		content: "";
-	}
+@mixin createContent($top: null, $right: null, $bottom: null, $left: null) {
+    position: absolute;
+    top: $top;
+    right: $right;
+    bottom: $bottom;
+    left: $left;
+    content: "";
 }
 
 // CSSスプライトの画像パス
 // @include spriteImage();
-@mixin spriteImage($sprite: $spritesheet) {
-	$sprite-image: nth($sprite, 3);
-	background-image: url($path + '#{$sprite-image}');
-	@include spriteBox();
+@mixin spriteImage($sprite: $spritesheet, $display: inline-block) {
+    $sprite-image: nth($sprite, 3);
+    background-image: url($path + '#{$sprite-image}');
+    @include spriteBox($display);
 }
 
 
 // CSSスプライトの画像横幅取得
 //     $sprite: スプライト画像ファイル名
 @mixin normalPDR_width($sprite) {
-	width: nth($sprite, 5);
+    width: nth($sprite, 5);
 }
 
 // CSSスプライトの画像縦幅取得
 //     $sprite: スプライト画像ファイル名
 @mixin normalPDR_height($sprite) {
-	height: nth($sprite, 6);
+    height: nth($sprite, 6);
 }
 
 // CSSスプライトの画像座標取得
 //     $sprite: スプライト画像ファイル名
+//     @include normalPDR_position($hoge-fuga);
 @mixin normalPDR_position($sprite) {
-	$sprite-offset-x: nth($sprite, 3);
-	$sprite-offset-y: nth($sprite, 4);
-	@include normalPDR_width($sprite);
-	@include normalPDR_height($sprite);
-	background-position: $sprite-offset-x $sprite-offset-y;
+    $sprite-offset-x: nth($sprite, 3);
+    $sprite-offset-y: nth($sprite, 4);
+    @include normalPDR_width($sprite);
+    @include normalPDR_height($sprite);
+    background-position: $sprite-offset-x $sprite-offset-y;
 }
 
 // CSSスプライトの画像パス取得
 //     $sprite: スプライト画像ファイル名
 @mixin normalPDR_image($sprite) {
-	$sprite-image: nth($sprite, 9);
-	background-image: url($path + '#{$sprite-image}');
+    $sprite-image: nth($sprite, 9);
+    background-image: url($path + '#{$sprite-image}');
 }
 
 // CSSスプライト生成
@@ -134,46 +136,47 @@
 //     $path: CSSファイルから見たスプライト画像のパス
 // @include normalPDR(mod_ico_alert);
 @mixin normalPDR($sprite, $display: inline-block, $valign: null) {
-	@include spriteBox($display, $valign);
-	@include normalPDR_image($sprite);
-	@include normalPDR_position($sprite);
+    @include spriteBox($display, $valign);
+    @include normalPDR_image($sprite);
+    @include normalPDR_position($sprite);
 }
 
 // CSSスプライトの高解像度用画像横幅取得
 //     $sprite: スプライト画像ファイル名
 @mixin retinaPDR_width($sprite) {
-	width: nth($sprite, 5) / 2;
+    width: nth($sprite, 5) / 2;
 }
 
 
 // CSSスプライトの高解像度用画像縦幅取得
 //     $sprite: スプライト画像ファイル名
 @mixin retinaPDR_height($sprite) {
-	height: nth($sprite, 6) / 2;
+    height: nth($sprite, 6) / 2;
 }
 
 // CSSスプライトの高解像度用画像座標取得
 //     $sprite: スプライト画像ファイル名
+//     @include retinaPDR_position($hoge-fuga-2x);
 @mixin retinaPDR_position($sprite) {
-	$sprite-offset-x: nth($sprite, 3) / 2;
-	$sprite-offset-y: nth($sprite, 4) / 2;
-	@include retinaPDR_width($sprite);
-	@include retinaPDR_height($sprite);
-	background-position: $sprite-offset-x $sprite-offset-y;
-	@include retinaPDR_size($sprite);
+    $sprite-offset-x: nth($sprite, 3) / 2;
+    $sprite-offset-y: nth($sprite, 4) / 2;
+    @include retinaPDR_width($sprite);
+    @include retinaPDR_height($sprite);
+    background-position: $sprite-offset-x $sprite-offset-y;
+    @include retinaPDR_size($sprite);
 }
 
 // CSSスプライトの高解像度用画像パス取得
 //     $sprite: スプライト画像ファイル名
 @mixin retinaPDR_image($sprite) {
-	$sprite-image: nth($sprite, 9);
-	background-image: url($path + '#{$sprite-image}');
+    $sprite-image: nth($sprite, 9);
+    background-image: url($path + '#{$sprite-image}');
 }
 
 
 // CSSスプライトの高解像度用画像サイズ取得
 @mixin retinaPDR_size($sprite) {
-	background-size: nth($sprite, 7)/2 nth($sprite, 8)/2;
+    background-size: nth($sprite, 7)/2 nth($sprite, 8)/2;
 }
 
 // CSSスプライト高解像度用生成
@@ -181,16 +184,17 @@
 //     $path: CSSファイルから見たスプライト画像のパス
 // @include retinaPDR(mod_ico_alert);
 @mixin retinaPDR($sprite, $display: inline-block, $valign: null) {
-	@include spriteBox($display, $valign);
-	@include retinaPDR_image($sprite);
-	@include retinaPDR_position($sprite);
+    @include spriteBox($display, $valign);
+    @include retinaPDR_image($sprite);
+    @include retinaPDR_position($sprite);
 }
 
 // 要素内の一番最後の要素の下マージンを0にする
+//     @include lastElement;
 @mixin lastElement {
-	& > *:last-child {
-		margin-bottom: 0 !important;
-	}
+    & > *:last-child {
+        margin-bottom: 0 !important;
+    }
 }
 
 // 破線（背景画像として）
@@ -203,52 +207,55 @@
 //     $insert: 疑似要素 (before / after)
 // @include dotted(#000, 3px, 2px,  $posBottom: true);
 @mixin dashed($color, $spacing: 5px, $dotsize: 1px, $posTop: false, $posRight: false, $posBottom: false, $posLeft: false, $insert: before) {
-	$bgAttr: (
-		top: linear-gradient(to left, $color, $color $dotsize, transparent $dotsize, transparent $spacing) repeat-x 0 0,
-		right: linear-gradient(to bottom, $color, $color $dotsize, transparent $dotsize, transparent $spacing) repeat-y 100% 0,
-		bottom: linear-gradient(to left, $color, $color $dotsize, transparent $dotsize, transparent $spacing) repeat-x 0 100%,
-		left: linear-gradient(to bottom, $color, $color $dotsize, transparent $dotsize, transparent $spacing) repeat-y 0 0
-	);
-	&::#{$insert} {
-		@include createContent(0, 0, 0, 0);
-		background: if($posTop, map-get($bgAttr, top), null), if($posRight, map-get($bgAttr, right), null), if($posBottom, map-get($bgAttr, bottom), null), if($posLeft, map-get($bgAttr, left), null);
-		background-size: if($posTop, $spacing $dotsize, null), if($posRight, $dotsize $spacing, null), if($posBottom, $spacing $dotsize, null), if($posLeft, $dotsize $spacing, null);
-		z-index: -1;
-	}
+    $bgAttr: (
+        top: linear-gradient(to left, $color, $color $dotsize, transparent $dotsize, transparent $spacing) repeat-x 0 0,
+        right: linear-gradient(to bottom, $color, $color $dotsize, transparent $dotsize, transparent $spacing) repeat-y 100% 0,
+        bottom: linear-gradient(to left, $color, $color $dotsize, transparent $dotsize, transparent $spacing) repeat-x 0 100%,
+        left: linear-gradient(to bottom, $color, $color $dotsize, transparent $dotsize, transparent $spacing) repeat-y 0 0
+    );
+    &::#{$insert} {
+        @include createContent(0, 0, 0, 0);
+        background: if($posTop, map-get($bgAttr, top), null), if($posRight, map-get($bgAttr, right), null), if($posBottom, map-get($bgAttr, bottom), null), if($posLeft, map-get($bgAttr, left), null);
+        background-size: if($posTop, $spacing $dotsize, null), if($posRight, $dotsize $spacing, null), if($posBottom, $spacing $dotsize, null), if($posLeft, $dotsize $spacing, null);
+        z-index: -1;
+    }
 }
 
 // フォント調整
 //     $fts: フォントサイズ。pxのサイズを単位抜いて入力
 //     $lin: 行間。pxのサイズを単位抜いて入力。px指定の場合は'**px'で入力
+//     $weight: ウェイト。
 // @include fts(16, 32);
 // @include fts(16, '40px');
-@mixin fts($fts: $baseFontSize, $lin: null) {
-	$rem: $fts / 10;
-	@if type-of($fts) == 'string'{
-		font-size: unquote($fts);
-		line-height: unquote($lin);
-	}@else if ($fts != null) {
-		font-size: #{$rem}rem;
-		@if type-of($lin) == 'string'{
-			line-height: unquote($lin);
-		}@else if ($lin != null) {
-			line-height: $lin / $fts;
-		}
-	}
+@mixin fts($fts: $baseFontSize, $lin: null, $weight: null) {
+    $rem: $fts / 10;
+    @if type-of($fts) == 'string'{
+        font-size: unquote($fts);
+        font-weight: $weight;
+        line-height: unquote($lin);
+    }@else if ($fts != null) {
+        font-size: #{$rem}rem;
+        font-weight: $weight;
+        @if type-of($lin) == 'string'{
+            line-height: unquote($lin);
+        }@else if ($lin != null) {
+            line-height: $lin / $fts;
+        }
+    }
 }
 
 // テキストの縁取り
 //     $width: 縁の幅。2pxぐらいがきれいに見えるギリギリ
 //     @include textBorder(#000, 2px);
 @mixin textBorder($color, $width: 2px){
-	text-shadow: 0 $width 0 $color, $width 0 0 $color, 0 -#{$width} 0 $color, -#{$width} 0 0 $color, -#{$width} -#{$width} 0 $color, $width -#{$width} 0 $color, -#{$width} $width 0 $color, $width $width 0 $color;
+    text-shadow: 0 $width 0 $color, $width 0 0 $color, 0 -#{$width} 0 $color, -#{$width} 0 0 $color, -#{$width} -#{$width} 0 $color, $width -#{$width} 0 $color, -#{$width} $width 0 $color, $width $width 0 $color;
 }
 
-// 画像サイズを画面比率に対してリキッド指定（SP用）
+// 画像サイズを画面比率に対してリキッド指定（主にSP用）
 //     $width: 画像幅（実寸）
 //     $baseWidth: 切り出したPSDの幅
 // @include textBorder(#000, 2px);
 @mixin variableImage($width, $baseWidth: 750){
-	width: ($width / $baseWidth * 100) * 1vw;
-	height: auto;
+    width: ($width / $baseWidth * 100) * 1vw;
+    height: auto;
 }
