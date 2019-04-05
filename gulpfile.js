@@ -51,38 +51,6 @@ var getFolders = function (dir) {
     });
 }
 
-//- HTMLパブリッシュタスク
-gulp.task('htmlBuild', function(callback) {
-    runSequence('ejs',
-        'imagemin',
-        ['copy', 'reload'],
-        callback);
-});
-
-//- CSSパブリッシュタスク
-gulp.task('cssBuild', function(callback) {
-    if(minify == true){
-        runSequence(['iconfont', 'sprite'],
-            'sass',
-            ['imagemin', 'cssmin'],
-            ['copy', 'reload'],
-            callback);
-    }else{
-        runSequence(['iconfont', 'sprite'],
-            'sass',
-            'imagemin',
-            ['copy', 'reload'],
-            callback);
-    }
-});
-
-//- JSパブリッシュタスク
-gulp.task('jsBuild', function(callback) {
-	runSequence('bundle',
-		['copy', 'reload'],
-		callback);
-});
-
 //- EJSタスク
 gulp.task('ejs', function() {
     return gulp.src([dir.root + dir.dev + '**/*.ejs', '!' + dir.root + dir.dev + '**/-*.ejs'])
@@ -170,17 +138,17 @@ gulp.task('bundle', function(){
 
 //- JS圧縮タスク
 gulp.task('jsmin', function(){
-	return gulp.src(dir.root + dir.dev + dir.js + '**/*.js')
-		.pipe(changed(dir.root + dir.js))
-		.pipe(plumber())
-		.pipe(uglify())
-		.pipe(rename(function(path){
-		if(!(path.basename.match('.min'))){
-			path.basename += '.min';
-			path.extname = '.js';
-		}
-	}))
-	.pipe(gulp.dest(dir.root + dir.js));
+    return gulp.src(dir.root + dir.dev + dir.js + '**/*.js')
+        .pipe(changed(dir.root + dir.js))
+        .pipe(plumber())
+        .pipe(uglify())
+        .pipe(rename(function(path){
+        if(!(path.basename.match('.min'))){
+            path.basename += '.min';
+            path.extname = '.js';
+        }
+    }))
+    .pipe(gulp.dest(dir.root + dir.js));
 });
 
 //- 画像圧縮タスク
@@ -193,18 +161,18 @@ gulp.task('imagemin', function(){
     return gulp.src(srcGlob)
     .pipe(cache('imagemin'))
     .pipe(imagemin({
-		plugins: [
-			imageminPngquant({
-				quality: '65-80',
-				speed: 1,
-				floyd: 0
-			}),
-			mozjpeg({
-				quality: 80,
-				progressive: true
-			})
-		]
-	}, imageminOptions))
+        plugins: [
+            imageminPngquant({
+                quality: '65-80',
+                speed: 1,
+                floyd: 0
+            }),
+            mozjpeg({
+                quality: 80,
+                progressive: true
+            })
+        ]
+    }, imageminOptions))
     .pipe(imagemin())
     .pipe(gulp.dest(dir.root + dir.img));
 });
@@ -238,6 +206,60 @@ gulp.task('reload', function () {
   browserSync.reload();
 });
 
+
+//- HTMLパブリッシュタスク
+/*gulp.task('htmlBuild', function(callback) {
+    runSequence('ejs',
+        'imagemin',
+        ['copy', 'reload'],
+        callback);
+});*/
+
+gulp.task('htmlBuild', gulp.series(
+    'ejs',
+    'imagemin',
+    gulp.parallel("copy", "reload")
+)
+         );
+
+//- CSSパブリッシュタスク
+/*gulp.task('cssBuild', function(callback) {
+    if(minify == true){
+        runSequence(['iconfont', 'sprite'],
+            'sass',
+            ['imagemin', 'cssmin'],
+            ['copy', 'reload'],
+            callback);
+    }else{
+        runSequence(['iconfont', 'sprite'],
+            'sass',
+            'imagemin',
+            ['copy', 'reload'],
+            callback);
+    }
+});*/
+gulp.task('cssBuild', gulp.series(
+    gulp.parallel("iconfont", "sprite"),
+    'sass',
+    gulp.parallel("imagemin", "cssmin"),
+    gulp.parallel("copy", "reload")
+)
+         );
+
+//- JSパブリッシュタスク
+/*gulp.task('jsBuild', function(callback) {
+    runSequence('bundle',
+        ['copy', 'reload'],
+        callback);
+});*/
+gulp.task('jsBuild', gulp.series(
+    'bundle',
+    gulp.parallel("imagemin", "cssmin"),
+    gulp.parallel("copy", "reload")
+)
+         );
+
+
 //- 監視タスク
 gulp.task('watchify', function(){
     gulp.watch([dir.root + dir.dev + '**/*.ejs'], ['htmlBuild']);
@@ -245,4 +267,4 @@ gulp.task('watchify', function(){
     gulp.watch([dir.root + dir.dev + dir.js + '**/*.js'], ['jsBuild']);
 });
 
-gulp.task('default', ['watchify', 'browser-sync']);
+gulp.task('default', gulp.series('watchify', 'browser-sync'));
