@@ -27,21 +27,21 @@
         margin: 0;
         white-space: nowrap;
         & > li{
-            @include vmBox;
+            @include iblock(middle);
             &:nth-child(n+2){
                 margin-left: 10px;
             }
         }
     }
 
-    @media screen and (min-width: $rwdBreakPoint01 + 1) {
+    @media screen and (min-width: $rwdBreakPoint01) {
         width: $contentWidth;
         .content{
             margin: 0 0 10px;
         }
     }
 
-    @media screen and (max-width: $rwdBreakPoint01) {
+    @media screen and (max-width: $rwdBreakPoint01 - 1) {
         .content{
             align-items: center;
             padding-right: 50px;
@@ -49,3 +49,4 @@
         }
     }
 }
+

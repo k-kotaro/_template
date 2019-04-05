@@ -33,10 +33,10 @@
         background: #c1c1c1;
     }
 
-    @media screen and (min-width: $rwdBreakPoint01 + 1) {
+    @media screen and (min-width: $rwdBreakPoint01) {
         margin: -10px 0 30px;
         & > li {
-            @include vmBox;
+            @include iblock(middle);
             margin: 10px 5px 0;
         }
         a,
@@ -44,7 +44,7 @@
         input[type="button"],
         input[type="submit"],
         input[type="reset"] {
-            @include vmBox;
+            @include iblock(middle);
             min-width: 300px;
             transition: opacity .5s ease;
             &:hover {
@@ -53,7 +53,7 @@
         }
     }
 
-    @media screen and (max-width: $rwdBreakPoint01) {
+    @media screen and (max-width: $rwdBreakPoint01 - 1) {
         margin: 0 0 30px;
         & > li:nth-child(n+2) {
             margin-top: 10px;
@@ -75,7 +75,7 @@
     text-align: center;
     & > li {
         box-sizing: border-box;
-        @include vmBox;
+        @include iblock(middle);
         margin: 0 5px;
         &:not([class]) a,
         &.is_active a {
@@ -102,7 +102,7 @@
         }
     }
 
-    @media screen and (min-width: $rwdBreakPoint01 + 1) {
+    @media screen and (min-width: $rwdBreakPoint01) {
         & > li {
             &:not([class]) a,
             &.is_active a {
@@ -112,7 +112,7 @@
         }
     }
 
-    @media screen and (max-width: $rwdBreakPoint01) {
+    @media screen and (max-width: $rwdBreakPoint01 - 1) {
         & > li{
             &:not([class]) a,
             &.is_active a {

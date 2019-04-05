@@ -27,7 +27,7 @@
         }
     }
 
-    @media screen and (min-width: $rwdBreakPoint01 + 1) {
+    @media screen and (min-width: $rwdBreakPoint01) {
         width: $contentWidth;
         .menu{
             display: none;
@@ -43,12 +43,12 @@
         }
     }
 
-    @media screen and (max-width: $rwdBreakPoint01) {
+    @media screen and (max-width: $rwdBreakPoint01 - 1) {
         .menu{
             position: absolute;
             top: -50px;
             right: 0;
-            @include gnavBtn($animType: 1);
+            //@include gnavBtn($animType: 1);
         }
         ul{
             flex-direction: column;

@@ -28,20 +28,16 @@
 @function icon-char($filename) {
     $char: "";
 
-    @if $filename == mod_ico_minus {
+    @if $filename == uEA01-mod_ico_minus {
         $char: "\E001";
     }
 
     @return $char;
 }
 
-@mixin icon($filename, $size: null, $color: null, $insert: before, $extend: true) {
+@mixin icon($filename, $size: null, $color: null, $insert: before) {
     &::#{$insert} {
-        @if $extend {
-            @extend %icon;
-        } @else {
-            @include icon-styles;
-        }
+        @include icon-styles;
         color: $color;
         font-size: $size;
         vertical-align: middle;
@@ -56,7 +52,7 @@
     }
 }
 
-//.icon-mod_ico_minus {
-//    @include icon(mod_ico_minus);
+//.icon-uEA01-mod_ico_minus {
+//    @include icon(uEA01-mod_ico_minus);
 //}
 //

@@ -1,36 +1,32 @@
 //- gulpモジュール
-var gulp = require('gulp');
-var fs = require('fs');
-var path = require('path');
-var plumber = require('gulp-plumber');
-var sprite = require('gulp.spritesmith');
-var rename = require("gulp-rename");
-var sass = require('gulp-sass');
-var inlineimage = require('gulp-inline-image');
-var imagemin = require('gulp-imagemin');
-var imageminPngquant = require('imagemin-pngquant');
-var mozjpeg  = require('imagemin-mozjpeg');
-var cssmin = require('gulp-cssmin');
-var uglify = require('gulp-uglify');
-var runSequence = require('run-sequence');
-var changed = require('gulp-changed');
-var cache = require('gulp-cached');
-var watchify = require('watchify');
-var comb = require('gulp-csscomb');
-var autoprefixer = require('gulp-autoprefixer');
-var iconfontCss = require('gulp-iconfont-css');
-var iconfont = require('gulp-iconfont');
-var ejs = require("gulp-ejs");
-var browserSync = require('browser-sync');
-var webpackStream = require('webpack-stream');
-var webpack = require('webpack');
+const gulp = require('gulp');
+const fs = require('fs');
+const path = require('path');
+const plumber = require('gulp-plumber');
+const sprite = require('gulp.spritesmith');
+const rename = require('gulp-rename');
+const sass = require('gulp-sass');
+const inlineimage = require('gulp-inline-image');
+const imagemin = require('gulp-imagemin');
+const pngquant  = require('imagemin-pngquant');
+const mozjpeg  = require('imagemin-mozjpeg');
+const cssmin = require('gulp-cssmin');
+const uglify = require('gulp-uglify');
+const comb = require('gulp-csscomb');
+const autoprefixer = require('gulp-autoprefixer');
+const iconfontCss = require('gulp-iconfont-css');
+const iconfont = require('gulp-iconfont');
+const ejs = require('gulp-ejs');
+const browserSync = require('browser-sync');
+const webpackStream = require('webpack-stream');
+const webpack = require('webpack');
+const cache = require('gulp-cached');
 
 //- プロジェクト設定
-var project = '_templates';
-var subdomain = true;
-var minify = true;
-var webpackConfig = require('./webpack.config');
-var dir  = {
+const project = '_templates';
+const minify = true;
+const webpackConfig = require('./webpack.config');
+const dir  = {
     root: 'root/',
     html:   'html/',
     css:   'css/',
@@ -44,7 +40,7 @@ var dir  = {
     dev:   'Templates/dev/'
 };
 
-var getFolders = function (dir) {
+const getFolders = function (dir) {
     return fs.readdirSync(dir)
         .filter(function (file) {
         return fs.statSync(path.join(dir, file)).isDirectory();
@@ -52,7 +48,7 @@ var getFolders = function (dir) {
 }
 
 //- EJSタスク
-gulp.task('ejs', function() {
+gulp.task('ejs', () => {
     return gulp.src([dir.root + dir.dev + '**/*.ejs', '!' + dir.root + dir.dev + '**/-*.ejs'])
     .pipe(ejs())
     .pipe(rename({extname: '.html'}))
@@ -60,9 +56,8 @@ gulp.task('ejs', function() {
 });
 
 //- アイコンフォント作成タスク
-gulp.task('iconfont', function(){
-    var srcGlob = dir.root + dir.dev + dir.font + '*.svg';
-    return gulp.src(srcGlob)
+gulp.task('iconfont', () => {
+    return gulp.src(dir.root + dir.dev + dir.font + '*.svg')
     .pipe(cache('iconfont'))
     .pipe(iconfontCss({
         fontName: 'icon',
@@ -71,37 +66,38 @@ gulp.task('iconfont', function(){
         fontPath: '../../fonts/'
     }))
     .pipe(iconfont({
-        normalize: true,
-        fontHeight: 128,
         fontName: 'icon',
         formats: ['woff'],
-        appendCodepoints:false
-    }))
-    .pipe(gulp.dest(dir.root + dir.font));
+        appendCodepoints: false
+    }));
 });
 
 //- スプライト画像、mixin作成タスク
-gulp.task('sprite', function() {
-    var srcGlob = dir.root + dir.dev + dir.spriteImg;
-    return getFolders(srcGlob).forEach(function(folder){
-    var spriteData = gulp.src(dir.root + dir.dev + dir.spriteImg + folder + '/*.png')
-    .pipe(cache('sprite'))
-    .pipe(sprite({
-        imgName: 'mod_img_sprite.png',
-        imgPath: dir.img + folder + '/' + 'mod_img_sprite.png',
-        cssName: '_' + folder + '.scss',
-        padding: 10
-    }));
-    spriteData.img.pipe(gulp.dest(dir.root + dir.dev + dir.img + folder));
-    spriteData.css.pipe(gulp.dest(dir.root + dir.dev + dir.scss + '_sprite'));
+gulp.task('sprite', (done) => {
+    var folders = getFolders(dir.root + dir.dev + dir.spriteImg);
+    folders.map(function (folder) {
+        var spriteData = gulp.src(dir.root + dir.dev + dir.spriteImg + folder + '/*.png', {
+            since: gulp.lastRun(sprite)
+        })
+        .pipe(cache('sprite'))
+        .pipe(sprite({
+            imgName: 'mod_img_sprite.png',
+            imgPath: dir.img + folder + '/' + 'mod_img_sprite.png',
+            cssName: '_' + folder + '.scss',
+            padding: 10
+        }));
+        spriteData.img.pipe(gulp.dest(dir.root + dir.dev + dir.img + folder));
+        spriteData.css.pipe(gulp.dest(dir.root + dir.dev + dir.scss + '_sprite'));
     });
+    done();
 });
 
 //- sassファイルコンパイルタスク
-gulp.task('sass', function () {
+gulp.task('sass', () => {
     var pubDir = (minify == true)? dir.root + dir.dev + dir.css : dir.root + dir.css;
-    return gulp.src(dir.root + dir.dev + dir.scss + '**/*.scss')
-    .pipe(cache('sass'))
+    return gulp.src(dir.root + dir.dev + dir.scss + '**/*.scss', {
+        since: gulp.lastRun(sass)
+    })
     .pipe(plumber())
     .pipe(sass().on('error', sass.logError))
     .pipe(inlineimage())
@@ -114,9 +110,10 @@ gulp.task('sass', function () {
 });
 
 //- CSS圧縮タスク
-gulp.task('cssmin', function() {
-    return gulp.src(dir.root + dir.dev + dir.css + '**/*.css')
-    .pipe(cache('cssmin'))
+gulp.task('cssmin', () => {
+    return gulp.src(dir.root + dir.dev + dir.css + '**/*.css', {
+        since: gulp.lastRun(cssmin)
+    })
     .pipe(cssmin())
     .pipe(rename(function(path){
         if(!(path.basename.match('.min'))){
@@ -128,65 +125,60 @@ gulp.task('cssmin', function() {
 });
 
 //- webpackタスク
-gulp.task('bundle', function(){
+gulp.task('bundle', () => {
   var pubDir = (minify == true)? dir.root + dir.dev + dir.js : dir.root + dir.js;
     return webpackStream(webpackConfig, webpack)
-    .pipe(cache('bundle'))
     .pipe(plumber())
     .pipe(gulp.dest(pubDir));
 });
 
 //- JS圧縮タスク
-gulp.task('jsmin', function(){
-    return gulp.src(dir.root + dir.dev + dir.js + '**/*.js')
-        .pipe(changed(dir.root + dir.js))
-        .pipe(plumber())
-        .pipe(uglify())
-        .pipe(rename(function(path){
-        if(!(path.basename.match('.min'))){
-            path.basename += '.min';
-            path.extname = '.js';
-        }
-    }))
-    .pipe(gulp.dest(dir.root + dir.js));
-});
+//gulp.task('jsmin', () => {
+//    return gulp.src(dir.root + dir.dev + dir.js + '**/*.js')
+//        .pipe(plumber())
+//        .pipe(uglify())
+//        .pipe(rename(function(path){
+//        if(!(path.basename.match('.min'))){
+//            path.basename += '.min';
+//            path.extname = '.js';
+//        }
+//    }))
+//        .pipe(gulp.dest(dir.root + dir.js));
+//});
 
 //- 画像圧縮タスク
-gulp.task('imagemin', function(){
-    var srcGlob = dir.root + dir.dev + dir.img + '/**/*.+(jpg|jpeg|png|gif|svg)';
-    var imageminOptions = {
-        optimizationLevel: 7
-    };
-
-    return gulp.src(srcGlob)
-    .pipe(cache('imagemin'))
-    .pipe(imagemin({
-        plugins: [
-            imageminPngquant({
-                quality: '65-80',
-                speed: 1,
-                floyd: 0
-            }),
-            mozjpeg({
-                quality: 80,
-                progressive: true
-            })
-        ]
-    }, imageminOptions))
+gulp.task('imagemin', (done) => {
+    return gulp.src(dir.root + dir.dev + dir.img + '/**/*.+(jpg|jpeg|png|gif|svg)', {
+        since: gulp.lastRun(imagemin)
+    })
+    .pipe(imagemin([
+        pngquant({
+            quality: 85,
+        }),
+        mozjpeg({
+            quality: 85,
+        }),
+        imagemin.gifsicle(),
+        imagemin.jpegtran(),
+        imagemin.optipng(),
+        imagemin.svgo({
+            removeViewBox: false,
+        }),
+    ]))
     .pipe(imagemin())
     .pipe(gulp.dest(dir.root + dir.img));
+    done();
 });
 
 //- ファイルコピータスク
-gulp.task('copy', function(callback) {
+gulp.task('copy', (done) => {
     var dstDir = '/xampp/htdocs/' + project;
     //var dstDir = '/Applications/XAMPP/xamppfiles/htdocs/' + project;
     return gulp.src([
         dir.root + '**/*'
     ])
-    .pipe(changed(dstDir))
     .pipe(gulp.dest(dstDir));
-    callback();
+    done();
 });
 
 //- ブラウザ同期表示設定
@@ -196,75 +188,49 @@ gulp.task('browser-sync', function() {
         port: 10000,
         server: {
             baseDir: dir.root,
-            index: "index.html"
+            index: 'index.html'
         }
     });
 });
 
 //- ブラウザリロードタスク
-gulp.task('reload', function () {
-  browserSync.reload();
+gulp.task('reload', (done) => {
+    browserSync.reload()
+    done()
 });
 
-
 //- HTMLパブリッシュタスク
-/*gulp.task('htmlBuild', function(callback) {
-    runSequence('ejs',
-        'imagemin',
-        ['copy', 'reload'],
-        callback);
-});*/
-
 gulp.task('htmlBuild', gulp.series(
     'ejs',
     'imagemin',
-    gulp.parallel("copy", "reload")
+    gulp.parallel('copy', 'reload')
 )
-         );
+);
 
 //- CSSパブリッシュタスク
-/*gulp.task('cssBuild', function(callback) {
-    if(minify == true){
-        runSequence(['iconfont', 'sprite'],
-            'sass',
-            ['imagemin', 'cssmin'],
-            ['copy', 'reload'],
-            callback);
-    }else{
-        runSequence(['iconfont', 'sprite'],
-            'sass',
-            'imagemin',
-            ['copy', 'reload'],
-            callback);
-    }
-});*/
 gulp.task('cssBuild', gulp.series(
-    gulp.parallel("iconfont", "sprite"),
+    gulp.parallel('iconfont', 'sprite'),
     'sass',
-    gulp.parallel("imagemin", "cssmin"),
-    gulp.parallel("copy", "reload")
+    gulp.parallel('imagemin', 'cssmin'),
+    gulp.parallel('copy', 'reload')
 )
-         );
+);
 
 //- JSパブリッシュタスク
-/*gulp.task('jsBuild', function(callback) {
-    runSequence('bundle',
-        ['copy', 'reload'],
-        callback);
-});*/
 gulp.task('jsBuild', gulp.series(
     'bundle',
-    gulp.parallel("imagemin", "cssmin"),
-    gulp.parallel("copy", "reload")
+    gulp.parallel('imagemin', 'cssmin'),
+    gulp.parallel('copy', 'reload')
 )
-         );
-
+);
 
 //- 監視タスク
-gulp.task('watchify', function(){
-    gulp.watch([dir.root + dir.dev + '**/*.ejs'], ['htmlBuild']);
-    gulp.watch([dir.root + dir.dev + dir.scss + '**/*.scss'], ['cssBuild']);
-    gulp.watch([dir.root + dir.dev + dir.js + '**/*.js'], ['jsBuild']);
+gulp.task('watch', () => {
+    gulp.watch(dir.root + dir.dev + '**/*.ejs', gulp.task('htmlBuild'));
+    gulp.watch([dir.root + dir.dev + dir.scss + '**/*.scss', '!' + dir.root + dir.dev + dir.scss + '_setting/_font.scss'], gulp.task('cssBuild'));
+    gulp.watch(dir.root + dir.dev + dir.js + '**/*.js', gulp.task('jsBuild'));
 });
 
-gulp.task('default', gulp.series('watchify', 'browser-sync'));
+
+//- default
+gulp.task('default', gulp.parallel('watch', 'browser-sync'));

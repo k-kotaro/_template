@@ -17,11 +17,11 @@
 html {}
 
 body {
-    @media screen and (min-width: $rwdBreakPoint01 + 1) {
+    @media screen and (min-width: $rwdBreakPoint01) {
         @include fts($lin: 24);
     }
 
-    @media screen and (max-width: $rwdBreakPoint01) {
+    @media screen and (max-width: $rwdBreakPoint01 - 1) {
         @include fts(12, 20);
     }
 }
@@ -30,18 +30,18 @@ body {
     overflow: hidden;
     margin: 0 auto;
 
-    @media screen and (min-width: $rwdBreakPoint01 + 1) {
+    @media screen and (min-width: $rwdBreakPoint01) {
         min-width: $contentWidth;
     }
 
-    @media screen and (max-width: $rwdBreakPoint01) {
+    @media screen and (max-width: $rwdBreakPoint01 - 1) {
         min-width: $spContentWidth;
     }
 }
 
 a {
     color: $baseColorType02;
-    @media screen and (min-width: $rwdBreakPoint01 + 1) {
+    @media screen and (min-width: $rwdBreakPoint01) {
         &[href*="tel:"]{
             text-decoration: none;
             cursor: text;
@@ -51,7 +51,7 @@ a {
             }
         }
     }
-    @media screen and (max-width: $rwdBreakPoint01) {
+    @media screen and (max-width: $rwdBreakPoint01 - 1) {
     }
 }
 

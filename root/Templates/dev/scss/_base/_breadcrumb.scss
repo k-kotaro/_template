@@ -18,11 +18,11 @@
     position: relative;
     margin: 0;
     & > li{
-        @include vmBox;
+        @include iblock(middle);
         padding: 10px 0;
         line-height: 1.2;
         &:nth-child(n+2)::before{
-            @include vmBox;
+            @include iblock(middle);
             width: 2em;
             text-align: center;
             content: ">";
@@ -32,3 +32,12 @@
         }
     }
 }
+
+
+
+
+
+
+
+
+

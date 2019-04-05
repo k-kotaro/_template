@@ -18,7 +18,7 @@
     position: relative;
     margin: 0 auto;
 
-    @media screen and (min-width: $rwdBreakPoint01 + 1) {
+    @media screen and (min-width: $rwdBreakPoint01) {
         width: $contentWidth;
     }
 }
@@ -26,29 +26,29 @@
 #wrapper{
     display: flex;
 
-    @media screen and (min-width: $rwdBreakPoint01 + 1) {
+    @media screen and (min-width: $rwdBreakPoint01) {
         justify-content: space-between;
     }
 
-    @media screen and (max-width: $rwdBreakPoint01) {
+    @media screen and (max-width: $rwdBreakPoint01 - 1) {
         flex-direction: column;
     }
 
     #mainContents{
-        @media screen and (min-width: $rwdBreakPoint01 + 1) {
+        @media screen and (min-width: $rwdBreakPoint01) {
             padding-right: 30px;
         }
 
-        @media screen and (max-width: $rwdBreakPoint01) {
+        @media screen and (max-width: $rwdBreakPoint01 - 1) {
         }
     }
 }
 
 #mainContents{
-    @media screen and (min-width: $rwdBreakPoint01 + 1) {
+    @media screen and (min-width: $rwdBreakPoint01) {
     }
 
-    @media screen and (max-width: $rwdBreakPoint01) {
+    @media screen and (max-width: $rwdBreakPoint01 - 1) {
     }
 }
 

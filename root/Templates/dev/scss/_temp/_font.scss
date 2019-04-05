@@ -35,13 +35,9 @@
     @return $char;
 }
 
-@mixin <%= cssClass%>($filename, $size: null, $color: null, $insert: before, $extend: true) {
+@mixin <%= cssClass%>($filename, $size: null, $color: null, $insert: before) {
     &::#{$insert} {
-        @if $extend {
-            @extend %<%= cssClass%>;
-        } @else {
-            @include <%= cssClass%>-styles;
-        }
+        @include <%= cssClass%>-styles;
         color: $color;
         font-size: $size;
         vertical-align: middle;

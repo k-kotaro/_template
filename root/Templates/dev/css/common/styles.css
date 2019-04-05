@@ -145,14 +145,14 @@ list-style:none;
     base
 
 ====================================================================================================*/
-@media screen and (min-width: 769px){
+@media screen and (min-width: 768px){
 body{
 font-size:1.4rem;
 line-height:1.71429;
 }
 }
 
-@media screen and (max-width: 768px){
+@media screen and (max-width: 767px){
 body{
 font-size:1.2rem;
 line-height:1.66667;
@@ -163,12 +163,12 @@ line-height:1.66667;
 overflow:hidden;
 margin:0 auto;
 }
-@media screen and (min-width: 769px){
+@media screen and (min-width: 768px){
 #document{
 min-width:1024px;
 }
 }
-@media screen and (max-width: 768px){
+@media screen and (max-width: 767px){
 #document{
 min-width:320px;
 }
@@ -177,7 +177,7 @@ min-width:320px;
 a{
 color:#004ba5;
 }
-@media screen and (min-width: 769px){
+@media screen and (min-width: 768px){
 a[href*="tel:"]{
 cursor:text;
 text-decoration:none;
@@ -215,7 +215,7 @@ vertical-align:middle;
 #gheader .unav > li:nth-child(n+2){
 margin-left:10px;
 }
-@media screen and (min-width: 769px){
+@media screen and (min-width: 768px){
 #gheader{
 width:1024px;
 }
@@ -223,7 +223,7 @@ width:1024px;
 margin:0 0 10px;
 }
 }
-@media screen and (max-width: 768px){
+@media screen and (max-width: 767px){
 #gheader .content{
 -webkit-box-align:center;
 -ms-flex-align:center;
@@ -249,7 +249,7 @@ margin:0;
 display:block;
 text-decoration:none;
 }
-@media screen and (min-width: 769px){
+@media screen and (min-width: 768px){
 #gnav{
 width:1024px;
 }
@@ -270,86 +270,11 @@ flex:1;
 text-align:center;
 }
 }
-@media screen and (max-width: 768px){
+@media screen and (max-width: 767px){
 #gnav .menu{
 position:absolute;
 top:-50px;
 right:0;
-}
-#gnav .menu button{
-display:block;
-overflow:hidden;
-position:relative;
--webkit-box-sizing:content-box;
-box-sizing:content-box;
-padding:10px;
-width:30px;
-height:30px;
-text-indent:200%; 
-white-space:nowrap;
-}
-#gnav .menu button::before, #gnav .menu button::after{
-display:block;
-position:absolute;
-top:0;
-right:0;
-bottom:0;
-left:0;
-margin:auto;
-width:calc(100% - 20px);
-height:1px;
-background:#000000;
-}
-#gnav .menu button::before{
-content:"";
--webkit-transition:.3s;
-transition:.3s;
-}
-#gnav .menu button > span{
-display:block;
-position:absolute;
-top:0;
-right:0;
-left:0;
-margin:auto; 
-width:calc(100% - 20px);
-height:100%;
-}
-#gnav .menu button > span::before, #gnav .menu button > span::after{
-display:block;
-position:absolute;
-right:0;
-left:0;
-margin:auto;
-width:100%;
-content:"";
--webkit-transition:.3s;
-transition:.3s;
-}
-#gnav .menu button > span::before{
-top:10px;
-}
-#gnav .menu button > span::after{
-bottom:10px;
-}
-#gnav .menu button span::before, #gnav .menu button span::after{
-height:1px;
-background:#000000;
-}
-#gnav .menu button.is_active::before{
-right:-10px; 
-opacity:0;
-}
-#gnav .menu button.is_active span::before, #gnav .menu button.is_active span::after{
--webkit-transform:rotate(45deg);
-transform:rotate(45deg);
-}
-#gnav .menu button.is_active span::before{
-top:50%;
-margin-top:-1px;
-}
-#gnav .menu button.is_active span::after{
-bottom:50%;
 }
 #gnav ul{
 -webkit-box-orient:vertical;
@@ -392,7 +317,7 @@ font-weight:normal;
 position:relative;
 margin:0 auto;
 }
-@media screen and (min-width: 769px){
+@media screen and (min-width: 768px){
 #container{
 width:1024px;
 }
@@ -403,14 +328,14 @@ display:-webkit-box;
 display:-ms-flexbox;
 display:flex;
 }
-@media screen and (min-width: 769px){
+@media screen and (min-width: 768px){
 #wrapper{
 -webkit-box-pack:justify;
 -ms-flex-pack:justify;
 justify-content:space-between;
 }
 }
-@media screen and (max-width: 768px){
+@media screen and (max-width: 767px){
 #wrapper{
 -webkit-box-orient:vertical;
 -webkit-box-direction:normal;
@@ -418,7 +343,7 @@ justify-content:space-between;
 flex-direction:column;
 }
 }
-@media screen and (min-width: 769px){
+@media screen and (min-width: 768px){
 #wrapper #mainContents{
 padding-right:30px;
 }
@@ -426,7 +351,7 @@ padding-right:30px;
 
 /* SubContents
 --------------------------------------------------------------------------------------------------- */
-@media screen and (min-width: 769px){
+@media screen and (min-width: 768px){
 #subContents{
 -ms-flex-preferred-size:200px;
 flex-basis:200px;
@@ -448,7 +373,7 @@ vertical-align:middle;
 #gfooter .copyright{
 text-align:center;
 }
-@media screen and (min-width: 769px){
+@media screen and (min-width: 768px){
 #gfooter{
 width:1024px;
 }
@@ -456,7 +381,7 @@ width:1024px;
 margin-left:20px;
 }
 }
-@media screen and (max-width: 768px){
+@media screen and (max-width: 767px){
 #gfooter .unav{
 text-align:center;
 }
@@ -477,7 +402,6 @@ position:relative;
 padding:50px 0;
 }
 .m_section[class*="_border"]::before{
-display:block;
 position:absolute;
 right:0;
 left:0;
@@ -493,7 +417,6 @@ bottom:0;
 border-bottom:1px solid;
 }
 .m_section[class*="_fullBg"]::before{
-display:block;
 position:absolute;
 top:0;
 right:-1000%;
@@ -508,7 +431,7 @@ content:"";
 .m_textHeading{
 margin:0 0 30px;
 }
-@media screen and (min-width: 769px){
+@media screen and (min-width: 768px){
 .m_textHeading{
 font-size:1.8rem;
 }
@@ -517,7 +440,7 @@ font-size:1.8rem;
 .m_imageHeading{
 margin:0 0 30px;
 }
-@media screen and (max-width: 768px){
+@media screen and (max-width: 767px){
 .m_imageHeading img{
 max-width:100%;
 height:auto;
@@ -552,7 +475,7 @@ margin:0 0 1.5em;
 .m_media .body > *:last-child{
 margin-bottom:0 !important;
 }
-@media screen and (min-width: 769px){
+@media screen and (min-width: 768px){
 .m_media .image{
 padding:0 30px 0 0;
 }
@@ -585,7 +508,7 @@ padding:0 30px 0 0;
 text-align:left;
 }
 }
-@media screen and (max-width: 768px){
+@media screen and (max-width: 767px){
 .m_media{
 -webkit-box-orient:vertical;
 -webkit-box-direction:normal;
@@ -632,7 +555,7 @@ margin-bottom:0 !important;
 .m_column > .column > section > *:last-child{
 margin-bottom:0 !important;
 }
-@media screen and (min-width: 769px){
+@media screen and (min-width: 768px){
 .m_column{
 -webkit-box-pack:justify;
 -ms-flex-pack:justify;
@@ -649,7 +572,7 @@ width:calc(100% / 3 - 20px);
 width:calc(100% / 4 - 20px);
 }
 }
-@media screen and (max-width: 768px){
+@media screen and (max-width: 767px){
 .m_column:not([class*="_spCol"]){
 -webkit-box-orient:vertical;
 -webkit-box-direction:normal;
@@ -827,7 +750,7 @@ position:absolute;
 top:calc(.5em);
 left:0;
 border:solid #000000;
-border-width:6px 0 6px 8px;
+border-width:4px 0 4px 12px;
 border-color:transparent transparent transparent #000000;
 width:0;
 content:"";
@@ -855,7 +778,7 @@ height:auto;
 .m_imageList > li > figure > *:last-child{
 margin-bottom:0 !important;
 }
-@media screen and (min-width: 769px){
+@media screen and (min-width: 768px){
 .m_imageList[class*="_col2"] > li{
 width:calc(100% / 2 - 40px);
 }
@@ -875,7 +798,7 @@ width:calc(100% / 4 - 20px);
 margin-bottom:20px;
 }
 }
-@media screen and (max-width: 768px){
+@media screen and (max-width: 767px){
 .m_imageList:not([class*="_spCol"]){
 -webkit-box-orient:vertical;
 -webkit-box-direction:normal;
@@ -911,7 +834,7 @@ border-width:1px 1px 0 0;
 table-layout:fixed;
 }
 
-@media screen and (max-width: 768px){
+@media screen and (max-width: 767px){
 .m_table{
 overflow:auto;
 }
@@ -942,7 +865,7 @@ pointer-events:none;
 .m_button span{
 background:#c1c1c1;
 }
-@media screen and (min-width: 769px){
+@media screen and (min-width: 768px){
 .m_button{
 margin:-10px 0 30px;
 }
@@ -962,7 +885,7 @@ transition:opacity .5s ease;
 opacity:.7;
 }
 }
-@media screen and (max-width: 768px){
+@media screen and (max-width: 767px){
 .m_button{
 margin:0 0 30px;
 }
@@ -1008,13 +931,13 @@ content:">";
 .m_pager > li.last a::after{
 content:">>";
 }
-@media screen and (min-width: 769px){
+@media screen and (min-width: 768px){
 .m_pager > li:not([class]) a, .m_pager > li.is_active a{
 width:30px;
 line-height:30px;
 }
 }
-@media screen and (max-width: 768px){
+@media screen and (max-width: 767px){
 .m_pager > li:not([class]) a, .m_pager > li.is_active a{
 width:36px;
 line-height:36px;
@@ -1030,13 +953,13 @@ display:none;
 /* inline module
 --------------------------------------------------------------------------------------------------- */
 /* anchor */
-@media screen and (min-width: 769px){
+@media screen and (min-width: 768px){
 .m_pcHide{
 display:none !important;
 }
 }
 
-@media screen and (max-width: 768px){
+@media screen and (max-width: 767px){
 .m_spHide{
 display:none !important;
 }

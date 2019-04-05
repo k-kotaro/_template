@@ -74,7 +74,7 @@
             position: absolute;
             top: calc(0.5em);
             left: 0;
-            @include triangleRight(#000000, 12px, 8px);
+            @include triangle(right, #000000, 12px, 8px);
         }
     }
 }
@@ -95,7 +95,7 @@
         }
     }
 
-    @media screen and (min-width: $rwdBreakPoint01 + 1) {
+    @media screen and (min-width: $rwdBreakPoint01) {
         $marginBottom: 20px;
         &[class*="_col2"] > li {
             width: calc(100% / 2 - 40px);
@@ -117,7 +117,7 @@
         }
     }
 
-    @media screen and (max-width: $rwdBreakPoint01) {
+    @media screen and (max-width: $rwdBreakPoint01 - 1) {
         &:not([class*="_spCol"]) {
             flex-direction: column;
         }
@@ -129,5 +129,5 @@
 
 [class*="List"][class*="_horizontal"] > li {
     margin-right: 20px;
-    @include vtBox;
+    @include iblock(top);
 }

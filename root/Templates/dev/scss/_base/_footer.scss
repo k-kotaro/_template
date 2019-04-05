@@ -19,21 +19,21 @@
     .unav{
         margin: 0;
         & > li{
-            @include vmBox;
+            @include iblock(middle);
         }
     }
     .copyright{
         text-align: center;
     }
 
-    @media screen and (min-width: $rwdBreakPoint01 + 1) {
+    @media screen and (min-width: $rwdBreakPoint01) {
         width: $contentWidth;
         .unav > li:nth-child(n+2){
             margin-left: 20px;
         }
     }
 
-    @media screen and (max-width: $rwdBreakPoint01) {
+    @media screen and (max-width: $rwdBreakPoint01 - 1) {
         .unav{
             text-align: center;
             & > li{

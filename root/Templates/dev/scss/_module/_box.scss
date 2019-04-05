@@ -30,7 +30,7 @@
         @include lastElement;
     }
 
-    @media screen and (min-width: $rwdBreakPoint01 + 1) {
+    @media screen and (min-width: $rwdBreakPoint01) {
         .image {
             padding: 0 30px 0 0;
         }
@@ -55,7 +55,7 @@
         }
     }
 
-    @media screen and (max-width: $rwdBreakPoint01) {
+    @media screen and (max-width: $rwdBreakPoint01 - 1) {
         flex-direction: column;
         .image {
             margin: 0 0 30px;
@@ -91,7 +91,7 @@
         }
     }
 
-    @media screen and (min-width: $rwdBreakPoint01 + 1) {
+    @media screen and (min-width: $rwdBreakPoint01) {
         justify-content: space-between;
         &[class*="_col2"] > .column {
             width: calc(100% / 2 - 20px);
@@ -105,7 +105,7 @@
         }
     }
 
-    @media screen and (max-width: $rwdBreakPoint01) {
+    @media screen and (max-width: $rwdBreakPoint01 - 1) {
         &:not([class*="_spCol"]) {
             flex-direction: column;
         }
