@@ -231,6 +231,5 @@ gulp.task('watch', () => {
     gulp.watch(dir.root + dir.dev + dir.js + '**/*.js', gulp.task('jsBuild'));
 });
 
-
 //- default
 gulp.task('default', gulp.parallel('watch', 'browser-sync'));

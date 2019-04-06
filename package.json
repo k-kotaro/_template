@@ -23,6 +23,7 @@
     "gulp-csscomb": "^3.0.8",
     "gulp-cssmin": "^0.2.0",
     "gulp-ejs": "^3.2.0",
+    "gulp-html-beautify": "^1.0.1",
     "gulp-iconfont": "^10.0.2",
     "gulp-iconfont-css": "^2.3.0",
     "gulp-imagemin": "^4.1.0",
