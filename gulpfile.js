@@ -223,7 +223,6 @@ gulp.task('cssBuild', gulp.series(
 //- JSパブリッシュタスク
 gulp.task('jsBuild', gulp.series(
     'bundle',
-    gulp.parallel('imagemin', 'cssmin'),
     gulp.parallel('copy', 'reload')
 )
 );
