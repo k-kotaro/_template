@@ -1,0 +1,120 @@
+//- -------------------------------------------------------
+//-
+//- サイト全体で共通で利用するレイアウトを定義
+//-
+//- -------------------------------------------------------
+
+//- InitialVar
+-
+    if (language === undefined) {
+        var language = 'ja';
+    }
+    globalVar = {
+        languageDir: {
+            ja: '/',
+            en: '/en/'
+        },
+        //- head
+        lang: {
+            ja: 'ja',
+            en: 'en'
+        },
+        og_site_name: {
+            ja: '',
+            en: ''
+        },
+        share: {
+            text: {
+                ja: '',
+                en: ''
+            },
+            url: {
+                ja: '',
+                en: ''
+            },
+            image: ''
+        },
+        facebookSDK: {
+            lang:{
+                ja: '',
+                en: 'en_US'
+            },
+            sitename: {
+                ja: '',
+                en: ''
+            },
+            link: {
+                ja: '',
+                en: ''
+            }
+        },
+        snsbtn:{
+            twitter:{
+                link:{
+                    ja: '',
+                    en: ''
+                },
+                text:{
+                    ja: 'Twitter アカウントをフォローする',
+                    en: 'Follow on Twitter'
+                }
+            },
+            facebook:{
+                link:{
+                    en: ''
+                },
+                text:{
+                    en: 'Like on Facebook'
+                }
+            },
+            instagram:{
+                link:{
+                    en: 'https://www.instagram.com/'
+                },
+                text:{
+                    en: 'Follow on Instagram'
+                }
+            }
+        },
+        siteUrl: 'http://'
+    }
+
+block var
+
+//- LayoutComponent
+doctype html
+html(lang=globalVar.lang[language])
+    head
+        include ../../include/common/pug/-meta
+
+    body
+        //- Facebook JavaScriptSDK
+        if language != 'ja'
+            .
+                <div id="fb-root"></div>
+                <script>
+                (function(d, s, id) {
+                    var js, fjs = d.getElementsByTagName(s)[0];
+                    if (d.getElementById(id)) return;
+                    js = d.createElement(s); js.id = id;
+                    js.src = "//connect.facebook.net/#{globalVar.facebookSDK.lang[language]}/sdk.js#xfbml=1&version=v2.9&appId=1082789685182711";
+                    fjs.parentNode.insertBefore(js, fjs);
+                }(document, 'script', 'facebook-jssdk'));
+                </script>
+
+        div#document
+
+            block body_before
+
+            include ../../include/common/pug/-header
+
+            block main
+
+            include ../../include/common/pug/-footer
+
+            block pagetop
+
+            block body_after
+
+        block page_script_bottom
+            script(src=path + "scripts/common/bundle.js")

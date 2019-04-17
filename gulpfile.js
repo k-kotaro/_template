@@ -22,6 +22,9 @@ const webpackStream = require('webpack-stream');
 const webpack = require('webpack');
 const cache = require('gulp-cached');
 
+var notify = require("gulp-notify");
+var pug = require('gulp-pug');
+
 //- プロジェクト設定
 const project = '_templates';
 const minify = true;
@@ -53,6 +56,18 @@ gulp.task('ejs', () => {
     })
     .pipe(ejs())
     .pipe(rename({extname: '.html'}))
+    .pipe(gulp.dest(dir.root));
+});
+
+//- Pug
+gulp.task('pug', () => {
+    return gulp.src([dir.root + dir.dev + '**/*.pug', '!' + dir.root + dir.dev + '**/-*.pug'], {
+        since: gulp.lastRun('pug')
+    })
+    .pipe(plumber({ errorHandler: notify.onError("Error: <%= error.message %>") }))
+    .pipe(pug({
+        pretty: true
+    }))
     .pipe(gulp.dest(dir.root));
 });
 
@@ -205,7 +220,8 @@ gulp.task('reload', (done) => {
 
 //- HTMLパブリッシュタスク
 gulp.task('htmlBuild', gulp.series(
-    'ejs',
+    //'ejs',
+    'pug',
     'imagemin',
     gulp.parallel('copy', 'reload')
 )
@@ -230,7 +246,8 @@ gulp.task('jsBuild', gulp.series(
 
 //- 監視タスク
 gulp.task('watch', () => {
-    gulp.watch(dir.root + dir.dev + '**/*.ejs', gulp.task('htmlBuild'));
+    //gulp.watch(dir.root + dir.dev + '**/*.ejs', gulp.task('htmlBuild'));
+    gulp.watch(dir.root + dir.dev + '**/*.pug', gulp.task('htmlBuild'));
     gulp.watch([dir.root + dir.dev + dir.scss + '**/*.scss', '!' + dir.root + dir.dev + dir.scss + '_setting/_font.scss'], gulp.task('cssBuild'));
     gulp.watch(dir.root + dir.dev + dir.js + '**/*.js', gulp.task('jsBuild'));
 });

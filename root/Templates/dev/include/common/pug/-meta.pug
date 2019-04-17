@@ -1,0 +1,90 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<meta name="format-detection" content="telephone=no, email=no, address=no">
+<meta name="robots" content="index, follow">
+<meta name="keywords" content=vars.keyword>
+<meta name="description" content=vars.description>
+<meta property="og:url" content="">
+<meta property="og:type" content="website">
+<meta property="og:title" content="ページタイトル1">
+<meta property="og:image" content="">
+<meta property="og:description" content="ページ詳細説明1">
+<meta property="og:site_name" content="">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="">
+<title>ページタイトル1</title>
+<link rel="shortcut icon" href="./favicon.ico">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png?180702">
+<link rel="stylesheet" href="./css/common/styles.min.css">
+
+
+block ogp
+meta(property="og:url", content=globalVar.share.url[language])
+meta(property="og:type", content="website")
+meta(property="og:title" content=vars.title)
+meta(property="og:image", content=globalVar.share.image)
+meta(property="og:description", content=vars.description)
+meta(property="og:site_name", content=globalVar.og_site_name[language])
+
+block twittercard
+//- Twitter Card
+meta(name="twitter:card", content="summary_large_image")
+meta(name="twitter:image", content=globalVar.share.image)
+
+//- title
+title #{vars.title}
+
+//- favicon
+link(rel="shortcut icon", href=vars.path + "favicon.ico")
+
+//- block appletouchicon
+link(rel="apple-touch-icon", href="/apple-touch-icon.png?180702")
+
+//- stylesheet: common
+link(rel="stylesheet", href=vars.path + "css/common/styles.min.css")
+
+//- stylesheet: local
+block page_stylesheet
+
+//- json-ld
+block json-ld
+    script(type='application/ld+json').
+        [
+            {
+                "@context": "http://schema.org",
+                "@type": "WebSite",
+                "name": "#{globalVar.og_site_name[language]}",
+                "url": "#{globalVar.siteUrl}"
+            },
+            {
+                "@context": "http://schema.org",
+                "@type": "BreadcrumbList",
+                "itemListElement": [
+                    {
+                        "@type": "ListItem",
+                        "position": 1,
+                        "item": {
+                            "@id": "#{globalVar.siteUrl}",
+                            "name": ""
+                        }
+                    },
+                    {
+                        "@type": "ListItem",
+                        "position": 2,
+                        "item": {
+                            "@id": "#{vars.url}",
+                            "name": "#{vars.name}"
+                        }
+                    }
+                ]
+            }
+        ]
+
+script.
+    // Google Tag Manager
+    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-KK2DX6Z');
+    //- script: page
