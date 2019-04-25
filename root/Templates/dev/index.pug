@@ -11,10 +11,11 @@ extends Templates/pug/-layout
 block var
     -
         vars = {}
-        vars.title = 'ページタイトル1'
-        vars.keyword = 'ページキーワード1'
-        vars.description = 'ページ詳細説明1'
+        vars.title = 'ページタイトル'
+        vars.keyword = 'ページキーワード'
+        vars.description = 'ページ詳細説明'
         vars.id = '_template'
+        vars.category = '_template'
         vars.path = './'
         vars.url = 'https://'
         vars.name = 'ページ名'
@@ -29,9 +30,14 @@ block var
 block main
 
     //- ▼ここから
-    <p>test</p>
-    <p>test</p>
+    <article id="mainContents">
+        <p>test</p>
+        <p>test</p>
+        <p>test</p>
+    </article><!-- /#mainContents ==========-->
 
+
+block subContents
 
 //- このページでのみ呼び出すJavaScript（</body>前で呼び出し）
 //- block page_script_bottom

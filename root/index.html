@@ -1,36 +1,24 @@
 <!DOCTYPE html>
 <html lang="ja">
-  <head><meta charset="utf-8">
+<head>
+<meta charset="utf-8">
 <meta name="viewport" content="width=device-width">
 <meta name="format-detection" content="telephone=no, email=no, address=no">
 <meta name="robots" content="index, follow">
-<meta name="keywords" content=vars.keyword>
-<meta name="description" content=vars.description>
+<meta name="keywords" content="ページキーワード">
+<meta name="description" content="ページ詳細説明">
 <meta property="og:url" content="">
 <meta property="og:type" content="website">
-<meta property="og:title" content="ページタイトル1">
-<meta property="og:image" content="">
-<meta property="og:description" content="ページ詳細説明1">
+<meta property="og:title" content="ページタイトル">
+<meta property="og:image" content="/images/common/">
+<meta property="og:description" content="ページ詳細説明">
 <meta property="og:site_name" content="">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="">
-<title>ページタイトル1</title>
+<meta name="twitter:image" content="/images/common/">
+<title>ページタイトル</title>
 <link rel="shortcut icon" href="./favicon.ico">
-<link rel="apple-touch-icon" href="/apple-touch-icon.png?180702">
 <link rel="stylesheet" href="./css/common/styles.min.css">
-    <meta property="og:url" content="">
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="ページタイトル1">
-    <meta property="og:image" content="">
-    <meta property="og:description" content="ページ詳細説明1">
-    <meta property="og:site_name" content="">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content="">
-    <title>ページタイトル1</title>
-    <link rel="shortcut icon" href="./favicon.ico">
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png?180702">
-    <link rel="stylesheet" href="./css/common/styles.min.css">
-    <script type="application/ld+json">
+<script type="application/ld+json">
       [
           {
               "@context": "http://schema.org",
@@ -63,7 +51,7 @@
       ]
       
     </script>
-    <script>
+<script>
       // Google Tag Manager
       (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
       new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -72,31 +60,59 @@
       })(window,document,'script','dataLayer','GTM-KK2DX6Z');
       //- script: page
     </script>
-  </head>
-  <body>
-    <div id="document"><header id="gheader">
+</head>
+
+<body>
+<div id="document" class="vars.id vars.category">
+<header id="gheader">
 <div class="content">
-<p class="logo"><a href="<%= path %>"><span>xxxxxx</span></a></p>
+<p class="logo"><a href="./"><span>xxxxxx</span></a></p>
 <ul class="unav">
-<li><a href="<%= path %>">ユーティリティ01</a></li>
-<li><a href="<%= path %>">ユーティリティ02</a></li>
-<!-- /.unav --></ul>
-<!-- /.content --></div>
-<!-- /#gheader ==========--></header><p>test</p>
-<p>test</p><footer id="gfooter">
+<li><a href="./">ユーティリティ01</a></li>
+<li><a href="./">ユーティリティ02</a></li>
+</ul><!-- /.unav -->
+</div><!-- /.content -->
+</header><!-- /#gheader ==========-->
+
+<nav id="gnav">
+<div class="menu"><button><span>メニュー</span></button></div>
+<ul>
+<li><a href="./">メニュー01</a></li>
+<li><a href="./">メニュー02</a></li>
+<li><a href="./">メニュー03</a></li>
+<li><a href="./">メニュー04</a></li>
+<li><a href="./">メニュー05</a></li>
+<li><a href="./">メニュー06</a></li>
+</ul>
+</nav><!-- /#gnav ==========-->
+<div id="container">
+
+<main>
+<article id="mainContents">
+<article id="mainContents">
+<p>test</p>
+<p>test</p>
+<p>test</p>
+</article><!-- /#mainContents ==========-->
+</article><!-- /#mainContents ==========-->
+</main>
+</div><!-- /#container ==========-->
+
+<footer id="gfooter">
 <div class="content">
 <ul class="unav">
-<li><a href="<%= path %>">ユーティリティ01</a></li>
-<li><a href="<%= path %>">ユーティリティ02</a></li>
-<li><a href="<%= path %>">ユーティリティ03</a></li>
-<li><a href="<%= path %>">ユーティリティ04</a></li>
-<li><a href="<%= path %>">ユーティリティ05</a></li>
-<li><a href="<%= path %>">ユーティリティ06</a></li>
-<!-- /.unav --></ul>
-<p class="copyright"><small>Copyright&copy;<script>myDate = new Date();myYear = myDate.getFullYear();document.write(myYear);document.write("&nbsp;");</script> xxxxxxxxx All Rights Reserved.</small></p>
-<!-- /.content --></div>
-<!-- /#gfooter ==========--></footer>
-    </div>
-    <script src="undefinedscripts/common/bundle.js"></script>
-  </body>
+<li><a href="./">ユーティリティ01</a></li>
+<li><a href="./">ユーティリティ02</a></li>
+<li><a href="./">ユーティリティ03</a></li>
+<li><a href="./">ユーティリティ04</a></li>
+<li><a href="./">ユーティリティ05</a></li>
+<li><a href="./">ユーティリティ06</a></li>
+</ul><!-- /.unav -->
+<p class="copyright"><small>Copyright&copy;
+<script>myDate = new Date();myYear = myDate.getFullYear();document.write(myYear);document.write("&nbsp;");</script> xxxxxxxxx All Rights Reserved.</small></p>
+</div><!-- /.content -->
+</footer><!-- /#gfooter ==========-->
+</div><!-- /#document ==========-->
+<script src="./scripts/common/bundle.js"></script>
+</body>
 </html>

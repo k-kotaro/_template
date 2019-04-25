@@ -32,7 +32,7 @@
                 ja: '',
                 en: ''
             },
-            image: ''
+            image: '/images/common/'
         },
         facebookSDK: {
             lang:{
@@ -102,13 +102,23 @@ html(lang=globalVar.lang[language])
                 }(document, 'script', 'facebook-jssdk'));
                 </script>
 
-        div#document
+        <div id="document" class="vars.id vars.category">
 
             block body_before
 
             include ../../include/common/pug/-header
+            include ../../include/common/pug/-gnav
 
-            block main
+            <div id="container">
+                block breadcrumb
+                main
+                    <article id="mainContents">
+                        block main
+                    </article><!-- /#mainContents ==========-->
+
+                block subContents
+                    include ../../include/common/pug/-subContents
+            </div><!-- /#container ==========-->
 
             include ../../include/common/pug/-footer
 
@@ -116,5 +126,7 @@ html(lang=globalVar.lang[language])
 
             block body_after
 
+        </div><!-- /#document ==========-->
+
         block page_script_bottom
-            script(src=path + "scripts/common/bundle.js")
+            script(src=vars.path + "scripts/common/bundle.js")

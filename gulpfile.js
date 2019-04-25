@@ -24,6 +24,7 @@ const cache = require('gulp-cached');
 
 var notify = require("gulp-notify");
 var pug = require('gulp-pug');
+var htmlbeautify = require('gulp-html-beautify');
 
 //- プロジェクト設定
 const project = '_templates';
@@ -61,12 +62,19 @@ gulp.task('ejs', () => {
 
 //- Pug
 gulp.task('pug', () => {
-    return gulp.src([dir.root + dir.dev + '**/*.pug', '!' + dir.root + dir.dev + '**/-*.pug'], {
+    return gulp.src([dir.root + dir.dev + '**/*.pug', '!' + dir.root + dir.dev + '**/-*.pug']/*, {
         since: gulp.lastRun('pug')
-    })
+    }*/)
     .pipe(plumber({ errorHandler: notify.onError("Error: <%= error.message %>") }))
     .pipe(pug({
         pretty: true
+    }))
+    .pipe(htmlbeautify({
+        indentSize: 0,
+        indent_char: '',
+        wrap_attributes_indent_size: 0,
+        content_unformatted: ['script'],
+        extra_liners: ['body', 'footer', 'aside', 'main', 'section', 'nav', 'h1']
     }))
     .pipe(gulp.dest(dir.root));
 });

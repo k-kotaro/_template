@@ -1,0 +1,291 @@
+//- -------------------------------------------------------
+//-
+//- ページ名
+//-
+//- -------------------------------------------------------
+
+//- Extends Layout
+extends pug/-layout
+
+//- Initial State
+block var
+    -
+        vars = {}
+        vars.title = 'ページタイトル'
+        vars.keyword = 'ページキーワード'
+        vars.description = 'ページ詳細説明'
+        vars.id = 'module'
+        vars.category = 'module'
+        vars.path = '../'
+        vars.url = 'https://'
+        vars.name = 'テンプレート'
+
+//- This Page Only Stylesheet
+//-block page_stylesheet
+
+//- このページでのみ呼び出すJavaScript（head内で呼び出し）
+//-block page_script_top
+
+//- パンくず
+block breadcrumb
+    <nav id="breadcrumb">
+    <ol>
+    <li><a href="vars.path"><span>HOME</span></a></li>
+    <li><a href="vars.path"><span>breadcrumb</span></a></li>
+    <li><em>vars.name</em></li>
+    </ol>
+    </nav><!-- /.breadcrumb -->
+
+//- Main Contents
+block main
+
+    //- ▼ここから
+
+    <h1 class="templatesHead">見出し</h1>
+
+    <p class="templatesName">見出し（.m_textHeading）</p>
+    <h2 class="m_textHeading">見出し</h2>
+
+    <p class="templatesName">見出し（.m_imageHeading）</p>
+    <h2 class="m_imageHeading"><img src="http://placehold.it/750x50/cccccc/ffffff?text=Hello+World" alt=""></h2>
+
+
+
+    <h1 class="templatesHead">セクション</h1>
+    <p class="templatesName">セクション（.m_section）</p>
+    <div class="m_section">
+    <div class="m_box">
+    <p>私も多数いくらこの妨害士というののところが買うずまし。</p>
+    <p>もし次第を話院ははたしてその説明んたまでからなるけれどもいならには乱暴さですでて、そうには提げんですたな。違がぶつかるないのは人知れず十月に恐らくでうた。</p>
+    </div><!-- /.m_box -->
+    </div><!-- /.m_section -->
+    <div class="m_box s_border_nobg option">
+    <ul class="m_list s_unstyled">
+    <li>.s_borderTop：上罫線</li>
+    <li>.s_borderBottom：下罫線</li>
+    <li>.s_fullBg：エリア全面背景</li>
+    </ul><!-- /.m_list -->
+    </div><!-- /.m_box -->
+
+
+
+    <h1 class="templatesHead">ボックス</h1>
+    <p class="templatesName">ボックス（.m_box）</p>
+    <div class="m_box">
+    <p>私も多数いくらこの妨害士というののところが買うずまし。</p>
+    <p>もし次第を話院ははたしてその説明んたまでからなるけれどもいならには乱暴さですでて、そうには提げんですたな。違がぶつかるないのは人知れず十月に恐らくでうた。</p>
+    </div><!-- /.m_box -->
+    <div class="m_box s_border_nobg option">
+    <ul class="m_list s_unstyled">
+    <li>.s_border：罫線class。太さ、色などはサイトごとに設定</li>
+    </ul><!-- /.m_list -->
+    </div><!-- /.m_box -->
+
+
+    <p class="templatesName">画像付きボックス（.m_media）</p>
+    <div class="m_media">
+    <figure class="image"><img data-normal="http://placehold.it/250x250/cccccc/ffffff" alt="" width="250" height="200"></figure>
+    <div class="body">
+    <p>私も多数いくらこの妨害士というののところが買うずまし。</p>
+    <p>もし次第を話院ははたしてその説明んたまでからなるけれどもいならには乱暴さですでて、そうには提げんですたな。違がぶつかるないのは人知れず十月に恐らくでうた。</p>
+    </div><!-- /.body -->
+    </div><!-- /.m_media -->
+    <div class="m_media">
+    <div class="body">
+    <p>私も多数いくらこの妨害士というののところが買うずまし。</p>
+    <p>もし次第を話院ははたしてその説明んたまでからなるけれどもいならには乱暴さですでて、そうには提げんですたな。違がぶつかるないのは人知れず十月に恐らくでうた。</p>
+    </div><!-- /.body -->
+    <figure class="image"><img src="http://placehold.it/250x250/cccccc/ffffff" alt="" width="250" height="200" data-sp="http://placehold.it/500x500/cccccc/ffffff"></figure>
+    </div><!-- /.m_media -->
+    <div class="m_box s_border_nobg option">
+    <ul class="m_list s_unstyled">
+    <li>.s_flipped：画像とテキスト要素を反転</li>
+    <li>.s_alignTop：画像とテキストを上揃え</li>
+    <li>.s_alignMiddle：画像とテキストを中央揃え</li>
+    <li>.s_alignBottom：画像とテキストを下揃え</li>
+    </ul><!-- /.m_list -->
+    </div><!-- /.m_box -->
+
+    <p class="templatesName">カラム（.m_column）</p>
+    <div class="m_column l_col2">
+    <div class="column">
+    <p>私も多数いくらこの妨害士というののところが買うずまし。</p>
+    <p>もし次第を話院ははたしてその説明んたまでからなるけれどもいならには乱暴さですでて、そうには提げんですたな。違がぶつかるないのは人知れず十月に恐らくでうた。</p>
+    </div><!-- /.column -->
+    <div class="column">
+    <p>私も多数いくらこの妨害士というののところが買うずまし。</p>
+    <p>もし次第を話院ははたしてその説明んたまでからなるけれどもいならには乱暴さですでて、そうには提げんですたな。違がぶつかるないのは人知れず十月に恐らくでうた。</p>
+    </div><!-- /.column -->
+    </div><!-- /.m_column -->
+    <div class="m_box s_border_nobg option">
+    <ul class="m_list s_unstyled">
+    <li>.l_col*：カラム幅均等。2～4カラムまで</li>
+    <li>.l_spCol：SPレイアウト時に2カラム表示</li>
+    </ul><!-- /.m_list -->
+    </div><!-- /.m_box -->
+
+
+
+    <h1 class="templatesHead">リスト</h1>
+    <p class="templatesName">通常リスト（.m_list）</p>
+    <ul class="m_list">
+    <li>私も多数いくらこの妨害士というののところが買うずまし。</li>
+    <li>私も多数いくらこの妨害士というののところが買うずまし。</li>
+    <li>私も多数いくらこの妨害士というののところが買うずまし。</li>
+    </ul><!-- /.m_list -->
+    <div class="m_box s_border_nobg option">
+    <ul class="m_list s_unstyled">
+    <li>.s_unstyled：ビュレット無し</li>
+    </ul><!-- /.m_list -->
+    </div><!-- /.m_box -->
+
+    <p class="templatesName">番号付きリスト（.m_numberList）</p>
+    <ul class="m_numberList">
+    <li>私も多数いくらこの妨害士というののところが買うずまし。</li>
+    <li>私も多数いくらこの妨害士というののところが買うずまし。</li>
+    <li>私も多数いくらこの妨害士というののところが買うずまし。</li>
+    </ul><!-- /.m_numberList -->
+
+    <p class="templatesName">注記リスト（.m_notesList）</p>
+    <ul class="m_notesList">
+    <li>私も多数いくらこの妨害士というののところが買うずまし。</li>
+    <li>私も多数いくらこの妨害士というののと<br>ころが買うずまし。</li>
+    <li class="s_small">私も多数いくらこの妨害士というののところが買うずまし。</li>
+    </ul><!-- /.m_notesList -->
+    <div class="m_box s_border_nobg option">
+    <ul class="m_list s_unstyled">
+    <li>.s_small：ビュレットの「※」を「*」に変更。ulまたはolに設定で全体に、li要素で個別に設定可</li>
+    </ul><!-- /.m_list -->
+    </div><!-- /.m_box -->
+
+    <p class="templatesName">ビュレット部分変更可能リスト（.m_notesList.s_mark）</p>
+    <ul class="m_notesList s_mark">
+    <li><span class="mark">*1</span>私も多数いくらこの妨害士というののところが買うずまし。</li>
+    <li><span class="mark">※2</span>私も多数いくらこの妨害士というののところが買うずまし。</li>
+    </ul><!-- /.m_notesList -->
+
+    <p class="templatesName">リンクリスト（.m_linkList）</p>
+    <ul class="m_linkList">
+    <li><a href="">ショッピング</a></li>
+    <li><a href="">グルメ</a></li>
+    <li><a href="">エンターテインメント</a></li>
+    </ul><!-- /.m_linkList -->
+    <div class="m_box s_border_nobg option">
+    <ul class="m_list s_unstyled">
+    <li>.s_horizontal：横並び。リスト系モジュールすべて適用可能</li>
+    </ul><!-- /.m_list -->
+    </div><!-- /.m_box -->
+
+    <p class="templatesName">画像一覧（.m_imageList）</p>
+    <ul class="m_imageList l_col4_spCol">
+    <li>
+    <figure>
+    <span class="image"><img data-normal="http://placehold.it/230x153/cccccc/ffffff" alt="" width="230" height="153"></span>
+    <figcaption class="title">JPホットサンド<br>パストラミビーフ</figcaption>
+    <p class="summary">430円（税込）</p>
+    </figure>
+    </li>
+    <li>
+    <figure>
+    <span class="image"><img data-normal="http://placehold.it/230x153/cccccc/ffffff" alt="" width="230" height="153"></span>
+    <figcaption class="title">JPホットサンド<br>パストラミビーフ</figcaption>
+    <p class="summary">430円（税込）</p>
+    </figure>
+    </li>
+    <li>
+    <figure>
+    <span class="image"><img data-normal="http://placehold.it/230x153/cccccc/ffffff" alt="" width="230" height="153"></span>
+    <figcaption class="title">JPホットサンド<br>パストラミビーフ</figcaption>
+    <p class="summary">430円（税込）</p>
+    </figure>
+    </li>
+    <li>
+    <figure>
+    <span class="image"><img data-normal="http://placehold.it/230x153/cccccc/ffffff" alt="" width="230" height="153"></span>
+    <figcaption class="title">JPホットサンド<br>パストラミビーフ</figcaption>
+    <p class="summary">430円（税込）</p>
+    </figure>
+    </li>
+    </ul><!-- /.imageList -->
+    <div class="m_box s_border_nobg option">
+    <ul class="m_list s_unstyled">
+    <li>.l_col*：カラム幅均等。2～4カラムまで</li>
+    <li>.l_spCol：SPレイアウト時に2カラム表示</li>
+    </ul><!-- /.m_list -->
+    </div><!-- /.m_box -->
+
+
+
+    <h1 class="templatesHead">テーブル</h1>
+    <p class="templatesName">テーブル（.m_table）</p>
+    <div class="m_table">
+    <table>
+    <thead>
+    <tr>
+    <th scope="col">th</th>
+    <th scope="col">th</th>
+    <th scope="col">th</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+    <th scope="row">th</th>
+    <td>td</td>
+    <td>td</td>
+    </tr>
+    <tr>
+    <th scope="row">th</th>
+    <td>td</td>
+    <td>td</td>
+    </tr>
+    </tbody>
+    </table>
+    </div><!-- /.table -->
+    <div class="m_box s_border_nobg option">
+    <ul class="m_list s_unstyled">
+    <li>.s_fixed：セル幅均等</li>
+    </ul><!-- /.m_list -->
+    </div><!-- /.m_box -->
+
+
+
+    <h1 class="templatesHead">ナビゲーション</h1>
+    <p class="templatesName">ボタン（.m_button）</p>
+    <p class="m_button"><a href="">ボタン</a></p>
+    <ul class="m_button">
+    <li><a href="">ボタン</a></li>
+    <li><button>ボタン</button></li>
+    <li><input type="submit" value="ボタン"></li>
+    <li><input type="submit" value="ボタン" class="disabled" disabled></li>
+    </ul><!-- /.m_button -->
+    <div class="m_box s_border_nobg option">
+    <ul class="m_list s_unstyled">
+    <li>.s_fixed：セル幅均等</li>
+    </ul><!-- /.m_list -->
+    </div><!-- /.m_box -->
+
+    <p class="templatesName">ページャー（.m_pager）</p>
+    <ul class="m_pager">
+    <li class="first"><a href=""><span>最初へ</span></a></li>
+    <li class="prev"><a href=""><span>前へ</span></a></li>
+    <li><a href="">1</a></li>
+    <li><a href="">2</a></li>
+    <li class="is_active"><a href="">3</a></li>
+    <li><a href="">4</a></li>
+    <li><a href="">5</a></li>
+    <li class="next"><a href=""><span>次へ</span></a></li>
+    <li class="last"><a href=""><span>最後へ</span></a></li>
+    </ul><!-- /.m_pager -->
+
+
+    <h1 class="templatesHead">インライン</h1>
+    <p class="templatesName">リンクアイコン</p>
+    <p><span class="blank"><a href="" target="_blank">別窓リンク</a></span></p>
+    <p><span class="pdf"><a href=".pdf" target="_blank">PDFリンク</a></span></p>
+
+
+
+block subContents
+
+//- このページでのみ呼び出すJavaScript（</body>前で呼び出し）
+//- block page_script_bottom

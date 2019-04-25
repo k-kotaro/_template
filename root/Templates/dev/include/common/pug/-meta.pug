@@ -1,22 +1,9 @@
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width">
-<meta name="format-detection" content="telephone=no, email=no, address=no">
-<meta name="robots" content="index, follow">
-<meta name="keywords" content=vars.keyword>
-<meta name="description" content=vars.description>
-<meta property="og:url" content="">
-<meta property="og:type" content="website">
-<meta property="og:title" content="ページタイトル1">
-<meta property="og:image" content="">
-<meta property="og:description" content="ページ詳細説明1">
-<meta property="og:site_name" content="">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="">
-<title>ページタイトル1</title>
-<link rel="shortcut icon" href="./favicon.ico">
-<link rel="apple-touch-icon" href="/apple-touch-icon.png?180702">
-<link rel="stylesheet" href="./css/common/styles.min.css">
-
+meta(charset="utf-8")
+meta(name="viewport", content="width=device-width")
+meta(name="format-detection", content="telephone=no, email=no, address=no")
+meta(name="robots", content="index, follow")
+meta(name="keywords", content=vars.keyword)
+meta( name="description", content=vars.description)
 
 block ogp
 meta(property="og:url", content=globalVar.share.url[language])
@@ -38,7 +25,7 @@ title #{vars.title}
 link(rel="shortcut icon", href=vars.path + "favicon.ico")
 
 //- block appletouchicon
-link(rel="apple-touch-icon", href="/apple-touch-icon.png?180702")
+//- link(rel="apple-touch-icon", href="vars.path + /apple-touch-icon.png?180702")
 
 //- stylesheet: common
 link(rel="stylesheet", href=vars.path + "css/common/styles.min.css")
