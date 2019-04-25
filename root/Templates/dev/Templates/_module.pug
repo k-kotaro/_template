@@ -21,7 +21,8 @@ block var
         vars.name = 'テンプレート'
 
 //- This Page Only Stylesheet
-//-block page_stylesheet
+block page_stylesheet
+    <link rel="stylesheet" href="local.css">
 
 //- このページでのみ呼び出すJavaScript（head内で呼び出し）
 //-block page_script_top
@@ -285,7 +286,7 @@ block main
 
 
 
-block subContents
+//- block subContents
 
 //- このページでのみ呼び出すJavaScript（</body>前で呼び出し）
 //- block page_script_bottom
