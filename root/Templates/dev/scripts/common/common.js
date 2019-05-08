@@ -42,11 +42,49 @@ const phoneLink = () => {
 
 // スムーススクロール
 const sroothscroll = () => {
+    let gap = 20;    // window上部との隙間
+    let viewPos = 200;    // スクロールしてページTOPボタンを表示させる位置
+    const hash = location.hash;
+
+    // スクロール処理
+    const scrollPos = function(tag, time){
+    }
+
+    // hash付きのリンクをクリックした場合
     $('.pagetop > a[href*="#document"], a[href*="#anc_"]').click(function(){
+        let headerHeight = $('#gheader').height();
         let offset = $($(this).attr('href')).offset();
-        $('html, body').animate({scrollTop:offset.top}, 400);
+
+        $('html, body').animate({scrollTop:offset.top - headerHeight - gap}, 400);
         return false;
     });
+
+    // スクロールしてページTOPボタンを表示させる
+    if(viewPos != 0){
+        $('#mainContents > .pagetop').hide();
+        $(window).on('scroll', function(){
+            if($(window).scrollTop() > viewPos){
+                $('#mainContents > .pagetop').stop().fadeIn();
+            }else{
+                $('#mainContents > .pagetop').stop().fadeOut();
+            }
+        });
+    }
+}
+
+// URLにアンカーがあったとき
+const urlHash = () => {
+    let gap = 20;    // window上部との隙間
+    let viewPos = 200;    // スクロールしてページTOPボタンを表示させる位置
+    const hash = location.hash;
+
+    // アドレスバーにhashが合った場合
+    if($(hash).length){
+        let headerHeight = $('#gheader').height();
+        let offset = $(hash).offset();
+
+        $('html, body').animate({scrollTop:offset.top - headerHeight - gap}, 1);
+    }
 }
 
 // グロナビ設定　※サイト構造に応じて変更
@@ -184,6 +222,7 @@ $(function(){
 $(window).on('load', function(){
     phoneLink();
     sroothscroll();
+    urlHash();
     gnavMenuOpen();
 
     // PC⇔SPの画像切り替え
