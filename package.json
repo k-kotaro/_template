@@ -5,7 +5,7 @@
   "main": "gulpfile.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack"
+    "build": "webpack --mode production"
   },
   "author": "metaphase XD",
   "devDependencies": {
@@ -37,8 +37,8 @@
     "layzr.js": "^2.2.2",
     "uglify-es-webpack-plugin": "^0.10.0",
     "webpack": "^4.23.1",
-    "webpack-cli": "^3.1.2",
-    "webpack-stream": "^5.1.1"
+    "webpack-cli": "^3.3.2",
+    "webpack-stream": "^5.2.1"
   },
   "dependencies": {}
 }
