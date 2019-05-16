@@ -11,7 +11,6 @@ const imagemin = require('gulp-imagemin');
 const pngquant  = require('imagemin-pngquant');
 const mozjpeg  = require('imagemin-mozjpeg');
 const cssmin = require('gulp-cssmin');
-const uglify = require('gulp-uglify');
 const comb = require('gulp-csscomb');
 const autoprefixer = require('gulp-autoprefixer');
 const iconfontCss = require('gulp-iconfont-css');
@@ -49,7 +48,7 @@ const getFolders = function (dir) {
 //- EJSタスク
 gulp.task('ejs', () => {
     return gulp.src([dir.root + dir.dev + '**/*.ejs', '!' + dir.root + dir.dev + '**/-*.ejs'], {
-        since: gulp.lastRun('ejs')
+        since: gulp.lastRun(ejs)
     })
     .pipe(ejs())
     .pipe(rename({extname: '.html'}))
@@ -59,9 +58,8 @@ gulp.task('ejs', () => {
 //- アイコンフォント作成タスク
 gulp.task('iconfont', (done) => {
     return gulp.src(dir.root + dir.dev + dir.font + '*.svg', {
-        since: gulp.lastRun('iconfont')
+        since: gulp.lastRun(iconfont)
     })
-    .pipe(cache('iconfont'))
     .pipe(iconfontCss({
         fontName: 'icon',
         path: dir.root + dir.dev + dir.scss + '_temp/_font.scss',
@@ -80,10 +78,7 @@ gulp.task('iconfont', (done) => {
 gulp.task('sprite', (done) => {
     var folders = getFolders(dir.root + dir.dev + dir.spriteImg);
     folders.map(function (folder) {
-        var spriteData = gulp.src(dir.root + dir.dev + dir.spriteImg + folder + '/*.png', {
-            since: gulp.lastRun('sprite')
-        })
-        .pipe(cache('sprite'))
+        return gulp.src(dir.root + dir.dev + dir.spriteImg + folder + '/*.png')
         .pipe(sprite({
             imgName: 'mod_img_sprite.png',
             imgPath: dir.img + folder + '/' + 'mod_img_sprite.png',
@@ -100,7 +95,7 @@ gulp.task('sprite', (done) => {
 gulp.task('sass', () => {
     var pubDir = (minify == true)? dir.root + dir.dev + dir.css : dir.root + dir.css;
     return gulp.src(dir.root + dir.dev + dir.scss + '**/*.scss', {
-        since: gulp.lastRun('sass')
+        since: gulp.lastRun(sass)
     })
     .pipe(plumber())
     .pipe(sass().on('error', sass.logError))
@@ -116,7 +111,7 @@ gulp.task('sass', () => {
 //- CSS圧縮タスク
 gulp.task('cssmin', () => {
     return gulp.src(dir.root + dir.dev + dir.css + '**/*.css', {
-        since: gulp.lastRun('cssmin')
+        since: gulp.lastRun(cssmin)
     })
     .pipe(cssmin())
     .pipe(rename(function(path){
@@ -136,24 +131,10 @@ gulp.task('bundle', () => {
     .pipe(gulp.dest(pubDir));
 });
 
-//- JS圧縮タスク
-//gulp.task('jsmin', () => {
-//    return gulp.src(dir.root + dir.dev + dir.js + '**/*.js')
-//        .pipe(plumber())
-//        .pipe(uglify())
-//        .pipe(rename(function(path){
-//        if(!(path.basename.match('.min'))){
-//            path.basename += '.min';
-//            path.extname = '.js';
-//        }
-//    }))
-//        .pipe(gulp.dest(dir.root + dir.js));
-//});
-
 //- 画像圧縮タスク
 gulp.task('imagemin', (done) => {
     return gulp.src(dir.root + dir.dev + dir.img + '/**/*.+(jpg|jpeg|png|gif|svg)', {
-        since: gulp.lastRun('imagemin')
+        since: gulp.lastRun(imagemin)
     })
     .pipe(imagemin([
         pngquant({
@@ -205,32 +186,42 @@ gulp.task('reload', (done) => {
 
 //- HTMLパブリッシュタスク
 gulp.task('htmlBuild', gulp.series(
-    'ejs',
-    'imagemin',
-    gulp.parallel('copy', 'reload')
+    gulp.parallel('ejs', 'imagemin'),
+    'copy',
+    'reload'
 )
 );
 
 //- CSSパブリッシュタスク
 gulp.task('cssBuild', gulp.series(
-    gulp.parallel('iconfont', 'sprite'),
-    'sass',
-    gulp.parallel('imagemin', 'cssmin'),
-    gulp.parallel('copy', 'reload')
+    gulp.parallel('sprite'),
+    gulp.parallel('sass', 'imagemin'),
+    'cssmin',
+    'copy',
+    'reload'
+)
+);
+
+//- アイコンフォント作成タスク
+gulp.task('icoBuild', gulp.series(
+    'imagemin',
+    'iconfont'
 )
 );
 
 //- JSパブリッシュタスク
 gulp.task('jsBuild', gulp.series(
     'bundle',
-    gulp.parallel('copy', 'reload')
+    'copy',
+    'reload'
 )
 );
 
 //- 監視タスク
 gulp.task('watch', () => {
     gulp.watch(dir.root + dir.dev + '**/*.ejs', gulp.task('htmlBuild'));
-    gulp.watch([dir.root + dir.dev + dir.scss + '**/*.scss', '!' + dir.root + dir.dev + dir.scss + '_setting/_font.scss'], gulp.task('cssBuild'));
+    gulp.watch([dir.root + dir.dev + dir.scss + '**/*.scss', '!' + dir.root + dir.dev + dir.scss + '_setting/_font.scss', '!' + dir.root + dir.dev + dir.scss + '_sprite/*.scss'], gulp.task('cssBuild'));
+    gulp.watch(dir.root + dir.dev + dir.font + '*.svg', gulp.task('icoBuild'));
     gulp.watch(dir.root + dir.dev + dir.js + '**/*.js', gulp.task('jsBuild'));
 });
 

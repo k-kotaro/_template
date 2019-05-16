@@ -5,7 +5,8 @@
   "main": "gulpfile.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack --mode production"
+    "build": "webpack --mode development",
+    "start": "webpack-dev-server --mode development --open"
   },
   "author": "metaphase XD",
   "devDependencies": {
