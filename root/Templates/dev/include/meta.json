@@ -1,0 +1,27 @@
+{
+    "default": {
+        "siteName": "サイト名",
+        "siteUrl": "https://サイトURL",
+        "title": "共通ページタイトル",
+        "description": "共通ディスクリプション",
+        "ogp_img": "共通ogp画像"
+    },
+    "template": {
+        "title": "テンプレート",
+        "pageID": "template",
+        "categoryID": "",
+        "path": "../"
+    },
+    "module": {
+        "title": "モジュール集",
+        "pageID": "module",
+        "categoryID": "template",
+        "path": "../"
+    },
+    "home": {
+        "title": "個別ページタイトル",
+        "description": "個別discription",
+        "pageID": "home",
+        "path": "./"
+    }
+}

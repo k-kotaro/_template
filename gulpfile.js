@@ -47,10 +47,11 @@ const getFolders = function (dir) {
 
 //- EJSタスク
 gulp.task('ejs', () => {
+    var json = JSON.parse(fs.readFileSync(dir.root + dir.dev + 'include/meta.json', 'utf-8'));
     return gulp.src([dir.root + dir.dev + '**/*.ejs', '!' + dir.root + dir.dev + '**/-*.ejs'], {
         since: gulp.lastRun(ejs)
     })
-    .pipe(ejs())
+    .pipe(ejs({json:json}))
     .pipe(rename({extname: '.html'}))
     .pipe(gulp.dest(dir.root));
 });
@@ -220,7 +221,7 @@ gulp.task('jsBuild', gulp.series(
 
 //- 監視タスク
 gulp.task('watch', () => {
-    gulp.watch(dir.root + dir.dev + '**/*.ejs', gulp.task('htmlBuild'));
+    gulp.watch([dir.root + dir.dev + '**/*.ejs', dir.root + dir.dev + 'include/meta.json'], gulp.task('htmlBuild'));
     gulp.watch([dir.root + dir.dev + dir.scss + '**/*.scss', '!' + dir.root + dir.dev + dir.scss + '_setting/_font.scss', '!' + dir.root + dir.dev + dir.scss + '_sprite/*.scss'], gulp.task('cssBuild'));
     gulp.watch(dir.root + dir.dev + dir.font + '*.svg', gulp.task('icoBuild'));
     gulp.watch(dir.root + dir.dev + dir.js + '**/*.js', gulp.task('jsBuild'));

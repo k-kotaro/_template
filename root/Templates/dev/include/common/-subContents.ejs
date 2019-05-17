@@ -1,3 +1,11 @@
+<%
+    var _default = json['default'];
+    for ( var key in _default ) {
+        if ( typeof page[key] === 'undefined' ) {
+            page[key] = _default[key];
+        }
+    }
+-%>
 <aside id="subContents">
 
 sub contents area

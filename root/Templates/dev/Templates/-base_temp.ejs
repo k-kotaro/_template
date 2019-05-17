@@ -1,24 +1,17 @@
-<%
-var pageName = "個別名";
-var pageID = "個別ID";
-var categoryID = "カテゴリID";
-var pageTitle = "個別Title";
-var pageDescription = "個別Description";
-var path = "../";
-%><%- include(path + 'include/common/-commonVar') %><!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ja">
 <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
 <meta charset="utf-8">
-<%- include(path + 'include/common/-meta', {path, pageTitle, pageDescription}) %>
-<%- include(path + 'include/common/-headCss', {path}) %>
-<%- include(path + 'include/common/-headScript', {path}) %>
+<%- include(json['template'].path + 'include/common/-meta', {page: json['template']}) %>
+<%- include(json['template'].path + 'include/common/-headCss', {page: json['template']}) %>
+<%- include(json['template'].path + 'include/common/-headScript', {page: json['template']}) %>
 <script type="application/ld+json">
     [
         {
             "@context": "http://schema.org",
             "@type": "WebSite",
-            "name": "<%= siteName %>",
-            "url": "<%= siteUrl %>"
+            "name": "<%= json['default'].siteName %>",
+            "url": "<%= json['default'].siteUrl %>"
         },
         {
             "@context": "http://schema.org",
@@ -28,8 +21,8 @@ var path = "../";
                     "@type": "ListItem",
                     "position": 1,
                     "item": {
-                        "@id": "<%= siteUrl %>",
-                        "name": "<%= siteName %>"
+                        "@id": "<%= json['default'].siteUrl %>",
+                        "name": "<%= json['default'].siteName %>"
                     }
                 }
             ]
@@ -39,9 +32,9 @@ var path = "../";
 </head>
 
 <body>
-<div id="document" class="<%= pageID %> <%= categoryID %>">
-<%- include(path + 'include/common/-header', {path, pageID}) %>
-<%- include(path + 'include/common/-gnav', {path, pageID, categoryID}) %>
+<div id="document" class="<%= json['template'].pageID %>">
+<%- include(json['template'].path + 'include/common/-header', {page: json['template']}) %>
+<%- include(json['template'].path + 'include/common/-gnav', {page: json['template']}) %>
 
 <div id="container">
 
@@ -49,11 +42,11 @@ var path = "../";
 container
 
 
-<%- include(path + 'include/common/-pagetop') %>
+<%- include(json['template'].path + 'include/common/-pagetop') %>
 <!-- /#container ==========--></div>
 
-<%- include(path + 'include/common/-footer', {path}) %>
+<%- include(json['template'].path + 'include/common/-footer', {page: json['template']}) %>
 <!-- /#document ==========--></div>
-<script src="<%= path %>scripts/common/bundle.js" defer></script>
+<script src="<%= json['template'].path %>scripts/common/bundle.js" defer></script>
 </body>
 </html>

@@ -1,15 +1,23 @@
-<meta name="description" content="<%= pageDescription %>">
+<%
+    var _default = json['default'];
+    for ( var key in _default ) {
+        if ( typeof page[key] === 'undefined' ) {
+            page[key] = _default[key];
+        }
+    }
+-%>
+<meta name="description" content="<%= page['description'] %>">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="ja_JP">
-<meta property="og:title" content="<%= pageTitle %>">
-<meta property="og:description" content="<%= pageDescription %>">
-<meta property="og:image" content="">
+<meta property="og:title" content="<%= page['title'] %>">
+<meta property="og:description" content="<%= page['description'] %>">
+<meta property="og:image" content="<%= page['ogp_img'] %>">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="">
 <meta name="twitter:creator" content="">
-<meta name="twitter:title" content="<%= pageTitle %>">
-<meta name="twitter:description" content="<%= pageDescription %>">
-<meta name="twitter:image:src" content="">
+<meta name="twitter:title" content="<%= page['title'] %>">
+<meta name="twitter:description" content="<%= page['description'] %>">
+<meta name="twitter:image:src" content="<%= page['ogp_img'] %>">
 <meta name="format-detection" content="telephone=no, email=no, address=no">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title><%= pageTitle %></title>
+<title><%= page['title'] %></title>

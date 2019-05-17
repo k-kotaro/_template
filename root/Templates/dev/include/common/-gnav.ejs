@@ -1,11 +1,19 @@
+<%
+    var _default = json['default'];
+    for ( var key in _default ) {
+        if ( typeof page[key] === 'undefined' ) {
+            page[key] = _default[key];
+        }
+    }
+-%>
 <nav id="gnav">
 <div class="menu"><button><span>メニュー</span></button></div>
 <ul>
-<li><a href="<%= path %>">メニュー01</a></li>
-<li><a href="<%= path %>">メニュー02</a></li>
-<li><a href="<%= path %>">メニュー03</a></li>
-<li><a href="<%= path %>">メニュー04</a></li>
-<li><a href="<%= path %>">メニュー05</a></li>
-<li><a href="<%= path %>">メニュー06</a></li>
+<li><a href="<%= page['path'] %>">メニュー01</a></li>
+<li><a href="<%= page['path'] %>">メニュー02</a></li>
+<li><a href="<%= page['path'] %>">メニュー03</a></li>
+<li><a href="<%= page['path'] %>">メニュー04</a></li>
+<li><a href="<%= page['path'] %>">メニュー05</a></li>
+<li><a href="<%= page['path'] %>">メニュー06</a></li>
 </ul>
 <!-- /#gnav ==========--></nav>
