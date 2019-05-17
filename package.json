@@ -41,5 +41,7 @@
     "webpack-cli": "^3.3.2",
     "webpack-stream": "^5.2.1"
   },
-  "dependencies": {}
+  "dependencies": {
+    "autoprefixer": "^9.5.1"
+  }
 }

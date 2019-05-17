@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="ja">
-<head prefix="og:http://ogp.me/ns# fb:http://ogp.me/ns/fb# article:http://ogp.me/ns/article#">
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
 <meta charset="utf-8">
 <meta name="description" content="個別Description">
 <meta property="og:type" content="website">
@@ -18,6 +18,31 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>個別Title</title>
 <link rel="stylesheet" type="text/css" href="./css/common/styles.min.css">
+
+<script type="application/ld+json">
+    [
+        {
+            "@context": "http://schema.org",
+            "@type": "WebSite",
+            "name": "サイト名",
+            "url": "https://サイトURL"
+        },
+        {
+            "@context": "http://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+                {
+                    "@type": "ListItem",
+                    "position": 1,
+                    "item": {
+                        "@id": "https://サイトURL",
+                        "name": "サイト名"
+                    }
+                }
+            ]
+        }
+    ]
+</script>
 </head>
 
 <body>
@@ -50,6 +75,7 @@
 container
 
 
+<p class="pagetop"><a href="#document">ページTOPへ</a></p>
 <!-- /#container ==========--></div>
 
 <footer id="gfooter">

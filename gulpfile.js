@@ -171,6 +171,7 @@ gulp.task('browser-sync', function() {
     browserSync.init({
         notify: false,
         port: 10000,
+        //proxy: 'localDir.local'
         server: {
             baseDir: dir.root,
             index: 'index.html'

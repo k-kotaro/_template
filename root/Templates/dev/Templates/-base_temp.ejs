@@ -1,20 +1,47 @@
 <%
-var pageName = "個別title";
+var pageName = "個別名";
 var pageID = "個別ID";
 var categoryID = "カテゴリID";
 var pageTitle = "個別Title";
 var pageDescription = "個別Description";
 var path = "../";
-%><!DOCTYPE html>
+%><%- include(path + 'include/common/-commonVar') %><!DOCTYPE html>
 <html lang="ja">
-<head prefix="og:http://ogp.me/ns# fb:http://ogp.me/ns/fb# article:http://ogp.me/ns/article#">
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
 <meta charset="utf-8">
-<%- include(path + 'include/common/-meta',{path, pageTitle, pageDescription}) %>
+<%- include(path + 'include/common/-meta', {path, pageTitle, pageDescription}) %>
+<%- include(path + 'include/common/-headCss', {path}) %>
+<%- include(path + 'include/common/-headScript', {path}) %>
+<script type="application/ld+json">
+    [
+        {
+            "@context": "http://schema.org",
+            "@type": "WebSite",
+            "name": "<%= siteName %>",
+            "url": "<%= siteUrl %>"
+        },
+        {
+            "@context": "http://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+                {
+                    "@type": "ListItem",
+                    "position": 1,
+                    "item": {
+                        "@id": "<%= siteUrl %>",
+                        "name": "<%= siteName %>"
+                    }
+                }
+            ]
+        }
+    ]
+</script>
 </head>
+
 <body>
 <div id="document" class="<%= pageID %> <%= categoryID %>">
-<%- include(path + 'include/common/-header',{path, pageID}) %>
-<%- include(path + 'include/common/-gnav',{path, pageID, categoryID}) %>
+<%- include(path + 'include/common/-header', {path, pageID}) %>
+<%- include(path + 'include/common/-gnav', {path, pageID, categoryID}) %>
 
 <div id="container">
 
@@ -22,9 +49,10 @@ var path = "../";
 container
 
 
+<%- include(path + 'include/common/-pagetop') %>
 <!-- /#container ==========--></div>
 
-<%- include(path + 'include/common/-footer',{path}) %>
+<%- include(path + 'include/common/-footer', {path}) %>
 <!-- /#document ==========--></div>
 <script src="<%= path %>scripts/common/bundle.js" defer></script>
 </body>
