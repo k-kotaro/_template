@@ -70,8 +70,7 @@ gulpfile.jsに書いてある各gulpタスクの説明。
 
 -プロジェクト設定
 project：値に開発用のディレクトリ名設定。XAMPPのhtdocsに入れるディレクトリ名と同じものをいれること
-subdomain：サブドメ環境での開発時はtrue
-minify：最小化設定の場合はtrue
+webpack：webpackの設定ファイル。基本的にはさわらない
 dir：各ディレクトリ名を入れる。変更ある場合以外はそのまま
 
 -EJSタスク
@@ -112,7 +111,7 @@ EJSコンパイル→画像最小化→htdocsにコピー→リロード
 SVGフォント化、CSSスプライト→SASSコンパイル→画像最小化、CSS最小化→htdocsにコピー→リロード
 
 -JSパブリッシュタスク
-JS最小化→htdocsにコピー→リロード
+webpack→htdocsにコピー→リロード
 JSはよほどのことがない限り最小化すること。最小化しない場合は/scriptsへ直接書く
 
 

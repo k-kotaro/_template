@@ -23,7 +23,6 @@ const cache = require('gulp-cached');
 
 //- プロジェクト設定
 const project = '_templates';
-const minify = true;
 const webpackConfig = require('./webpack.config');
 const dir  = {
     root: 'root/',
