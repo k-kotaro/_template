@@ -93,7 +93,7 @@ gulp.task('sprite', (done) => {
 
 //- sassファイルコンパイルタスク
 gulp.task('sass', () => {
-    var pubDir = (minify == true)? dir.root + dir.dev + dir.css : dir.root + dir.css;
+    var pubDir = dir.root + dir.dev + dir.css;
     return gulp.src(dir.root + dir.dev + dir.scss + '**/*.scss', {
         since: gulp.lastRun(sass)
     })
@@ -125,7 +125,7 @@ gulp.task('cssmin', () => {
 
 //- webpackタスク
 gulp.task('bundle', () => {
-  var pubDir = (minify == true)? dir.root + dir.dev + dir.js : dir.root + dir.js;
+  var pubDir = dir.root + dir.dev + dir.js;
     return webpackStream(webpackConfig, webpack)
     .pipe(plumber())
     .pipe(gulp.dest(pubDir));
