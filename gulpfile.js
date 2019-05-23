@@ -78,7 +78,7 @@ gulp.task('iconfont', (done) => {
 gulp.task('sprite', (done) => {
     var folders = getFolders(dir.root + dir.dev + dir.spriteImg);
     folders.map(function (folder) {
-        return gulp.src(dir.root + dir.dev + dir.spriteImg + folder + '/*.png')
+        var spriteData = gulp.src(dir.root + dir.dev + dir.spriteImg + folder + '/*.png')
         .pipe(sprite({
             imgName: 'mod_img_sprite.png',
             imgPath: dir.img + folder + '/' + 'mod_img_sprite.png',
