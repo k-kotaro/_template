@@ -16,7 +16,7 @@ glob.sync("./root/Templates/dev/**/entry.js", {
 
 module.exports = {
     entry: entries,
-    mode: 'development',
+    mode: 'production',
     output: {
         filename: '[name]'
     },
