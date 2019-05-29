@@ -13,6 +13,7 @@ const mozjpeg  = require('imagemin-mozjpeg');
 const cssmin = require('gulp-cssmin');
 const comb = require('gulp-csscomb');
 const autoprefixer = require('gulp-autoprefixer');
+const changed = require('gulp-changed');
 const iconfontCss = require('gulp-iconfont-css');
 const iconfont = require('gulp-iconfont');
 const ejs = require('gulp-ejs');
@@ -133,18 +134,16 @@ gulp.task('bundle', () => {
 
 //- 画像圧縮タスク
 gulp.task('imagemin', (done) => {
-    return gulp.src(dir.root + dir.dev + dir.img + '/**/*.+(jpg|jpeg|png|gif|svg)', {
-        since: gulp.lastRun(imagemin)
-    })
+    return gulp.src(dir.root + dir.dev + dir.img + '/**/*.+(jpg|jpeg|png|gif|svg)')
+    .pipe(changed(dir.root + dir.img))
     .pipe(imagemin([
+        imagemin.jpegtran({
+            quality: 85,
+        }),
         pngquant({
             quality: 85,
         }),
-        mozjpeg({
-            quality: 85,
-        }),
         imagemin.gifsicle(),
-        imagemin.jpegtran(),
         imagemin.optipng(),
         imagemin.svgo({
             removeViewBox: false,
