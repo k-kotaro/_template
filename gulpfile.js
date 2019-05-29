@@ -147,13 +147,11 @@ gulp.task('imagemin', (done) => {
             quality: 85,
         }),
         pngquant({
-            quality: 85,
+            quality: 60-80,
         }),
         imagemin.gifsicle(),
         imagemin.optipng(),
-        imagemin.svgo({
-            removeViewBox: false,
-        }),
+        imagemin.svgo(),
     ]))
     .pipe(imagemin())
     .pipe(gulp.dest(dir.root + dir.img));
