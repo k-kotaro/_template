@@ -61,6 +61,12 @@ gulp.task('iconfont', (done) => {
     return gulp.src(dir.root + dir.dev + dir.font + '*.svg', {
         since: gulp.lastRun(iconfont)
     })
+    .pipe(imagemin([
+        imagemin.svgo({
+            removeViewBox: false,
+        }),
+    ]))
+    .pipe(imagemin())
     .pipe(iconfontCss({
         fontName: 'icon',
         path: dir.root + dir.dev + dir.scss + '_temp/_font.scss',
@@ -204,7 +210,6 @@ gulp.task('cssBuild', gulp.series(
 
 //- アイコンフォント作成タスク
 gulp.task('icoBuild', gulp.series(
-    'imagemin',
     'iconfont'
 )
 );
