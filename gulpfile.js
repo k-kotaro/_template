@@ -144,10 +144,10 @@ gulp.task('imagemin', (done) => {
     .pipe(changed(dir.root + dir.img))
     .pipe(imagemin([
         imagemin.jpegtran({
-            quality: 85,
+            quality: 65-80,
         }),
         pngquant({
-            quality: 60-80,
+            quality: 85,
         }),
         imagemin.gifsicle(),
         imagemin.optipng(),
