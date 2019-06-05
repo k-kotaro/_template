@@ -38,7 +38,7 @@ const dir  = {
     dev:   'Templates/dev/'
 };
 
-const getFolders = function (dir) {
+const getFolders = (dir) => {
     return fs.readdirSync(dir)
         .filter(function (file) {
         return fs.statSync(path.join(dir, file)).isDirectory();
@@ -46,20 +46,20 @@ const getFolders = function (dir) {
 }
 
 //- EJSタスク
-gulp.task('ejs', () => {
+const ejsCompile = () => {
     var json = JSON.parse(fs.readFileSync(dir.root + dir.dev + 'include/meta.json', 'utf-8'));
     return gulp.src([dir.root + dir.dev + '**/*.ejs', '!' + dir.root + dir.dev + '**/-*.ejs'], {
-        since: gulp.lastRun(ejs)
+        since: gulp.lastRun(ejsCompile)
     })
     .pipe(ejs({json:json}))
     .pipe(rename({extname: '.html'}))
     .pipe(gulp.dest(dir.root));
-});
+}
 
 //- アイコンフォント作成タスク
-gulp.task('iconfont', (done) => {
+const iconfontCompile = (done) => {
     return gulp.src(dir.root + dir.dev + dir.font + '*.svg', {
-        since: gulp.lastRun(iconfont)
+        since: gulp.lastRun(iconfontCompile)
     })
     .pipe(imagemin([
         imagemin.svgo({
@@ -79,10 +79,10 @@ gulp.task('iconfont', (done) => {
         appendCodepoints: false
     }));
     done();
-});
+}
 
 //- スプライト画像、mixin作成タスク
-gulp.task('sprite', (done) => {
+const spriteImage = (done) => {
     var folders = getFolders(dir.root + dir.dev + dir.spriteImg);
     folders.map(function (folder) {
         var spriteData = gulp.src(dir.root + dir.dev + dir.spriteImg + folder + '/*.png')
@@ -96,29 +96,29 @@ gulp.task('sprite', (done) => {
         spriteData.css.pipe(gulp.dest(dir.root + dir.dev + dir.scss + '_sprite'));
     });
     done();
-});
+}
 
 //- sassファイルコンパイルタスク
-gulp.task('sass', () => {
+const sassCompile = () => {
     var pubDir = dir.root + dir.dev + dir.css;
     return gulp.src(dir.root + dir.dev + dir.scss + '**/*.scss', {
-        since: gulp.lastRun(sass)
+        since: gulp.lastRun(sassCompile)
     })
     .pipe(plumber())
     .pipe(sass().on('error', sass.logError))
     .pipe(inlineimage())
     .pipe(comb())
     .pipe(autoprefixer({
-        browsers: ['last 2 version', 'iOS >= 9', 'Android >= 4.4'],
+        browsers: ['last 2 version', 'iOS >= 10', 'Android >= 4.4'],
         cascade: false
     }))
     .pipe(gulp.dest(pubDir));
-});
+}
 
 //- CSS圧縮タスク
-gulp.task('cssmin', () => {
+const cssminify = () => {
     return gulp.src(dir.root + dir.dev + dir.css + '**/*.css', {
-        since: gulp.lastRun(cssmin)
+        since: gulp.lastRun(cssminify)
     })
     .pipe(cssmin())
     .pipe(rename(function(path){
@@ -128,18 +128,18 @@ gulp.task('cssmin', () => {
         }
     }))
     .pipe(gulp.dest(dir.root + dir.css));
-});
+}
 
 //- webpackタスク
-gulp.task('bundle', () => {
+const bundle = () => {
   var pubDir = dir.root + dir.dev + dir.js;
     return webpackStream(webpackConfig, webpack)
     .pipe(plumber())
     .pipe(gulp.dest(pubDir));
-});
+}
 
 //- 画像圧縮タスク
-gulp.task('imagemin', (done) => {
+const imageminify = (done) => {
     return gulp.src(dir.root + dir.dev + dir.img + '/**/*.+(jpg|jpeg|png|gif|svg)')
     .pipe(changed(dir.root + dir.img))
     .pipe(imagemin([
@@ -147,7 +147,8 @@ gulp.task('imagemin', (done) => {
             quality: 65-80,
         }),
         pngquant({
-            quality: 85,
+            //quality: [.7, .85],
+            quality: 70-85,
         }),
         imagemin.gifsicle(),
         imagemin.optipng(),
@@ -156,10 +157,10 @@ gulp.task('imagemin', (done) => {
     .pipe(imagemin())
     .pipe(gulp.dest(dir.root + dir.img));
     done();
-});
+}
 
 //- ファイルコピータスク
-gulp.task('copy', (done) => {
+const copy = (done) => {
     var dstDir = '/xampp/htdocs/' + project;
     //var dstDir = '/Applications/XAMPP/xamppfiles/htdocs/' + project;
     return gulp.src([
@@ -167,10 +168,10 @@ gulp.task('copy', (done) => {
     ])
     .pipe(gulp.dest(dstDir));
     done();
-});
+}
 
 //- ブラウザ同期表示設定
-gulp.task('browser-sync', function() {
+const browser = () => {
     browserSync.init({
         notify: false,
         port: 10000,
@@ -180,53 +181,51 @@ gulp.task('browser-sync', function() {
             index: 'index.html'
         }
     });
-});
+}
 
 //- ブラウザリロードタスク
-gulp.task('reload', (done) => {
+const reload = (done) => {
     browserSync.reload()
     done()
-});
+}
 
 //- HTMLパブリッシュタスク
-gulp.task('htmlBuild', gulp.series(
-    gulp.parallel('ejs', 'imagemin'),
-    'copy',
-    'reload'
-)
+const htmlBuild = gulp.series(
+    gulp.parallel(ejsCompile, imageminify),
+    copy,
+    reload
 );
 
 //- CSSパブリッシュタスク
-gulp.task('cssBuild', gulp.series(
-    gulp.parallel('sprite'),
-    gulp.parallel('sass', 'imagemin'),
-    'cssmin',
-    'copy',
-    'reload'
-)
+const cssBuild = gulp.series(
+    gulp.parallel(spriteImage),
+    gulp.parallel(sassCompile, imageminify),
+    cssminify,
+    copy,
+    reload
 );
 
 //- アイコンフォント作成タスク
-gulp.task('icoBuild', gulp.series(
-    'iconfont'
-)
+const icoBuild = gulp.series(
+    iconfontCompile
 );
 
 //- JSパブリッシュタスク
-gulp.task('jsBuild', gulp.series(
-    'bundle',
-    'copy',
-    'reload'
-)
+const jsBuild = gulp.series(
+    bundle,
+    copy,
+    reload
 );
 
 //- 監視タスク
-gulp.task('watch', () => {
-    gulp.watch([dir.root + dir.dev + '**/*.ejs', dir.root + dir.dev + 'include/meta.json'], gulp.task('htmlBuild'));
-    gulp.watch([dir.root + dir.dev + dir.scss + '**/*.scss', '!' + dir.root + dir.dev + dir.scss + '_setting/_font.scss', '!' + dir.root + dir.dev + dir.scss + '_sprite/*.scss'], gulp.task('cssBuild'));
-    gulp.watch(dir.root + dir.dev + dir.font + '*.svg', gulp.task('icoBuild'));
-    gulp.watch(dir.root + dir.dev + dir.js + '**/*.js', gulp.task('jsBuild'));
-});
+const watchFiles = () => {
+    gulp.watch([dir.root + dir.dev + '**/*.ejs', dir.root + dir.dev + 'include/meta.json'], htmlBuild);
+    gulp.watch([dir.root + dir.dev + dir.scss + '**/*.scss', '!' + dir.root + dir.dev + dir.scss + '_setting/_font.scss', '!' + dir.root + dir.dev + dir.scss + '_sprite/*.scss'], cssBuild);
+    gulp.watch(dir.root + dir.dev + dir.font + '*.svg', icoBuild);
+    gulp.watch(dir.root + dir.dev + dir.js + '**/*.js', jsBuild);
+}
 
 //- default
-gulp.task('default', gulp.parallel('watch', 'browser-sync'));
+const build = gulp.parallel(watchFiles, browser);
+
+exports.default = build;
