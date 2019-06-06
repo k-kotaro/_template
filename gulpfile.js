@@ -21,6 +21,8 @@ const browserSync = require('browser-sync');
 const webpackStream = require('webpack-stream');
 const webpack = require('webpack');
 const cache = require('gulp-cached');
+const htmlhint = require("gulp-htmlhint");
+
 
 //- プロジェクト設定
 const project = '_templates';
@@ -54,6 +56,13 @@ const ejsCompile = () => {
     .pipe(ejs({json:json}))
     .pipe(rename({extname: '.html'}))
     .pipe(gulp.dest(dir.root));
+}
+
+// HTML Lint
+const htmlLint = () => {
+    return gulp.src(dir.root + '**/*.html')
+    .pipe(htmlhint())
+    .pipe(htmlhint.reporter())
 }
 
 //- アイコンフォント作成タスク
@@ -192,6 +201,7 @@ const reload = (done) => {
 //- HTMLパブリッシュタスク
 const htmlBuild = gulp.series(
     gulp.parallel(ejsCompile, imageminify),
+    htmlLint,
     copy,
     reload
 );
