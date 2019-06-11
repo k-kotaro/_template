@@ -9,8 +9,8 @@
 <nav id="gnav">
 <div class="menu"><button><span>メニュー</span></button></div>
 <ul>
-<li><a href="<%= page['path'] %>">メニュー01</a></li>
-<li><a href="<%= page['path'] %>">メニュー02</a></li>
+<% if (page['pageID'] == 'home') { %><li class="is_current"><% } else { %><li><% } %><a href="<%= page['path'] %>">メニュー01</a></li>
+<% if (page['pageID'] == 'module') { %><li class="is_current"><% } else { %><li><% } %><a href="<%= page['path'] %>">メニュー02</a></li>
 <li><a href="<%= page['path'] %>">メニュー03</a></li>
 <li><a href="<%= page['path'] %>">メニュー04</a></li>
 <li><a href="<%= page['path'] %>">メニュー05</a></li>
