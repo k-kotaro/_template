@@ -20,7 +20,6 @@ const ejs = require('gulp-ejs');
 const browserSync = require('browser-sync');
 const webpackStream = require('webpack-stream');
 const webpack = require('webpack');
-const cache = require('gulp-cached');
 const htmlhint = require("gulp-htmlhint");
 
 
@@ -157,8 +156,8 @@ const imageminify = (done) => {
             quality: 65-80,
         }),
         pngquant({
-            //quality: [.7, .85],
-            quality: 70-85,
+            quality: [.7, .85],
+            //quality: 70-85,
         }),
         imagemin.gifsicle(),
         imagemin.optipng(),
