@@ -49,7 +49,7 @@ const getFolders = (dir) => {
 //- EJSタスク
 const ejsCompile = () => {
     var json = JSON.parse(fs.readFileSync(dir.root + dir.dev + 'include/meta.json', 'utf-8'));
-    return gulp.src(dir.root + dir.dev + '**/*.ejs', {
+    return gulp.src([dir.root + dir.dev + '**/*.ejs', '!' + dir.root + dir.dev + '**/-*.ejs'], {
         since: gulp.lastRun(ejsCompile)
     })
     .pipe(ejs({json:json}))
@@ -109,9 +109,7 @@ const spriteImage = (done) => {
 //- sassファイルコンパイルタスク
 const sassCompile = () => {
     var pubDir = dir.root + dir.dev + dir.css;
-    return gulp.src(dir.root + dir.dev + dir.scss + '**/*.scss', {
-        since: gulp.lastRun(sassCompile)
-    })
+    return gulp.src(dir.root + dir.dev + dir.scss + '**/*.scss')
     .pipe(plumber())
     .pipe(sass().on('error', sass.logError))
     .pipe(inlineimage())
