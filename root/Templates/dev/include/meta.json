@@ -22,6 +22,7 @@
         "title": "個別ページタイトル",
         "description": "個別discription",
         "pageID": "home",
+        "categoryID": "home",
         "path": "./"
     }
 }
