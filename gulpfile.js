@@ -49,10 +49,9 @@ const getFolders = (dir) => {
 //- EJSタスク
 const ejsCompile = () => {
     var json = JSON.parse(fs.readFileSync(dir.root + dir.dev + 'include/meta.json', 'utf-8'));
-    return gulp.src([dir.root + dir.dev + '**/*.ejs', '!' + dir.root + dir.dev + '**/-*.ejs'])
-    //return gulp.src([dir.root + dir.dev + '**/*.ejs', '!' + dir.root + dir.dev + '**/-*.ejs'], {
-    //    since: gulp.lastRun(ejsCompile)
-    //})
+    return gulp.src(dir.root + dir.dev + '**/*.ejs', {
+        since: gulp.lastRun(ejsCompile)
+    })
     .pipe(ejs({json:json}))
     .pipe(rename({extname: '.html'}))
     .pipe(gulp.dest(dir.root));
@@ -118,7 +117,6 @@ const sassCompile = () => {
     .pipe(inlineimage())
     .pipe(comb())
     .pipe(autoprefixer({
-        browsers: ['last 2 version', 'iOS >= 10', 'Android >= 4.4'],
         cascade: false
     }))
     .pipe(gulp.dest(pubDir));
@@ -157,7 +155,6 @@ const imageminify = (done) => {
         }),
         pngquant({
             quality: [.7, .85],
-            //quality: 70-85,
         }),
         imagemin.gifsicle(),
         imagemin.optipng(),
