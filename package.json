@@ -42,9 +42,7 @@
         "webpack-cli": "^3.3.2",
         "webpack-stream": "^5.2.1"
     },
-    "dependencies": {
-        "autoprefixer": "^9.5.1"
-    },
+    "dependencies": {},
     "browserslist": [
         "last 2 version",
         "ie >= 11",
