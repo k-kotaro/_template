@@ -65,10 +65,8 @@ const htmlLint = () => {
 }
 
 //- アイコンフォント作成タスク
-const iconfontCompile = (done) => {
-    return gulp.src(dir.root + dir.dev + dir.font + '*.svg', {
-        since: gulp.lastRun(iconfontCompile)
-    })
+const iconfontCompile = () => {
+    return gulp.src(dir.root + dir.dev + dir.font + '*.svg')
     .pipe(imagemin([
         imagemin.svgo({
             removeViewBox: false,
@@ -84,9 +82,11 @@ const iconfontCompile = (done) => {
     .pipe(iconfont({
         fontName: 'icon',
         formats: ['woff'],
-        appendCodepoints: false
-    }));
-    done();
+        prependUnicode: true,
+        normalize: true,
+        fontHeight: 1000,
+    }))
+    .pipe(gulp.dest(dir.root + dir.font));
 }
 
 //- スプライト画像、mixin作成タスク
