@@ -22,6 +22,10 @@ const webpackStream = require('webpack-stream');
 const webpack = require('webpack');
 const htmlhint = require("gulp-htmlhint");
 
+const sourcemaps = require('gulp-sourcemaps');
+const cleanCSS = require('gulp-clean-css');
+const minifyCss  = require('gulp-minify-css');
+
 
 //- プロジェクト設定
 const project = '_templates';
@@ -110,14 +114,26 @@ const spriteImage = (done) => {
 const sassCompile = () => {
     var pubDir = dir.root + dir.dev + dir.css;
     return gulp.src(dir.root + dir.dev + dir.scss + '**/*.scss')
+    .pipe(sourcemaps.init())
     .pipe(plumber())
     .pipe(sass().on('error', sass.logError))
+    //.pipe(sourcemaps.write({includeContent: false}))
+    .pipe(sourcemaps.init({loadMaps: true}))
+    //.pipe(comb())
+    .pipe(cleanCSS())
+    //.pipe(minifyCss({advanced:false}))
     .pipe(inlineimage())
-    .pipe(comb())
-    .pipe(autoprefixer({
-        cascade: false
+    .pipe(autoprefixer())
+    .pipe(sourcemaps.write('../' + dir.dev + dir.css))
+    .pipe(rename(function(path){
+        if(!(path.extname.match('.map'))){
+            if(!(path.basename.match('.min'))){
+                path.basename += '.min';
+                //path.extname = '.css';
+            }
+        }
     }))
-    .pipe(gulp.dest(pubDir));
+    .pipe(gulp.dest(dir.root + dir.css));
 }
 
 //- CSS圧縮タスク
@@ -125,7 +141,15 @@ const cssminify = () => {
     return gulp.src(dir.root + dir.dev + dir.css + '**/*.css', {
         since: gulp.lastRun(cssminify)
     })
-    .pipe(cssmin())
+    .pipe(cssmin({
+        sourceMap: true,
+    }))
+    //.pipe(cleanCSS())
+    //.pipe(sourcemaps.write('./', {
+    //    sourceMappingURL: function(file) {
+    //        return '../../' + dir.dev + dir.css + file.relative + '.map';
+    //    }
+    //}))
     .pipe(rename(function(path){
         if(!(path.basename.match('.min'))){
             path.basename += '.min';
@@ -205,7 +229,7 @@ const htmlBuild = gulp.series(
 const cssBuild = gulp.series(
     gulp.parallel(spriteImage),
     gulp.parallel(sassCompile, imageminify),
-    cssminify,
+    //cssminify,
     copy,
     reload
 );
