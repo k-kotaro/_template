@@ -42,8 +42,7 @@
         "webpack-stream": "^5.2.1"
     },
     "dependencies": {
-        "gulp-clean-css": "^4.2.0",
-        "gulp-sourcemaps": "^2.6.5"
+        "gulp-clean-css": "^4.2.0"
     },
     "browserslist": [
         "last 2 version",

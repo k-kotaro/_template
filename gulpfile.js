@@ -22,8 +22,8 @@ const webpackStream = require('webpack-stream');
 const webpack = require('webpack');
 const htmlhint = require("gulp-htmlhint");
 
-const sourcemaps = require('gulp-sourcemaps');
 const cleanCSS = require('gulp-clean-css');
+const del = require('del');
 
 //- プロジェクト設定
 const project = '_templates';
@@ -111,27 +111,32 @@ const spriteImage = (done) => {
 //- sassファイルコンパイルタスク
 const sassCompile = () => {
     var pubDir = dir.root + dir.dev + dir.css;
-    return gulp.src(dir.root + dir.dev + dir.scss + '**/*.scss')
-    .pipe(sourcemaps.init())
+    return gulp.src(dir.root + dir.dev + dir.scss + '**/*.scss', {sourcemaps: true})
     .pipe(plumber())
     .pipe(sass().on('error', sass.logError))
-    //.pipe(sourcemaps.write({includeContent: false}))
-    .pipe(sourcemaps.init({loadMaps: true}))
     //.pipe(comb())
     .pipe(cleanCSS())
-    //.pipe(minifyCss({advanced:false}))
     .pipe(inlineimage())
     .pipe(autoprefixer())
-    .pipe(sourcemaps.write('../' + dir.dev + dir.css))
+    .pipe(gulp.dest(dir.root + dir.css, {sourcemaps: '../' + dir.dev + dir.css}));
+
+}
+
+//-
+const fileRename = () => {
+    return gulp.src(dir.root + dir.css + '**/*.css')
     .pipe(rename(function(path){
-        if(!(path.extname.match('.map'))){
-            if(!(path.basename.match('.min'))){
-                path.basename += '.min';
-                //path.extname = '.css';
-            }
+        if(!(path.basename.match('.min'))){
+            path.basename += '.min';
+            //path.extname = '.css';
         }
     }))
     .pipe(gulp.dest(dir.root + dir.css));
+}
+
+//-
+const fileDelete = () => {
+    return del([dir.root + dir.css + '**/*.css', '!' + dir.root + dir.css + '**/*.min.css']);
 }
 
 //- CSS圧縮タスク
@@ -227,6 +232,8 @@ const htmlBuild = gulp.series(
 const cssBuild = gulp.series(
     gulp.parallel(spriteImage),
     gulp.parallel(sassCompile, imageminify),
+    fileRename,
+    fileDelete,
     //cssminify,
     copy,
     reload
