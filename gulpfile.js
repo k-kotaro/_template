@@ -24,8 +24,6 @@ const htmlhint = require("gulp-htmlhint");
 
 const sourcemaps = require('gulp-sourcemaps');
 const cleanCSS = require('gulp-clean-css');
-const minifyCss  = require('gulp-minify-css');
-
 
 //- プロジェクト設定
 const project = '_templates';
