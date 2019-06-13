@@ -10,8 +10,8 @@ const inlineimage = require('gulp-inline-image');
 const imagemin = require('gulp-imagemin');
 const pngquant  = require('imagemin-pngquant');
 const mozjpeg  = require('imagemin-mozjpeg');
-const cssmin = require('gulp-cssmin');
-const comb = require('gulp-csscomb');
+const cleanCSS = require('gulp-clean-css');
+const del = require('del');
 const autoprefixer = require('gulp-autoprefixer');
 const changed = require('gulp-changed');
 const iconfontCss = require('gulp-iconfont-css');
@@ -22,8 +22,6 @@ const webpackStream = require('webpack-stream');
 const webpack = require('webpack');
 const htmlhint = require("gulp-htmlhint");
 
-const cleanCSS = require('gulp-clean-css');
-const del = require('del');
 
 //- プロジェクト設定
 const project = '_templates';
@@ -122,46 +120,6 @@ const sassCompile = () => {
 
 }
 
-//-
-const fileRename = () => {
-    return gulp.src(dir.root + dir.css + '**/*.css')
-    .pipe(rename(function(path){
-        if(!(path.basename.match('.min'))){
-            path.basename += '.min';
-            //path.extname = '.css';
-        }
-    }))
-    .pipe(gulp.dest(dir.root + dir.css));
-}
-
-//-
-const fileDelete = () => {
-    return del([dir.root + dir.css + '**/*.css', '!' + dir.root + dir.css + '**/*.min.css']);
-}
-
-//- CSS圧縮タスク
-const cssminify = () => {
-    return gulp.src(dir.root + dir.dev + dir.css + '**/*.css', {
-        since: gulp.lastRun(cssminify)
-    })
-    .pipe(cssmin({
-        sourceMap: true,
-    }))
-    //.pipe(cleanCSS())
-    //.pipe(sourcemaps.write('./', {
-    //    sourceMappingURL: function(file) {
-    //        return '../../' + dir.dev + dir.css + file.relative + '.map';
-    //    }
-    //}))
-    .pipe(rename(function(path){
-        if(!(path.basename.match('.min'))){
-            path.basename += '.min';
-            path.extname = '.css';
-        }
-    }))
-    .pipe(gulp.dest(dir.root + dir.css));
-}
-
 //- webpackタスク
 const bundle = () => {
   var pubDir = dir.root + dir.dev + dir.js;
@@ -232,9 +190,6 @@ const htmlBuild = gulp.series(
 const cssBuild = gulp.series(
     gulp.parallel(spriteImage),
     gulp.parallel(sassCompile, imageminify),
-    fileRename,
-    fileDelete,
-    //cssminify,
     copy,
     reload
 );
