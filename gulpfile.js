@@ -25,7 +25,8 @@ const browserSync = require('browser-sync');
 
 //- プロジェクト設定
 const project = '_templates';
-const webpackConfig = require('./webpack.config');
+const mode = 'development';  // production or development
+const webpackConfig = require('./webpack.' + mode + '.config');
 const dir  = {
     root: 'root/',
     css: 'css/',
@@ -109,15 +110,15 @@ const spriteImage = (done) => {
 
 //- sassファイルコンパイルタスク
 const sassCompile = () => {
-    var pubDir = dir.root + dir.dev + dir.css;
-    return gulp.src(dir.root + dir.dev + dir.scss + '**/*.scss', {sourcemaps: true})
+    const pubMode = (mode == 'production') ? false : true;
+    return gulp.src( dir.root + dir.dev + dir.scss + '**/*.scss', {sourcemaps: pubMode})
     .pipe(plumber())
     .pipe(sass().on('error', sass.logError))
     .pipe(cleanCSS())
     .pipe(inlineimage())
     .pipe(autoprefixer())
+    //.pipe(gulp.dest((mode == 'production') ? dir.root + dir.css : dir.root + dir.css, {sourcemaps: '../' + dir.dev + dir.sourcemap}));
     .pipe(gulp.dest(dir.root + dir.css, {sourcemaps: '../' + dir.dev + dir.sourcemap}));
-
 }
 
 //- webpackタスク
@@ -215,6 +216,7 @@ const watchFiles = () => {
 }
 
 //- default
-const build = gulp.parallel(watchFiles, browser);
+//const build = gulp.parallel(watchFiles, browser);
+const build = watchFiles;
 
 exports.default = build;

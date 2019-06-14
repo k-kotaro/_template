@@ -1,7 +1,6 @@
 const webpack = require('webpack');
 const path = require('path');
 const glob = require('glob');
-const UglifyEsPlugin = require('uglify-es-webpack-plugin');
 
 const entries = {};
 glob.sync("./root/Templates/dev/**/entry.js", {
@@ -45,14 +44,5 @@ module.exports = {
             $: 'jquery',
             jQuery: 'jquery'
         }),
-        new webpack.SourceMapDevToolPlugin({
-            filename: '../../../Templates/dev/sourcemap[name].map',
-            append: '\n//# sourceMappingURL=Templates/dev/sourcemap[name].map',
-        }),
-        //new UglifyEsPlugin(),
     ]
-
-    //devtool: 'source-map',
-    /*plugins: [
-    ]*/
 };
