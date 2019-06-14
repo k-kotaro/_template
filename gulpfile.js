@@ -28,15 +28,16 @@ const project = '_templates';
 const webpackConfig = require('./webpack.config');
 const dir  = {
     root: 'root/',
-    css:   'css/',
+    css: 'css/',
     img: 'images/',
     js: 'scripts/',
     json: 'json/',
     font: 'fonts/',
     include: 'include/',
     spriteImg: 'sprite/',
-    scss:   'scss/',
-    dev:   'Templates/dev/'
+    scss: 'scss/',
+    sourcemap: 'sourcemap/',
+    dev: 'Templates/dev/'
 };
 
 const getFolders = (dir) => {
@@ -112,11 +113,10 @@ const sassCompile = () => {
     return gulp.src(dir.root + dir.dev + dir.scss + '**/*.scss', {sourcemaps: true})
     .pipe(plumber())
     .pipe(sass().on('error', sass.logError))
-    //.pipe(comb())
     .pipe(cleanCSS())
     .pipe(inlineimage())
     .pipe(autoprefixer())
-    .pipe(gulp.dest(dir.root + dir.css, {sourcemaps: '../' + dir.dev + dir.css}));
+    .pipe(gulp.dest(dir.root + dir.css, {sourcemaps: '../' + dir.dev + dir.sourcemap}));
 
 }
 
