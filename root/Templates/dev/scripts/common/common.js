@@ -76,6 +76,7 @@ const gnavMenuOpen = () => {
         gnavMenu();
     }
 }
+
 const gnavMenu = () => {
     if($('#gnav .menu').length){
         if($(window).width() < breakpoint){
@@ -99,7 +100,6 @@ const imageSwitch = {
         'dataSpHeight' : 'data-sp-height',
         'currentType' : 'pc'
     },
-
 
     preLoad : function (){
         let self = this;
