@@ -3,24 +3,24 @@ const gulp = require('gulp');
 const fs = require('fs');
 const path = require('path');
 const plumber = require('gulp-plumber');
-const sprite = require('gulp.spritesmith');
 const rename = require('gulp-rename');
+const del = require('del');
+const changed = require('gulp-changed');
+const ejs = require('gulp-ejs');
+const htmlhint = require("gulp-htmlhint");
+const iconfont = require('gulp-iconfont');
+const iconfontCss = require('gulp-iconfont-css');
+const sprite = require('gulp.spritesmith');
 const sass = require('gulp-sass');
 const inlineimage = require('gulp-inline-image');
 const imagemin = require('gulp-imagemin');
 const pngquant  = require('imagemin-pngquant');
 const mozjpeg  = require('imagemin-mozjpeg');
 const cleanCSS = require('gulp-clean-css');
-const del = require('del');
 const autoprefixer = require('gulp-autoprefixer');
-const changed = require('gulp-changed');
-const iconfontCss = require('gulp-iconfont-css');
-const iconfont = require('gulp-iconfont');
-const ejs = require('gulp-ejs');
-const browserSync = require('browser-sync');
-const webpackStream = require('webpack-stream');
 const webpack = require('webpack');
-const htmlhint = require("gulp-htmlhint");
+const webpackStream = require('webpack-stream');
+const browserSync = require('browser-sync');
 
 
 //- プロジェクト設定
