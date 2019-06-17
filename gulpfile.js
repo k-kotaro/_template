@@ -10,8 +10,8 @@ const inlineimage = require('gulp-inline-image');
 const imagemin = require('gulp-imagemin');
 const pngquant  = require('imagemin-pngquant');
 const mozjpeg  = require('imagemin-mozjpeg');
-const cssmin = require('gulp-cssmin');
-const comb = require('gulp-csscomb');
+const cleanCSS = require('gulp-clean-css');
+const del = require('del');
 const autoprefixer = require('gulp-autoprefixer');
 const changed = require('gulp-changed');
 const iconfontCss = require('gulp-iconfont-css');
@@ -70,6 +70,11 @@ const iconfontCompile = () => {
     .pipe(imagemin([
         imagemin.svgo({
             removeViewBox: false,
+            removeMetadata: false,
+            removeUnknownsAndDefaults: false,
+            convertShapeToPath: false,
+            collapseGroups: false,
+            cleanupIDs: false,
         }),
     ]))
     .pipe(imagemin())
@@ -109,30 +114,15 @@ const spriteImage = (done) => {
 //- sassファイルコンパイルタスク
 const sassCompile = () => {
     var pubDir = dir.root + dir.dev + dir.css;
-    return gulp.src(dir.root + dir.dev + dir.scss + '**/*.scss')
+    return gulp.src(dir.root + dir.dev + dir.scss + '**/*.scss', {sourcemaps: true})
     .pipe(plumber())
     .pipe(sass().on('error', sass.logError))
+    //.pipe(comb())
+    .pipe(cleanCSS())
     .pipe(inlineimage())
-    .pipe(comb())
-    .pipe(autoprefixer({
-        cascade: false
-    }))
-    .pipe(gulp.dest(pubDir));
-}
+    .pipe(autoprefixer())
+    .pipe(gulp.dest(dir.root + dir.css, {sourcemaps: '../' + dir.dev + dir.css}));
 
-//- CSS圧縮タスク
-const cssminify = () => {
-    return gulp.src(dir.root + dir.dev + dir.css + '**/*.css', {
-        since: gulp.lastRun(cssminify)
-    })
-    .pipe(cssmin())
-    .pipe(rename(function(path){
-        if(!(path.basename.match('.min'))){
-            path.basename += '.min';
-            path.extname = '.css';
-        }
-    }))
-    .pipe(gulp.dest(dir.root + dir.css));
 }
 
 //- webpackタスク
@@ -205,7 +195,6 @@ const htmlBuild = gulp.series(
 const cssBuild = gulp.series(
     gulp.parallel(spriteImage),
     gulp.parallel(sassCompile, imageminify),
-    cssminify,
     copy,
     reload
 );
