@@ -25,8 +25,6 @@ const browserSync = require('browser-sync');
 
 //- プロジェクト設定
 const project = '_templates';
-const mode = 'development';  // production or development
-const webpackConfig = require('./webpack.' + mode + '.config');
 const dir  = {
     root: 'root/',
     css: 'css/',
@@ -50,7 +48,7 @@ const getFolders = (dir) => {
 
 //- EJSタスク
 const ejsCompile = () => {
-    var json = JSON.parse(fs.readFileSync(dir.root + dir.dev + 'include/meta.json', 'utf-8'));
+    const json = JSON.parse(fs.readFileSync(dir.root + dir.dev + 'include/meta.json', 'utf-8'));
     return gulp.src([dir.root + dir.dev + '**/*.ejs', '!' + dir.root + dir.dev + '**/-*.ejs'], {
         since: gulp.lastRun(ejsCompile)
     })
@@ -93,9 +91,9 @@ const iconfontCompile = () => {
 
 //- スプライト画像、mixin作成タスク
 const spriteImage = (done) => {
-    var folders = getFolders(dir.root + dir.dev + dir.spriteImg);
+    const folders = getFolders(dir.root + dir.dev + dir.spriteImg);
     folders.map(function (folder) {
-        var spriteData = gulp.src(dir.root + dir.dev + dir.spriteImg + folder + '/*.png')
+        const spriteData = gulp.src(dir.root + dir.dev + dir.spriteImg + folder + '/*.png')
         .pipe(sprite({
             imgName: 'mod_img_sprite.png',
             imgPath: dir.img + folder + '/' + 'mod_img_sprite.png',
@@ -110,22 +108,39 @@ const spriteImage = (done) => {
 
 //- sassファイルコンパイルタスク
 const sassCompile = () => {
-    const pubMode = (mode == 'production') ? false : true;
-    return gulp.src( dir.root + dir.dev + dir.scss + '**/*.scss', {sourcemaps: pubMode})
+    return gulp.src( dir.root + dir.dev + dir.scss + '**/*.scss', {sourcemaps: true})
     .pipe(plumber())
     .pipe(sass().on('error', sass.logError))
     .pipe(cleanCSS())
     .pipe(inlineimage())
     .pipe(autoprefixer())
-    //.pipe(gulp.dest((mode == 'production') ? dir.root + dir.css : dir.root + dir.css, {sourcemaps: '../' + dir.dev + dir.sourcemap}));
     .pipe(gulp.dest(dir.root + dir.css, {sourcemaps: '../' + dir.dev + dir.sourcemap}));
+}
+
+//- 本番用sassファイルコンパイルタスク
+const productionSassCompile = () => {
+    return gulp.src( dir.root + dir.dev + dir.scss + '**/*.scss')
+    .pipe(plumber())
+    .pipe(sass().on('error', sass.logError))
+    .pipe(cleanCSS())
+    .pipe(inlineimage())
+    .pipe(autoprefixer())
+    .pipe(gulp.dest(dir.root + dir.css));
 }
 
 //- webpackタスク
 const bundle = () => {
-  var pubDir = dir.root + dir.dev + dir.js;
+    const webpackConfig = require('./webpack.development.config');
+    const pubDir = dir.root + dir.dev + dir.js;
     return webpackStream(webpackConfig, webpack)
-    .pipe(plumber())
+    .pipe(gulp.dest(pubDir));
+}
+
+//- 本番用webpackタスク
+const productionBundle = () => {
+    const webpackConfig = require('./webpack.production.config');
+    const pubDir = dir.root + dir.dev + dir.js;
+    return webpackStream(webpackConfig, webpack)
     .pipe(gulp.dest(pubDir));
 }
 
@@ -151,11 +166,9 @@ const imageminify = (done) => {
 
 //- ファイルコピータスク
 const copy = (done) => {
-    var dstDir = '/xampp/htdocs/' + project;
+    const dstDir = '/xampp/htdocs/' + project;
     //var dstDir = '/Applications/XAMPP/xamppfiles/htdocs/' + project;
-    return gulp.src([
-        dir.root + '**/*'
-    ])
+    return gulp.src([dir.root + '**/*'])
     .pipe(gulp.dest(dstDir));
     done();
 }
@@ -207,6 +220,9 @@ const jsBuild = gulp.series(
     reload
 );
 
+//- 本番ファイル書き出しタスク
+const productionBuild = gulp.parallel(productionBundle, productionSassCompile);
+
 //- 監視タスク
 const watchFiles = () => {
     gulp.watch([dir.root + dir.dev + '**/*.ejs', dir.root + dir.dev + 'include/meta.json'], htmlBuild);
@@ -216,7 +232,7 @@ const watchFiles = () => {
 }
 
 //- default
-//const build = gulp.parallel(watchFiles, browser);
-const build = watchFiles;
+const build = gulp.parallel(watchFiles, browser);
 
 exports.default = build;
+exports.productionBuild = productionBuild;
