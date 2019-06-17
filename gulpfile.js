@@ -3,40 +3,40 @@ const gulp = require('gulp');
 const fs = require('fs');
 const path = require('path');
 const plumber = require('gulp-plumber');
-const sprite = require('gulp.spritesmith');
 const rename = require('gulp-rename');
+const del = require('del');
+const changed = require('gulp-changed');
+const ejs = require('gulp-ejs');
+const htmlhint = require("gulp-htmlhint");
+const iconfont = require('gulp-iconfont');
+const iconfontCss = require('gulp-iconfont-css');
+const sprite = require('gulp.spritesmith');
 const sass = require('gulp-sass');
 const inlineimage = require('gulp-inline-image');
 const imagemin = require('gulp-imagemin');
 const pngquant  = require('imagemin-pngquant');
 const mozjpeg  = require('imagemin-mozjpeg');
 const cleanCSS = require('gulp-clean-css');
-const del = require('del');
 const autoprefixer = require('gulp-autoprefixer');
-const changed = require('gulp-changed');
-const iconfontCss = require('gulp-iconfont-css');
-const iconfont = require('gulp-iconfont');
-const ejs = require('gulp-ejs');
-const browserSync = require('browser-sync');
-const webpackStream = require('webpack-stream');
 const webpack = require('webpack');
-const htmlhint = require("gulp-htmlhint");
+const webpackStream = require('webpack-stream');
+const browserSync = require('browser-sync');
 
 
 //- プロジェクト設定
 const project = '_templates';
-const webpackConfig = require('./webpack.config');
 const dir  = {
     root: 'root/',
-    css:   'css/',
+    css: 'css/',
     img: 'images/',
     js: 'scripts/',
     json: 'json/',
     font: 'fonts/',
     include: 'include/',
     spriteImg: 'sprite/',
-    scss:   'scss/',
-    dev:   'Templates/dev/'
+    scss: 'scss/',
+    sourcemap: 'sourcemap/',
+    dev: 'Templates/dev/'
 };
 
 const getFolders = (dir) => {
@@ -48,7 +48,7 @@ const getFolders = (dir) => {
 
 //- EJSタスク
 const ejsCompile = () => {
-    var json = JSON.parse(fs.readFileSync(dir.root + dir.dev + 'include/meta.json', 'utf-8'));
+    const json = JSON.parse(fs.readFileSync(dir.root + dir.dev + 'include/meta.json', 'utf-8'));
     return gulp.src([dir.root + dir.dev + '**/*.ejs', '!' + dir.root + dir.dev + '**/-*.ejs'], {
         since: gulp.lastRun(ejsCompile)
     })
@@ -96,9 +96,9 @@ const iconfontCompile = () => {
 
 //- スプライト画像、mixin作成タスク
 const spriteImage = (done) => {
-    var folders = getFolders(dir.root + dir.dev + dir.spriteImg);
+    const folders = getFolders(dir.root + dir.dev + dir.spriteImg);
     folders.map(function (folder) {
-        var spriteData = gulp.src(dir.root + dir.dev + dir.spriteImg + folder + '/*.png')
+        const spriteData = gulp.src(dir.root + dir.dev + dir.spriteImg + folder + '/*.png')
         .pipe(sprite({
             imgName: 'mod_img_sprite.png',
             imgPath: dir.img + folder + '/' + 'mod_img_sprite.png',
@@ -113,23 +113,39 @@ const spriteImage = (done) => {
 
 //- sassファイルコンパイルタスク
 const sassCompile = () => {
-    var pubDir = dir.root + dir.dev + dir.css;
-    return gulp.src(dir.root + dir.dev + dir.scss + '**/*.scss', {sourcemaps: true})
+    return gulp.src( dir.root + dir.dev + dir.scss + '**/*.scss', {sourcemaps: true})
     .pipe(plumber())
     .pipe(sass().on('error', sass.logError))
-    //.pipe(comb())
     .pipe(cleanCSS())
     .pipe(inlineimage())
     .pipe(autoprefixer())
-    .pipe(gulp.dest(dir.root + dir.css, {sourcemaps: '../' + dir.dev + dir.css}));
+    .pipe(gulp.dest(dir.root + dir.css, {sourcemaps: '../' + dir.dev + dir.sourcemap}));
+}
 
+//- 本番用sassファイルコンパイルタスク
+const productionSassCompile = () => {
+    return gulp.src( dir.root + dir.dev + dir.scss + '**/*.scss')
+    .pipe(plumber())
+    .pipe(sass().on('error', sass.logError))
+    .pipe(cleanCSS())
+    .pipe(inlineimage())
+    .pipe(autoprefixer())
+    .pipe(gulp.dest(dir.root + dir.css));
 }
 
 //- webpackタスク
 const bundle = () => {
-  var pubDir = dir.root + dir.dev + dir.js;
+    const webpackConfig = require('./webpack.development.config');
+    const pubDir = dir.root + dir.dev + dir.js;
     return webpackStream(webpackConfig, webpack)
-    .pipe(plumber())
+    .pipe(gulp.dest(pubDir));
+}
+
+//- 本番用webpackタスク
+const productionBundle = () => {
+    const webpackConfig = require('./webpack.production.config');
+    const pubDir = dir.root + dir.dev + dir.js;
+    return webpackStream(webpackConfig, webpack)
     .pipe(gulp.dest(pubDir));
 }
 
@@ -155,11 +171,9 @@ const imageminify = (done) => {
 
 //- ファイルコピータスク
 const copy = (done) => {
-    var dstDir = '/xampp/htdocs/' + project;
+    const dstDir = '/xampp/htdocs/' + project;
     //var dstDir = '/Applications/XAMPP/xamppfiles/htdocs/' + project;
-    return gulp.src([
-        dir.root + '**/*'
-    ])
+    return gulp.src([dir.root + '**/*'])
     .pipe(gulp.dest(dstDir));
     done();
 }
@@ -211,6 +225,9 @@ const jsBuild = gulp.series(
     reload
 );
 
+//- 本番ファイル書き出しタスク
+const productionBuild = gulp.parallel(productionBundle, productionSassCompile);
+
 //- 監視タスク
 const watchFiles = () => {
     gulp.watch([dir.root + dir.dev + '**/*.ejs', dir.root + dir.dev + 'include/meta.json'], htmlBuild);
@@ -223,3 +240,4 @@ const watchFiles = () => {
 const build = gulp.parallel(watchFiles, browser);
 
 exports.default = build;
+exports.productionBuild = productionBuild;
