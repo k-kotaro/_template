@@ -3,8 +3,6 @@ const gulp = require('gulp');
 const fs = require('fs');
 const path = require('path');
 const plumber = require('gulp-plumber');
-const rename = require('gulp-rename');
-const del = require('del');
 const changed = require('gulp-changed');
 const ejs = require('gulp-ejs');
 const htmlhint = require("gulp-htmlhint");
@@ -52,8 +50,7 @@ const ejsCompile = () => {
     return gulp.src([dir.root + dir.dev + '**/*.ejs', '!' + dir.root + dir.dev + '**/-*.ejs'], {
         since: gulp.lastRun(ejsCompile)
     })
-    .pipe(ejs({json:json}))
-    .pipe(rename({extname: '.html'}))
+    .pipe(ejs({json:json}, {}, {ext: '.html'}))
     .pipe(gulp.dest(dir.root));
 }
 
