@@ -70,6 +70,11 @@ const iconfontCompile = () => {
     .pipe(imagemin([
         imagemin.svgo({
             removeViewBox: false,
+            removeMetadata: false,
+            removeUnknownsAndDefaults: false,
+            convertShapeToPath: false,
+            collapseGroups: false,
+            cleanupIDs: false,
         }),
     ]))
     .pipe(imagemin())
