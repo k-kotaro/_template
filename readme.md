@@ -91,8 +91,15 @@ SVGで書き出されたアイコンをフォント化する。出力される�
 SASSファイルのコンパイル。背景画像のbase64埋め込み、接頭辞付与、CSS圧縮、sourcemapの出力も同時に行う
 autoprefixerで設定した対象ブラウザに合わせた接頭辞付与ができる。対象ブラウザの設定はpackage.jsonに記載（→ブラウザの設定については、https://github.com/browserslist/browserslist#queries）
 
+* **-本番用SASSタスク**
+本番用SASSファイルのコンパイル
+SASSタスクからsourcemapへのパスを削除したもの
+
 * **-webpackタスク**
 JSをwebpackでバンドル化、JSディレクトリにパブリッシュ
+
+* **-本番用webpackタスク**
+webpackタスクからsourcemap出力を無くし、minify化したもの
 
 * **-画像圧縮タスク**
 画像圧縮率の設定などは画像が荒れたりgulpタスクの遅延につながるのでこのまま
@@ -113,6 +120,10 @@ SVGフォント化、CSSスプライト→SASSコンパイル→画像最小化�
 * **-JSパブリッシュタスク**
 webpack→htdocsにコピー→リロード
 JSはよほどのことがない限り最小化すること。最小化しない場合は/scriptsへ直接書く
+
+* **-本番ファイル書き出しタスク**
+本番用ファイルの書き出し
+納品前にはproduction.batを必ず叩くこと
 
 
 
