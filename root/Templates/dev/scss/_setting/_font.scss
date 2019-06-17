@@ -28,7 +28,7 @@
 @function icon-char($filename) {
     $char: "";
 
-    @if $filename == uEA01-mod_ico_minus {
+    @if $filename == mod_ico_minus {
         $char: "\E001";
     }
 
@@ -52,7 +52,7 @@
     }
 }
 
-//.icon-uEA01-mod_ico_minus {
-//    @include icon(uEA01-mod_ico_minus);
+//.icon-mod_ico_minus {
+//    @include icon(mod_ico_minus);
 //}
 //
