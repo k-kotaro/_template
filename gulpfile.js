@@ -133,17 +133,18 @@ const productionSassCompile = () => {
 //- webpackタスク
 const bundle = () => {
     const webpackConfig = require('./webpack.development.config');
-    const pubDir = dir.root + dir.dev + dir.js;
-    return webpackStream(webpackConfig, webpack)
-    .pipe(gulp.dest(pubDir));
+    //return webpackStream(webpackConfig, webpack)
+    return webpackStream(webpackConfig, webpack).on('error', function (e) {
+        this.emit('end');
+    })
+    .pipe(gulp.dest(dir.root + dir.dev + dir.js));
 }
 
 //- 本番用webpackタスク
 const productionBundle = () => {
     const webpackConfig = require('./webpack.production.config');
-    const pubDir = dir.root + dir.dev + dir.js;
     return webpackStream(webpackConfig, webpack)
-    .pipe(gulp.dest(pubDir));
+    .pipe(gulp.dest(dir.root + dir.dev + dir.js));
 }
 
 //- 画像圧縮タスク

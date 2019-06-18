@@ -2,10 +2,10 @@
 import './common';
 
 class Entry {
-    constructor() {
-    }
+  constructor() {
+  }
 }
 
 (function() {
-    new Entry();
+  new Entry();
 }());
