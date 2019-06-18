@@ -9,123 +9,123 @@
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 //====================================================================================================
 .m_button {
-    text-align: center;
+  text-align: center;
+  a,
+  button,
+  input[type="button"],
+  input[type="submit"],
+  input[type="reset"],
+  span {
+    box-sizing: border-box;
+    border: 0;
+    border-radius: 4px;
+    padding: 13px 10px;
+    background: $baseColorType02;
+    color: #ffffff;
+    text-decoration: none;
+    &.is_disabled,
+    &[disabled] {
+      background: #cccccc;
+      pointer-events: none;
+    }
+  }
+  span {
+    background: #c1c1c1;
+  }
+
+  @media screen and (min-width: $rwdBreakPoint01) {
+    margin: -10px 0 30px;
+    & > li {
+      @include iblock(middle);
+      margin: 10px 5px 0;
+    }
+    a,
+    button,
+    input[type="button"],
+    input[type="submit"],
+    input[type="reset"] {
+      @include iblock(middle);
+      min-width: 300px;
+      transition: opacity .5s ease;
+      &:hover {
+        opacity: 0.7;
+      }
+    }
+  }
+
+  @media screen and (max-width: $rwdBreakPoint01 - 1) {
+    margin: 0 0 30px;
+    & > li:nth-child(n+2) {
+      margin-top: 10px;
+    }
     a,
     button,
     input[type="button"],
     input[type="submit"],
     input[type="reset"],
     span {
-        box-sizing: border-box;
-        border: 0;
-        border-radius: 4px;
-        padding: 13px 10px;
-        background: $baseColorType02;
-        color: #ffffff;
-        text-decoration: none;
-        &.is_disabled,
-        &[disabled] {
-            background: #cccccc;
-            pointer-events: none;
-        }
+      display: block;
+      width: 100%;
     }
-    span {
-        background: #c1c1c1;
-    }
-
-    @media screen and (min-width: $rwdBreakPoint01) {
-        margin: -10px 0 30px;
-        & > li {
-            @include iblock(middle);
-            margin: 10px 5px 0;
-        }
-        a,
-        button,
-        input[type="button"],
-        input[type="submit"],
-        input[type="reset"] {
-            @include iblock(middle);
-            min-width: 300px;
-            transition: opacity .5s ease;
-            &:hover {
-                opacity: 0.7;
-            }
-        }
-    }
-
-    @media screen and (max-width: $rwdBreakPoint01 - 1) {
-        margin: 0 0 30px;
-        & > li:nth-child(n+2) {
-            margin-top: 10px;
-        }
-        a,
-        button,
-        input[type="button"],
-        input[type="submit"],
-        input[type="reset"],
-        span {
-            display: block;
-            width: 100%;
-        }
-    }
+  }
 }
 
 .m_pager {
-    margin: 0 0 30px;
-    text-align: center;
+  margin: 0 0 30px;
+  text-align: center;
+  & > li {
+    box-sizing: border-box;
+    @include iblock(middle);
+    margin: 0 5px;
+    &:not([class]) a,
+    &.is_active a {
+      display: block;
+      border: 1px solid currentColor;
+      text-decoration: none;
+    }
+    &.is_active a {
+      border-color: $baseColorType02;
+      color: #ffffff;
+      background: $baseColorType02;
+    }
+    &.first a::before {
+      content: '<<';
+    }
+    &.prev a::before {
+      content: '<';
+    }
+    &.next a::after {
+      content: '>';
+    }
+    &.last a::after {
+      content: '>>';
+    }
+  }
+
+  @media screen and (min-width: $rwdBreakPoint01) {
     & > li {
-        box-sizing: border-box;
-        @include iblock(middle);
-        margin: 0 5px;
-        &:not([class]) a,
-        &.is_active a {
-            display: block;
-            border: 1px solid currentColor;
-            text-decoration: none;
-        }
-        &.is_active a {
-            border-color: $baseColorType02;
-            color: #ffffff;
-            background: $baseColorType02;
-        }
-        &.first a::before {
-            content: '<<';
-        }
-        &.prev a::before {
-            content: '<';
-        }
-        &.next a::after {
-            content: '>';
-        }
-        &.last a::after {
-            content: '>>';
-        }
+      &:not([class]) a,
+      &.is_active a {
+        width: 30px;
+        line-height: 30px;
+      }
     }
+  }
 
-    @media screen and (min-width: $rwdBreakPoint01) {
-        & > li {
-            &:not([class]) a,
-            &.is_active a {
-                width: 30px;
-                line-height: 30px;
-            }
-        }
+  @media screen and (max-width: $rwdBreakPoint01 - 1) {
+    & > li{
+      &:not([class]) a,
+      &.is_active a {
+        width: 36px;
+        line-height: 36px;
+      }
+      a > span{
+        display: none;
+      }
+      &.first,
+      &.last{
+        display: none;
+      }
     }
-
-    @media screen and (max-width: $rwdBreakPoint01 - 1) {
-        & > li{
-            &:not([class]) a,
-            &.is_active a {
-                width: 36px;
-                line-height: 36px;
-            }
-            a > span{
-                display: none;
-            }
-            &.first,
-            &.last{
-                display: none;
-            }
-        }
-    }
+  }
 }

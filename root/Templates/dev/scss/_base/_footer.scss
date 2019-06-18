@@ -15,30 +15,30 @@
 //
 // ============================================================================================
 #gfooter{
-    margin:0 auto;
+  margin:0 auto;
+  .unav{
+    margin: 0;
+    & > li{
+      @include iblock(middle);
+    }
+  }
+  .copyright{
+    text-align: center;
+  }
+
+  @media screen and (min-width: $rwdBreakPoint01) {
+    width: $contentWidth;
+    .unav > li:nth-child(n+2){
+      margin-left: 20px;
+    }
+  }
+
+  @media screen and (max-width: $rwdBreakPoint01 - 1) {
     .unav{
-        margin: 0;
-        & > li{
-            @include iblock(middle);
-        }
+      text-align: center;
+      & > li{
+        margin: 0 5px;
+      }
     }
-    .copyright{
-        text-align: center;
-    }
-
-    @media screen and (min-width: $rwdBreakPoint01) {
-        width: $contentWidth;
-        .unav > li:nth-child(n+2){
-            margin-left: 20px;
-        }
-    }
-
-    @media screen and (max-width: $rwdBreakPoint01 - 1) {
-        .unav{
-            text-align: center;
-            & > li{
-                margin: 0 5px;
-            }
-        }
-    }
+  }
 }

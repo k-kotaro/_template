@@ -11,27 +11,27 @@
 .m_pageTitle {}
 
 .m_textHeading {
-    margin: 0 0 30px;
+  margin: 0 0 30px;
 
-    @media screen and (min-width: $rwdBreakPoint01) {
-        @include fts(18);
-    }
+  @media screen and (min-width: $rwdBreakPoint01) {
+    @include fts(18);
+  }
 
-    @media screen and (max-width: $rwdBreakPoint01 - 1) {
-    }
+  @media screen and (max-width: $rwdBreakPoint01 - 1) {
+  }
 
 }
 
 .m_imageHeading {
-    margin: 0 0 30px;
+  margin: 0 0 30px;
 
-    @media screen and (min-width: $rwdBreakPoint01) {
-    }
+  @media screen and (min-width: $rwdBreakPoint01) {
+  }
 
-    @media screen and (max-width: $rwdBreakPoint01 - 1) {
-        img{
-            max-width: 100%;
-            height: auto;
-        }
+  @media screen and (max-width: $rwdBreakPoint01 - 1) {
+    img{
+      max-width: 100%;
+      height: auto;
     }
+  }
 }

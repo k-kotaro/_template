@@ -15,38 +15,38 @@
 //
 // ============================================================================================
 #gheader{
-    margin:0 auto;
+  margin:0 auto;
+  .content{
+    display: flex;
+    justify-content: space-between;
+  }
+  .logo{
+    margin: 0;
+  }
+  .unav{
+    margin: 0;
+    padding: 0;
+    white-space: nowrap;
+    & > li{
+      @include iblock(middle);
+      &:nth-child(n+2){
+        margin-left: 10px;
+      }
+    }
+  }
+
+  @media screen and (min-width: $rwdBreakPoint01) {
+    width: $contentWidth;
     .content{
-        display: flex;
-        justify-content: space-between;
+      margin: 0 0 10px;
     }
-    .logo{
-        margin: 0;
-    }
-    .unav{
-        margin: 0;
-        padding: 0;
-        white-space: nowrap;
-        & > li{
-            @include iblock(middle);
-            &:nth-child(n+2){
-                margin-left: 10px;
-            }
-        }
-    }
+  }
 
-    @media screen and (min-width: $rwdBreakPoint01) {
-        width: $contentWidth;
-        .content{
-            margin: 0 0 10px;
-        }
+  @media screen and (max-width: $rwdBreakPoint01 - 1) {
+    .content{
+      align-items: center;
+      padding-right: 50px;
+      height: 50px;
     }
-
-    @media screen and (max-width: $rwdBreakPoint01 - 1) {
-        .content{
-            align-items: center;
-            padding-right: 50px;
-            height: 50px;
-        }
-    }
+  }
 }

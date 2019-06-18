@@ -11,48 +11,48 @@
 
 /*====================================================================================================
 
-    base
+base
 
 ====================================================================================================*/
 html {}
 
 body {
-    @media screen and (min-width: $rwdBreakPoint01) {
-        @include fts($lin: 24);
-    }
+  @media screen and (min-width: $rwdBreakPoint01) {
+    @include fts($lin: 24);
+  }
 
-    @media screen and (max-width: $rwdBreakPoint01 - 1) {
-        @include fts(12, 20);
-    }
+  @media screen and (max-width: $rwdBreakPoint01 - 1) {
+    @include fts(12, 20);
+  }
 }
 
 #document{
-    overflow: hidden;
-    margin: 0 auto;
+  overflow: hidden;
+  margin: 0 auto;
 
-    @media screen and (min-width: $rwdBreakPoint01) {
-        min-width: $contentWidth;
-    }
+  @media screen and (min-width: $rwdBreakPoint01) {
+    min-width: $contentWidth;
+  }
 
-    @media screen and (max-width: $rwdBreakPoint01 - 1) {
-        min-width: $spContentWidth;
-    }
+  @media screen and (max-width: $rwdBreakPoint01 - 1) {
+    min-width: $spContentWidth;
+  }
 }
 
 a {
-    color: $baseColorType02;
-    @media screen and (min-width: $rwdBreakPoint01) {
-        &[href*="tel:"]{
-            text-decoration: none;
-            cursor: text;
-            pointer-events: none;
-            img{
-                cursor: default;
-            }
-        }
+  color: $baseColorType02;
+  @media screen and (min-width: $rwdBreakPoint01) {
+    &[href*="tel:"]{
+      text-decoration: none;
+      cursor: text;
+      pointer-events: none;
+      img{
+        cursor: default;
+      }
     }
-    @media screen and (max-width: $rwdBreakPoint01 - 1) {
-    }
+  }
+  @media screen and (max-width: $rwdBreakPoint01 - 1) {
+  }
 }
 
 

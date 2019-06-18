@@ -6,28 +6,28 @@
 <%- include(json['home'].path + 'include/common/-headCss', {page: json['home']}) %>
 <%- include(json['home'].path + 'include/common/-headScript', {page: json['home']}) %>
 <script type="application/ld+json">
-    [
+  [
+    {
+      "@context": "http://schema.org",
+      "@type": "WebSite",
+      "name": "<%= json['home'].siteName %>",
+      "url": "<%= json['home'].siteUrl %>"
+    },
+    {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
         {
-            "@context": "http://schema.org",
-            "@type": "WebSite",
-            "name": "<%= json['home'].siteName %>",
-            "url": "<%= json['home'].siteUrl %>"
-        },
-        {
-            "@context": "http://schema.org",
-            "@type": "BreadcrumbList",
-            "itemListElement": [
-                {
-                    "@type": "ListItem",
-                    "position": 1,
-                    "item": {
-                        "@id": "<%= json['home'].siteUrl %>",
-                        "name": "<%= json['home'].siteName %>"
-                    }
-                }
-            ]
+          "@type": "ListItem",
+          "position": 1,
+          "item": {
+            "@id": "<%= json['home'].siteUrl %>",
+            "name": "<%= json['home'].siteName %>"
+          }
         }
-    ]
+      ]
+    }
+  ]
 </script>
 </head>
 

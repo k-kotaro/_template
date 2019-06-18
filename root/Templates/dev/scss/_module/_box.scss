@@ -9,113 +9,113 @@
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 //====================================================================================================
 .m_box {
-    margin: 0 0 20px;
-    border: solid #ebe4d9;
-    border-width: 1px 0;
-    padding: 20px;
-    background: #eeeeee;
-    @include lastElement;
-    &[class*="_border"]{
-        border: 1px solid;
-    }
-    &[class*="_nobg"]{
-        background-color: transparent;
-    }
+  margin: 0 0 20px;
+  border: solid #ebe4d9;
+  border-width: 1px 0;
+  padding: 20px;
+  background: #eeeeee;
+  @include lastElement;
+  &[class*="_border"]{
+    border: 1px solid;
+  }
+  &[class*="_nobg"]{
+    background-color: transparent;
+  }
 }
 
 .m_media {
-    display: flex;
-    margin: 0 0 1.5em;
+  display: flex;
+  margin: 0 0 1.5em;
+  .body {
+    @include lastElement;
+  }
+
+  @media screen and (min-width: $rwdBreakPoint01) {
+    .image {
+      padding: 0 30px 0 0;
+    }
+    .body + .image {
+      flex: 1;
+      padding: 0 0 0 30px;
+      text-align: right;
+    }
+    &[class*="_flipped"] {
+      flex-direction: row-reverse;
+      .body:first-of-type {
+        flex: 1;
+      }
+      .image {
+        padding: 0 0 0 30px;
+      }
+      .body + .image {
+        padding: 0 30px 0 0;
+        flex: none;
+        text-align: left;
+      }
+    }
+  }
+
+  @media screen and (max-width: $rwdBreakPoint01 - 1) {
+    flex-direction: column;
+    .image {
+      margin: 0 0 30px;
+      text-align: center;
+      img {
+        max-width: 100%;
+        height: auto;
+      }
+    }
     .body {
-        @include lastElement;
+      margin: 0 0 30px;
     }
+  }
 
-    @media screen and (min-width: $rwdBreakPoint01) {
-        .image {
-            padding: 0 30px 0 0;
-        }
-        .body + .image {
-            flex: 1;
-            padding: 0 0 0 30px;
-            text-align: right;
-        }
-        &[class*="_flipped"] {
-            flex-direction: row-reverse;
-            .body:first-of-type {
-                flex: 1;
-            }
-            .image {
-                padding: 0 0 0 30px;
-            }
-            .body + .image {
-                padding: 0 30px 0 0;
-                flex: none;
-                text-align: left;
-            }
-        }
-    }
-
-    @media screen and (max-width: $rwdBreakPoint01 - 1) {
-        flex-direction: column;
-        .image {
-            margin: 0 0 30px;
-            text-align: center;
-            img {
-                max-width: 100%;
-                height: auto;
-            }
-        }
-        .body {
-            margin: 0 0 30px;
-        }
-    }
-
-    &[class*="_alignTop"] {
-        align-items: flex-start;
-    }
-    &[class*="_alignMiddle"] {
-        align-items: center;
-    }
-    &[class*="_alignbottom"] {
-        align-items: flex-end;
-    }
+  &[class*="_alignTop"] {
+    align-items: flex-start;
+  }
+  &[class*="_alignMiddle"] {
+    align-items: center;
+  }
+  &[class*="_alignbottom"] {
+    align-items: flex-end;
+  }
 }
 
 .m_column {
-    display: flex;
-    margin: 0 0 30px;
+  display: flex;
+  margin: 0 0 30px;
+  & > .column {
+    @include lastElement;
+    & > section {
+      @include lastElement;
+    }
+  }
+
+  @media screen and (min-width: $rwdBreakPoint01) {
+    justify-content: space-between;
+    &[class*="_col2"] > .column {
+      width: calc(100% / 2 - 20px);
+    }
+    &[class*="_col3"] > .column {
+      width: 29.4%;
+      width: calc(100% / 3 - 20px);
+    }
+    &[class*="_col4"] > .column {
+      width: calc(100% / 4 - 20px);
+    }
+  }
+
+  @media screen and (max-width: $rwdBreakPoint01 - 1) {
+    &:not([class*="_spCol"]) {
+      flex-direction: column;
+    }
     & > .column {
-        @include lastElement;
-        & > section {
-            @include lastElement;
-        }
+      margin: 0 0 30px;
     }
-
-    @media screen and (min-width: $rwdBreakPoint01) {
-        justify-content: space-between;
-        &[class*="_col2"] > .column {
-            width: calc(100% / 2 - 20px);
-        }
-        &[class*="_col3"] > .column {
-            width: 29.4%;
-            width: calc(100% / 3 - 20px);
-        }
-        &[class*="_col4"] > .column {
-            width: calc(100% / 4 - 20px);
-        }
+    &[class*="_spCol"] > li {
+      width: calc(100% / 2 - 10px);
     }
-
-    @media screen and (max-width: $rwdBreakPoint01 - 1) {
-        &:not([class*="_spCol"]) {
-            flex-direction: column;
-        }
-        & > .column {
-            margin: 0 0 30px;
-        }
-        &[class*="_spCol"] > li {
-            width: calc(100% / 2 - 10px);
-        }
-    }
+  }
 }
 
 
@@ -124,85 +124,85 @@
 
 
 .m_panel {
-    margin: -20px 0;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-content: space-between;
-    & > .panel {
-        margin: 20px 0;
-        @include lastElement;
-        & > section {
-            @include lastElement;
-        }
+  margin: -20px 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-content: space-between;
+  & > .panel {
+    margin: 20px 0;
+    @include lastElement;
+    & > section {
+      @include lastElement;
     }
-    &[class*="_col2"] > .panel {
-        width: calc(100% / 2 - 40px);
-    }
-    &[class*="_col3"] > .panel {
-        width: calc(100% / 3 - 40px);
-    }
-    &[class*="_col4"] > .panel {
-        width: calc(100% / 4 - 40px);
-    }
+  }
+  &[class*="_col2"] > .panel {
+    width: calc(100% / 2 - 40px);
+  }
+  &[class*="_col3"] > .panel {
+    width: calc(100% / 3 - 40px);
+  }
+  &[class*="_col4"] > .panel {
+    width: calc(100% / 4 - 40px);
+  }
 }
 
 .m_slideshow {
+  position: relative;
+  overflow: hidden;
+  .slides {
+    margin-bottom: 10px;
     position: relative;
-    overflow: hidden;
-    .slides {
-        margin-bottom: 10px;
-        position: relative;
-        &:after {
-            height: 0;
-            display: block;
-            clear: both;
-            content: ".";
-        }
-        & > li {
-            float: left;
-            display: none;
-            &:first-child {
-                display: block;
-            }
-        }
+    &:after {
+      height: 0;
+      display: block;
+      clear: both;
+      content: ".";
     }
-    .crossfade .slides > li {
-        position: absolute;
-        float: none;
+    & > li {
+      float: left;
+      display: none;
+      &:first-child {
+        display: block;
+      }
     }
-    .slideControl {
-        display: none;
-        clear: both
+  }
+  .crossfade .slides > li {
+    position: absolute;
+    float: none;
+  }
+  .slideControl {
+    display: none;
+    clear: both
+  }
+  .cursor {
+    & > li {
+      position: absolute;
+      top: 110px;
+      &.prev {
+        left: 0;
+      }
+      &.next {
+        right: 0;
+      }
+      img {}
     }
-    .cursor {
-        & > li {
-            position: absolute;
-            top: 110px;
-            &.prev {
-                left: 0;
-            }
-            &.next {
-                right: 0;
-            }
-            img {}
-        }
+  }
+  .select {
+    & > li {
+      margin: 0 2px;
+      display: inline-block;
+      & > li a {
+        padding: 5px;
+        border: 1px solid #ccc;
+        display: block;
+        background: #ddd;
+        text-decoration: none;
+      }
+      & > li.active a,
+      & > li a:hover {
+        background: #eee;
+      }
     }
-    .select {
-        & > li {
-            margin: 0 2px;
-            display: inline-block;
-            & > li a {
-                padding: 5px;
-                border: 1px solid #ccc;
-                display: block;
-                background: #ddd;
-                text-decoration: none;
-            }
-            & > li.active a,
-            & > li a:hover {
-                background: #eee;
-            }
-        }
-    }
+  }
 }

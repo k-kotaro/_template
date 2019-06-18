@@ -11,58 +11,58 @@
 
 /* text align */
 [class*="_alignLeft"] {
-    text-align: left !important;
+  text-align: left !important;
 }
 
 [class*="_alignCenter"] {
-    text-align: center !important;
+  text-align: center !important;
 }
 
 [class*="_alignRight"] {
-    text-align: right !important;
+  text-align: right !important;
 }
 
 [class*="_alignTop"] {
-    vertical-align: top !important;
+  vertical-align: top !important;
 }
 
 [class*="_alignMiddle"] {
-    vertical-align: middle !important;
+  vertical-align: middle !important;
 }
 
 [class*="_alignBottom"] {
-    vertical-align: bottom !important;
+  vertical-align: bottom !important;
 }
 
 
 /* font style */
 [class*="_fontBold"] {
-    font-weight: bold;
+  font-weight: bold;
 }
 
 [class*="_fontItalic"] {
-    font-style: italic;
+  font-style: italic;
 }
 
 [class*="_fontNormal"] {
-    font-style: normal !important;
-    font-weight: normal !important;
+  font-style: normal !important;
+  font-weight: normal !important;
 }
 
 
 /* fontColor */
 [class*="_colorType01"] {
-    color: $baseColorType01;
+  color: $baseColorType01;
 }
 
 [class*="_colorType02"] {
-    color: $baseColorType02;
+  color: $baseColorType02;
 }
 
 
 /* block width */
 @for $widthVal from 0 through 100 {
-    [class*="_width#{$widthVal}Per"] {
-        width:#{$widthVal}% !important;
-    }
+  [class*="_width#{$widthVal}Per"] {
+    width:#{$widthVal}% !important;
+  }
 }

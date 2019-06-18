@@ -15,20 +15,20 @@
 //
 // ============================================================================================
 #breadcrumb ol{
-    position: relative;
-    margin: 0;
-    & > li{
-        @include iblock(middle);
-        padding: 10px 0;
-        line-height: 1.2;
-        &:nth-child(n+2)::before{
-            @include iblock(middle);
-            width: 2em;
-            text-align: center;
-            content: ">";
-        }
-        em{
-            font-weight: normal;
-        }
+  position: relative;
+  margin: 0;
+  & > li{
+    @include iblock(middle);
+    padding: 10px 0;
+    line-height: 1.2;
+    &:nth-child(n+2)::before{
+      @include iblock(middle);
+      width: 2em;
+      text-align: center;
+      content: ">";
     }
+    em{
+      font-weight: normal;
+    }
+  }
 }

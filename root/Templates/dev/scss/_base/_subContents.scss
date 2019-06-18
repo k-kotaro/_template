@@ -16,11 +16,10 @@
 // ============================================================================================
 #subContents{
 
-    @media screen and (min-width: $rwdBreakPoint01) {
-        flex-basis: 200px;
-    }
+  @media screen and (min-width: $rwdBreakPoint01) {
+    flex-basis: 200px;
+  }
 
-    @media screen and (max-width: $rwdBreakPoint01 - 1) {
-    }
+  @media screen and (max-width: $rwdBreakPoint01 - 1) {
+  }
 }
-

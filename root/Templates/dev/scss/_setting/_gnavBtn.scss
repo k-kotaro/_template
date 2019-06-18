@@ -10,361 +10,361 @@
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 //====================================================================================================
 @mixin gnavBtn($btnWidth: 30px, $btnHeight: 30px, $btnPadding: 10px, $borderWidth: 1px, $borderColor: #000000, $duration: .3s, $animType: 1, $navBtnEle: button) {
-    #{$navBtnEle} {
-        box-sizing: content-box;
+  #{$navBtnEle} {
+    box-sizing: content-box;
+    display: block;
+    width: $btnWidth;
+    height: $btnHeight;
+    position: relative;
+    padding: $btnPadding;
+    overflow: hidden;
+    white-space: nowrap;
+    text-indent: 200%;
+    &::before,
+    &::after {
+      display: block;
+      height: $borderWidth;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      width: calc(100% - #{$btnPadding * 2});
+      margin: auto;
+      background: $borderColor;
+    }
+    &::before {
+      content: '';
+      transition: $duration;
+    }
+    & > span {
+      width: calc(100% - #{$btnPadding * 2});
+      height: 100%;
+      display: block;
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      margin: auto;
+      &::before,
+      &::after {
+        content: '';
         display: block;
-        width: $btnWidth;
-        height: $btnHeight;
-        position: relative;
-        padding: $btnPadding;
-        overflow: hidden;
-        white-space: nowrap;
-        text-indent: 200%;
+        width: 100%;
+        position: absolute;
+        left: 0;
+        right: 0;
+        margin: auto;
+        transition: $duration;
+      }
+      &::before {
+        top: $btnPadding;
+      }
+      &::after {
+        bottom: $btnPadding;
+      }
+    }
+  }
+
+  @if $animType==1 {
+    #{$navBtnEle} {
+      span {
         &::before,
         &::after {
-            display: block;
-            height: $borderWidth;
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            width: calc(100% - #{$btnPadding * 2});
-            margin: auto;
-            background: $borderColor;
+          height: $borderWidth;
+          background: $borderColor;
+        }
+      }
+      &.is_active {
+        &::before {
+          opacity: 0;
+          right: -$btnPadding;
+        }
+        span {
+          &::before,
+          &::after {
+            transform: rotate(45deg);
+          }
+          &::before {
+            top: 50%;
+            margin-top: -$borderWidth;
+          }
+          &::after {
+            bottom: 50%;
+          }
+        }
+      }
+    }
+  }
+  @else if $animType==2 {
+    #{$navBtnEle} {
+      span {
+        &::before,
+        &::after {
+          height: $borderWidth;
+          background: $borderColor;
+        }
+      }
+      &.is_active {
+        &::before {
+          transform: rotate(-45deg);
+          top: -$borderWidth;
+        }
+        span {
+          &::before,
+          &::after {
+            transform: rotate(45deg);
+          }
+          &::before {
+            top: $btnHeight/2 + $btnPadding;
+            margin-top: -$borderWidth;
+            right: initial;
+            right: auto;
+          }
+          &::after {
+            bottom: $btnHeight/2 + $btnPadding;
+            left: initial;
+            left: auto;
+          }
+        }
+      }
+    }
+  }
+  @else if $animType==3 {
+    #{$navBtnEle} {
+      &.close {
+        &::before {
+          animation: s_gnavBtn03-bar1 $duration forwards;
+        }
+        &::after {
+          animation: s_gnavBtn03-bar2 $duration forwards;
+        }
+        span {
+          &::before {
+            animation: s_gnavBtn03-bar3 $duration forwards;
+          }
+          &::after {
+            animation: s_gnavBtn03-bar4 $duration forwards;
+          }
+        }
+      }
+      &::after {
+        content: '';
+      }
+      span {
+        &::before,
+        &::after {
+          height: $borderWidth;
+          background: $borderColor;
+        }
+      }
+      &.is_active {
+        &::before {
+          animation: s_gnavBtn03-bar1-active $duration forwards;
+        }
+        &::after {
+          animation: s_gnavBtn03-bar2-active $duration forwards;
+        }
+        span {
+          &::before {
+            animation: s_gnavBtn03-bar3-active $duration forwards;
+          }
+          &::after {
+            animation: s_gnavBtn03-bar4-active $duration forwards;
+          }
+        }
+      }
+    }
+    @keyframes s_gnavBtn03-bar1 {
+      0% {
+        transform: rotate(45deg);
+      }
+      50% {
+        transform: none;
+      }
+      100% {
+        transform: none;
+      }
+    }
+    @keyframes s_gnavBtn03-bar2 {
+      0% {
+        transform: rotate(-45deg);
+      }
+      50% {
+        transform: none;
+      }
+      100% {
+        transform: none;
+      }
+    }
+    @keyframes s_gnavBtn03-bar3 {
+      0% {
+        top: 50%;
+        opacity: 0;
+      }
+      50% {
+        top: 50%;
+        opacity: 0;
+      }
+      100% {
+        top: $btnPadding;
+        opacity: 1;
+      }
+    }
+    @keyframes s_gnavBtn03-bar4 {
+      0% {
+        bottom: 50%;
+        opacity: 0;
+      }
+      50% {
+        bottom: 50%;
+        opacity: 0;
+      }
+      100% {
+        bottom: $btnPadding;
+        opacity: 1;
+      }
+    }
+    @keyframes s_gnavBtn03-bar1-active {
+      0% {}
+      50% {
+        transform: none;
+      }
+      100% {
+        transform: rotate(45deg);
+      }
+    }
+    @keyframes s_gnavBtn03-bar2-active {
+      0% {}
+      50% {
+        transform: none;
+      }
+      100% {
+        transform: rotate(-45deg);
+      }
+    }
+    @keyframes s_gnavBtn03-bar3-active {
+      0% {}
+      50% {
+        top: 50%;
+      }
+      100% {
+        top: 50%;
+        opacity: 0;
+      }
+    }
+    @keyframes s_gnavBtn03-bar4-active {
+      0% {}
+      50% {
+        bottom: 50%;
+      }
+      100% {
+        bottom: 50%;
+        opacity: 0;
+      }
+    }
+  }
+  @else if $animType==4 {
+    #{$navBtnEle} {
+      transition: $duration;
+      span {
+        &::before,
+        &::after {
+          height: $borderWidth;
+          background: $borderColor;
+        }
+      }
+      &.is_active {
+        transform: rotate(360deg);
+        &::before {
+          opacity: 0;
+        }
+        span {
+          &::before {
+            transform: rotate(45deg);
+            top: 50%;
+            margin-top: -$borderWidth;
+          }
+          &::after {
+            transform: rotate(-45deg);
+            bottom: 50%;
+          }
+        }
+      }
+    }
+  }
+  @else if $animType==5 {
+    #{$navBtnEle} {
+      span {
+        &::before,
+        &::after {
+          height: $borderWidth;
+          background: $borderColor;
+        }
+      }
+      &.is_active span {
+        &::before,
+        &::after {
+          transform-origin: 0;
+          left: -50%;
+          width: 50%;
         }
         &::before {
-            content: '';
-            transition: $duration;
+          transform: rotate(-45deg);
+          top: 50%;
         }
-        & > span {
-            width: calc(100% - #{$btnPadding * 2});
-            height: 100%;
-            display: block;
-            position: absolute;
-            left: 0;
-            right: 0;
-            top: 0;
-            margin: auto;
-            &::before,
-            &::after {
-                content: '';
-                display: block;
-                width: 100%;
-                position: absolute;
-                left: 0;
-                right: 0;
-                margin: auto;
-                transition: $duration;
-            }
-            &::before {
-                top: $btnPadding;
-            }
-            &::after {
-                bottom: $btnPadding;
-            }
+        &::after {
+          transform: rotate(45deg);
+          bottom: 50%;
         }
+      }
     }
-
-    @if $animType==1 {
-        #{$navBtnEle} {
-            span {
-                &::before,
-                &::after {
-                    height: $borderWidth;
-                    background: $borderColor;
-                }
-            }
-            &.is_active {
-                &::before {
-                    opacity: 0;
-                    right: -$btnPadding;
-                }
-                span {
-                    &::before,
-                    &::after {
-                        transform: rotate(45deg);
-                    }
-                    &::before {
-                        top: 50%;
-                        margin-top: -$borderWidth;
-                    }
-                    &::after {
-                        bottom: 50%;
-                    }
-                }
-            }
+  }
+  @else if $animType==6 {
+    #{$navBtnEle} {
+      transition: $duration;
+      span {
+        &::before,
+        &::after {
+          height: $borderWidth;
+          background: $borderColor;
         }
+      }
+      &:hover span {
+        &::before,
+        &::after {
+          transform-origin: 0;
+          left: -50%;
+          width: 50%;
+        }
+        &::before {
+          transform: rotate(-45deg);
+          top: 50%;
+        }
+        &::after {
+          transform: rotate(45deg);
+          bottom: 50%;
+        }
+      }
+      &.is_active {
+        transform: rotateY(-180deg);
+        span {
+          &::before,
+          &::after {
+            transform-origin: 0;
+            left: -50%;
+            width: 50%;
+          }
+          &::before {
+            transform: rotate(-45deg);
+            top: 50%;
+          }
+          &::after {
+            transform: rotate(45deg);
+            bottom: 50%;
+          }
+        }
+      }
     }
-    @else if $animType==2 {
-        #{$navBtnEle} {
-            span {
-                &::before,
-                &::after {
-                    height: $borderWidth;
-                    background: $borderColor;
-                }
-            }
-            &.is_active {
-                &::before {
-                    transform: rotate(-45deg);
-                    top: -$borderWidth;
-                }
-                span {
-                    &::before,
-                    &::after {
-                        transform: rotate(45deg);
-                    }
-                    &::before {
-                        top: $btnHeight/2 + $btnPadding;
-                        margin-top: -$borderWidth;
-                        right: initial;
-                        right: auto;
-                    }
-                    &::after {
-                        bottom: $btnHeight/2 + $btnPadding;
-                        left: initial;
-                        left: auto;
-                    }
-                }
-            }
-        }
-    }
-    @else if $animType==3 {
-        #{$navBtnEle} {
-            &.close {
-                &::before {
-                    animation: s_gnavBtn03-bar1 $duration forwards;
-                }
-                &::after {
-                    animation: s_gnavBtn03-bar2 $duration forwards;
-                }
-                span {
-                    &::before {
-                        animation: s_gnavBtn03-bar3 $duration forwards;
-                    }
-                    &::after {
-                        animation: s_gnavBtn03-bar4 $duration forwards;
-                    }
-                }
-            }
-            &::after {
-                content: '';
-            }
-            span {
-                &::before,
-                &::after {
-                    height: $borderWidth;
-                    background: $borderColor;
-                }
-            }
-            &.is_active {
-                &::before {
-                    animation: s_gnavBtn03-bar1-active $duration forwards;
-                }
-                &::after {
-                    animation: s_gnavBtn03-bar2-active $duration forwards;
-                }
-                span {
-                    &::before {
-                        animation: s_gnavBtn03-bar3-active $duration forwards;
-                    }
-                    &::after {
-                        animation: s_gnavBtn03-bar4-active $duration forwards;
-                    }
-                }
-            }
-        }
-        @keyframes s_gnavBtn03-bar1 {
-            0% {
-                transform: rotate(45deg);
-            }
-            50% {
-                transform: none;
-            }
-            100% {
-                transform: none;
-            }
-        }
-        @keyframes s_gnavBtn03-bar2 {
-            0% {
-                transform: rotate(-45deg);
-            }
-            50% {
-                transform: none;
-            }
-            100% {
-                transform: none;
-            }
-        }
-        @keyframes s_gnavBtn03-bar3 {
-            0% {
-                top: 50%;
-                opacity: 0;
-            }
-            50% {
-                top: 50%;
-                opacity: 0;
-            }
-            100% {
-                top: $btnPadding;
-                opacity: 1;
-            }
-        }
-        @keyframes s_gnavBtn03-bar4 {
-            0% {
-                bottom: 50%;
-                opacity: 0;
-            }
-            50% {
-                bottom: 50%;
-                opacity: 0;
-            }
-            100% {
-                bottom: $btnPadding;
-                opacity: 1;
-            }
-        }
-        @keyframes s_gnavBtn03-bar1-active {
-            0% {}
-            50% {
-                transform: none;
-            }
-            100% {
-                transform: rotate(45deg);
-            }
-        }
-        @keyframes s_gnavBtn03-bar2-active {
-            0% {}
-            50% {
-                transform: none;
-            }
-            100% {
-                transform: rotate(-45deg);
-            }
-        }
-        @keyframes s_gnavBtn03-bar3-active {
-            0% {}
-            50% {
-                top: 50%;
-            }
-            100% {
-                top: 50%;
-                opacity: 0;
-            }
-        }
-        @keyframes s_gnavBtn03-bar4-active {
-            0% {}
-            50% {
-                bottom: 50%;
-            }
-            100% {
-                bottom: 50%;
-                opacity: 0;
-            }
-        }
-    }
-    @else if $animType==4 {
-        #{$navBtnEle} {
-            transition: $duration;
-            span {
-                &::before,
-                &::after {
-                    height: $borderWidth;
-                    background: $borderColor;
-                }
-            }
-            &.is_active {
-                transform: rotate(360deg);
-                &::before {
-                    opacity: 0;
-                }
-                span {
-                    &::before {
-                        transform: rotate(45deg);
-                        top: 50%;
-                        margin-top: -$borderWidth;
-                    }
-                    &::after {
-                        transform: rotate(-45deg);
-                        bottom: 50%;
-                    }
-                }
-            }
-        }
-    }
-    @else if $animType==5 {
-        #{$navBtnEle} {
-            span {
-                &::before,
-                &::after {
-                    height: $borderWidth;
-                    background: $borderColor;
-                }
-            }
-            &.is_active span {
-                &::before,
-                &::after {
-                    transform-origin: 0;
-                    left: -50%;
-                    width: 50%;
-                }
-                &::before {
-                    transform: rotate(-45deg);
-                    top: 50%;
-                }
-                &::after {
-                    transform: rotate(45deg);
-                    bottom: 50%;
-                }
-            }
-        }
-    }
-    @else if $animType==6 {
-        #{$navBtnEle} {
-            transition: $duration;
-            span {
-                &::before,
-                &::after {
-                    height: $borderWidth;
-                    background: $borderColor;
-                }
-            }
-            &:hover span {
-                &::before,
-                &::after {
-                    transform-origin: 0;
-                    left: -50%;
-                    width: 50%;
-                }
-                &::before {
-                    transform: rotate(-45deg);
-                    top: 50%;
-                }
-                &::after {
-                    transform: rotate(45deg);
-                    bottom: 50%;
-                }
-            }
-            &.is_active {
-                transform: rotateY(-180deg);
-                span {
-                    &::before,
-                    &::after {
-                        transform-origin: 0;
-                        left: -50%;
-                        width: 50%;
-                    }
-                    &::before {
-                        transform: rotate(-45deg);
-                        top: 50%;
-                    }
-                    &::after {
-                        transform: rotate(45deg);
-                        bottom: 50%;
-                    }
-                }
-            }
-        }
-    }
+  }
 }

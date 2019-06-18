@@ -16,13 +16,13 @@
 .m_blank {}
 
 @media screen and (min-width: $rwdBreakPoint01) {
-    .m_pcHide {
-        display: none !important;
-    }
+  .m_pcHide {
+    display: none !important;
+  }
 }
 
 @media screen and (max-width: $rwdBreakPoint01 - 1) {
-    .m_spHide {
-        display: none !important;
-    }
+  .m_spHide {
+    display: none !important;
+  }
 }
