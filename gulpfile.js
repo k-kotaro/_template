@@ -4,12 +4,14 @@ const fs = require('fs');
 const path = require('path');
 const plumber = require('gulp-plumber');
 const changed = require('gulp-changed');
+const cached  = require('gulp-cached');
 const ejs = require('gulp-ejs');
 const htmlhint = require("gulp-htmlhint");
 const iconfont = require('gulp-iconfont');
 const iconfontCss = require('gulp-iconfont-css');
 const sprite = require('gulp.spritesmith');
 const sass = require('gulp-sass');
+const csscomb = require('gulp-csscomb');
 const inlineimage = require('gulp-inline-image');
 const imagemin = require('gulp-imagemin');
 const pngquant  = require('imagemin-pngquant');
@@ -108,9 +110,24 @@ const spriteImage = (done) => {
   done();
 }
 
+//- sass整形
+const sassComb = () => {
+  return gulp.src([dir.root + dir.dev + dir.scss + '**/*.scss',
+                   '!' + dir.root + dir.dev + dir.scss + '_setting/*.scss',
+                   '!' + dir.root + dir.dev + dir.scss + '_sprite/*.scss',
+                   '!' + dir.root + dir.dev + dir.scss + '_temp/*.scss'], {
+    since: gulp.lastRun(sassComb)
+  })
+    .pipe(plumber())
+    .pipe(csscomb())
+    .pipe(cached('cache'))
+    .pipe(gulp.dest(dir.root +dir.dev + dir.scss));
+}
+
 //- sassファイルコンパイルタスク
 const sassCompile = () => {
   return gulp.src( dir.root + dir.dev + dir.scss + '**/*.scss', {sourcemaps: true})
+    .pipe(cached('cache'))
     .pipe(plumber())
     .pipe(sass().on('error', sass.logError))
     .pipe(cleanCSS())
@@ -207,6 +224,7 @@ const htmlBuild = gulp.series(
 //- CSSパブリッシュタスク
 const cssBuild = gulp.series(
   gulp.parallel(spriteImage),
+  sassComb,
   gulp.parallel(sassCompile, imageminify),
   copy,
   reload
@@ -237,6 +255,8 @@ const watchFiles = () => {
 
 //- default
 const build = gulp.parallel(watchFiles, browser);
+//const build = watchFiles;
 
 exports.default = build;
 exports.productionBuild = productionBuild;
+exports.sassComb = sassComb;
