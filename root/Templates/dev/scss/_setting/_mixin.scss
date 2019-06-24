@@ -205,7 +205,7 @@
 //     $posBottom: 要素の下 (true / false)
 //     $posLeft: 要素の左 (true / false)
 //     $insert: 疑似要素 (before / after)
-// @include dotted(#000, 3px, 2px,  $posBottom: true);
+// @include dashed(#000, 3px, 2px, $posBottom: true);
 @mixin dashed($color, $spacing: 5px, $dotsize: 1px, $posTop: false, $posRight: false, $posBottom: false, $posLeft: false, $insert: before) {
   $bgAttr: (
     top: linear-gradient(to left, $color, $color $dotsize, transparent $dotsize, transparent $spacing) repeat-x 0 0,
