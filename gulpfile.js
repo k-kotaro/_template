@@ -15,7 +15,6 @@ const csscomb = require('gulp-csscomb');
 const inlineimage = require('gulp-inline-image');
 const imagemin = require('gulp-imagemin');
 const pngquant  = require('imagemin-pngquant');
-const mozjpeg  = require('imagemin-mozjpeg');
 const cleanCSS = require('gulp-clean-css');
 const autoprefixer = require('gulp-autoprefixer');
 const webpack = require('webpack');
@@ -40,11 +39,10 @@ const dir  = {
 };
 
 const getFolders = (dir) => {
-  return fs.readdirSync(dir)
-    .filter(function (file) {
+  return fs.readdirSync(dir).filter(function (file) {
     return fs.statSync(path.join(dir, file)).isDirectory();
   });
-}
+};
 
 //- EJSタスク
 const ejsCompile = () => {
@@ -54,14 +52,14 @@ const ejsCompile = () => {
   })
     .pipe(ejs({json:json}, {}, {ext: '.html'}))
     .pipe(gulp.dest(dir.root));
-}
+};
 
 // HTML Lint
 const htmlLint = () => {
   return gulp.src(dir.root + '**/*.html')
     .pipe(htmlhint())
-    .pipe(htmlhint.reporter())
-}
+    .pipe(htmlhint.reporter());
+};
 
 //- アイコンフォント作成タスク
 const iconfontCompile = () => {
@@ -91,7 +89,7 @@ const iconfontCompile = () => {
       fontHeight: 1000,
     }))
     .pipe(gulp.dest(dir.root + dir.font));
-}
+};
 
 //- スプライト画像、mixin作成タスク
 const spriteImage = (done) => {
@@ -108,21 +106,18 @@ const spriteImage = (done) => {
     spriteData.css.pipe(gulp.dest(dir.root + dir.dev + dir.scss + '_sprite'));
   });
   done();
-}
+};
 
 //- sass整形
 const sassComb = () => {
-  return gulp.src([dir.root + dir.dev + dir.scss + '**/*.scss',
-                   '!' + dir.root + dir.dev + dir.scss + '_setting/*.scss',
-                   '!' + dir.root + dir.dev + dir.scss + '_sprite/*.scss',
-                   '!' + dir.root + dir.dev + dir.scss + '_temp/*.scss'], {
+  return gulp.src([dir.root + dir.dev + dir.scss + '**/*.scss','!' + dir.root + dir.dev + dir.scss + '_setting/*.scss','!' + dir.root + dir.dev + dir.scss + '_sprite/*.scss','!' + dir.root + dir.dev + dir.scss + '_temp/*.scss'], {
     since: gulp.lastRun(sassComb)
   })
     .pipe(plumber())
     .pipe(csscomb())
     .pipe(cached('cache'))
     .pipe(gulp.dest(dir.root +dir.dev + dir.scss));
-}
+};
 
 //- sassファイルコンパイルタスク
 const sassCompile = () => {
@@ -134,7 +129,7 @@ const sassCompile = () => {
     .pipe(inlineimage())
     .pipe(autoprefixer())
     .pipe(gulp.dest(dir.root + dir.css, {sourcemaps: '../' + dir.dev + dir.sourcemap}));
-}
+};
 
 //- 本番用sassファイルコンパイルタスク
 const productionSassCompile = () => {
@@ -145,28 +140,28 @@ const productionSassCompile = () => {
     .pipe(inlineimage())
     .pipe(autoprefixer())
     .pipe(gulp.dest(dir.root + dir.css));
-}
+};
 
 //- webpackタスク
 const bundle = () => {
   const webpackConfig = require('./webpack.development.config');
-  return webpackStream(webpackConfig, webpack).on('error', function (e) {
+  return webpackStream(webpackConfig, webpack).on('error', () => {
     this.emit('end');
   })
     .pipe(gulp.dest(dir.root + dir.dev + dir.js));
-}
+};
 
 //- 本番用webpackタスク
 const productionBundle = () => {
   const webpackConfig = require('./webpack.production.config');
-  return webpackStream(webpackConfig, webpack).on('error', function (e) {
+  return webpackStream(webpackConfig, webpack).on('error', () => {
     this.emit('end');
   })
     .pipe(gulp.dest(dir.root + dir.dev + dir.js));
-}
+};
 
 //- 画像圧縮タスク
-const imageminify = (done) => {
+const imageminify = () => {
   return gulp.src(dir.root + dir.dev + dir.img + '/**/*.+(jpg|jpeg|png|gif|svg)')
     .pipe(changed(dir.root + dir.img))
     .pipe(imagemin([
@@ -182,17 +177,15 @@ const imageminify = (done) => {
     ]))
     .pipe(imagemin())
     .pipe(gulp.dest(dir.root + dir.img));
-  done();
-}
+};
 
 //- ファイルコピータスク
-const copy = (done) => {
+const copy = () => {
   const dstDir = '/xampp/htdocs/' + project;
   //var dstDir = '/Applications/XAMPP/xamppfiles/htdocs/' + project;
   return gulp.src([dir.root + '**/*'])
     .pipe(gulp.dest(dstDir));
-  done();
-}
+};
 
 //- ブラウザ同期表示設定
 const browser = () => {
@@ -205,13 +198,13 @@ const browser = () => {
       index: 'index.html'
     }
   });
-}
+};
 
 //- ブラウザリロードタスク
 const reload = (done) => {
   browserSync.reload();
   done();
-}
+};
 
 //- HTMLパブリッシュタスク
 const htmlBuild = gulp.series(
@@ -251,7 +244,7 @@ const watchFiles = () => {
   gulp.watch([dir.root + dir.dev + dir.scss + '**/*.scss', '!' + dir.root + dir.dev + dir.scss + '_setting/_font.scss', '!' + dir.root + dir.dev + dir.scss + '_sprite/*.scss'], cssBuild);
   gulp.watch(dir.root + dir.dev + dir.font + '*.svg', icoBuild);
   gulp.watch(dir.root + dir.dev + dir.js + '**/*.js', jsBuild);
-}
+};
 
 //- default
 const build = gulp.parallel(watchFiles, browser);
