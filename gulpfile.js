@@ -57,7 +57,7 @@ const ejsCompile = () => {
 // HTML Lint
 const htmlLint = () => {
   return gulp.src(dir.root + '**/*.html')
-    .pipe(htmlhint())
+    .pipe(htmlhint('.htmlhintrc'))
     .pipe(htmlhint.reporter());
 };
 
