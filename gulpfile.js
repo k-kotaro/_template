@@ -92,7 +92,7 @@ const iconfontCompile = () => {
 };
 
 //- スプライト画像、mixin作成タスク
-const spriteImage = (done) => {
+const sprite = (done) => {
   const folders = getFolders(dir.root + dir.dev + dir.spriteImg);
   folders.map(function (folder) {
     const spriteData = gulp.src(dir.root + dir.dev + dir.spriteImg + folder + '/*.png')
@@ -125,7 +125,6 @@ const sassCompile = () => {
     .pipe(cached('cache'))
     .pipe(plumber())
     .pipe(sass().on('error', sass.logError))
-    .pipe(cleanCSS())
     .pipe(inlineimage())
     .pipe(autoprefixer())
     .pipe(gulp.dest(dir.root + dir.css, {sourcemaps: '../' + dir.dev + dir.sourcemap}));
@@ -134,8 +133,7 @@ const sassCompile = () => {
 //- 本番用sassファイルコンパイルタスク
 const productionSassCompile = () => {
   return gulp.src( dir.root + dir.dev + dir.scss + '**/*.scss')
-    .pipe(plumber())
-    .pipe(sass().on('error', sass.logError))
+    .pipe(sass())
     .pipe(cleanCSS())
     .pipe(inlineimage())
     .pipe(autoprefixer())
@@ -154,9 +152,7 @@ const bundle = () => {
 //- 本番用webpackタスク
 const productionBundle = () => {
   const webpackConfig = require('./webpack.production.config');
-  return webpackStream(webpackConfig, webpack).on('error', () => {
-    this.emit('end');
-  })
+  return webpackStream(webpackConfig, webpack)
     .pipe(gulp.dest(dir.root + dir.dev + dir.js));
 };
 
@@ -216,7 +212,6 @@ const htmlBuild = gulp.series(
 
 //- CSSパブリッシュタスク
 const cssBuild = gulp.series(
-  gulp.parallel(spriteImage),
   sassComb,
   gulp.parallel(sassCompile, imageminify),
   copy,
@@ -226,6 +221,12 @@ const cssBuild = gulp.series(
 //- アイコンフォント作成タスク
 const icoBuild = gulp.series(
   iconfontCompile
+);
+
+//- スプライト関連ファイル作成タスク
+const spriteBuild = gulp.series(
+  sprite,
+  imageminify
 );
 
 //- JSパブリッシュタスク
@@ -243,6 +244,7 @@ const watchFiles = () => {
   gulp.watch([dir.root + dir.dev + '**/*.ejs', dir.root + dir.dev + 'include/meta.json'], htmlBuild);
   gulp.watch([dir.root + dir.dev + dir.scss + '**/*.scss', '!' + dir.root + dir.dev + dir.scss + '_setting/_font.scss', '!' + dir.root + dir.dev + dir.scss + '_sprite/*.scss'], cssBuild);
   gulp.watch(dir.root + dir.dev + dir.font + '*.svg', icoBuild);
+  gulp.watch(dir.root + dir.dev + dir.spriteImg + '**/*.png', spriteBuild);
   gulp.watch(dir.root + dir.dev + dir.js + '**/*.js', jsBuild);
 };
 
