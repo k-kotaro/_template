@@ -92,7 +92,7 @@ const iconfontCompile = () => {
 };
 
 //- スプライト画像、mixin作成タスク
-const sprite = (done) => {
+const spritePublish = (done) => {
   const folders = getFolders(dir.root + dir.dev + dir.spriteImg);
   folders.map(function (folder) {
     const spriteData = gulp.src(dir.root + dir.dev + dir.spriteImg + folder + '/*.png')
@@ -225,7 +225,7 @@ const icoBuild = gulp.series(
 
 //- スプライト関連ファイル作成タスク
 const spriteBuild = gulp.series(
-  sprite,
+  spritePublish,
   imageminify
 );
 
