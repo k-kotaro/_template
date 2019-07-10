@@ -24,6 +24,7 @@ const browserSync = require('browser-sync');
 
 //- プロジェクト設定
 const project = '_templates';
+const port = 10000;
 const dir  = {
   root: 'root/',
   css: 'css/',
@@ -187,7 +188,7 @@ const copy = () => {
 const browser = () => {
   browserSync.init({
     notify: false,
-    port: 10000,
+    port: port,
     //proxy: 'localDir.local'
     server: {
       baseDir: dir.root,
