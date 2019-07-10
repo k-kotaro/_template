@@ -251,8 +251,6 @@ const watchFiles = () => {
 
 //- default
 const build = gulp.parallel(watchFiles, browser);
-//const build = watchFiles;
 
 exports.default = build;
 exports.productionBuild = productionBuild;
-exports.sassComb = sassComb;
