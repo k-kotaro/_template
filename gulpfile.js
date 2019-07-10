@@ -206,16 +206,16 @@ const reload = (done) => {
 const htmlBuild = gulp.series(
   gulp.parallel(ejsCompile, imageminify),
   htmlLint,
-  copy,
-  reload
+  reload,
+  copy
 );
 
 //- CSSパブリッシュタスク
 const cssBuild = gulp.series(
   sassComb,
-  gulp.parallel(sassCompile, imageminify),
-  copy,
-  reload
+  sassCompile,
+  reload,
+  copy
 );
 
 //- アイコンフォント作成タスク
@@ -232,8 +232,8 @@ const spriteBuild = gulp.series(
 //- JSパブリッシュタスク
 const jsBuild = gulp.series(
   bundle,
-  copy,
-  reload
+  reload,
+  copy
 );
 
 //- 本番ファイル書き出しタスク
