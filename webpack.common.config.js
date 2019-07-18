@@ -28,24 +28,22 @@ module.exports = {
         loader: "eslint-loader",
         options: {
           fix: true
-        }
+        },
       },
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        use: [
-          {
+        use: {
             loader: 'babel-loader',
             options: {
               presets: [
-                ['env', {
-                  'modules': false
-                }]
+              [
+                "@babel/preset-env"
               ]
-            }
-          }
         ]
       }
+        },
+      },
     ]
   },
   //eslint: {

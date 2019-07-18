@@ -32,6 +32,11 @@
 			"overflow-y",
 			"-ms-overflow-x",
 			"-ms-overflow-y",
+      "position",
+      "top",
+      "right",
+      "bottom",
+      "left",
 			"clip",
 			"zoom",
 			"flex-wrap",
@@ -43,12 +48,10 @@
 			"justify-content",
 			"align-items",
 			"flex",
-			"position",
-			"top",
-			"right",
-			"bottom",
-			"left",
-			"z-index",
+      "flex-grow",
+      "flex-basis",
+      "flex-shrink",
+      "order",
 			"-webkit-box-sizing",
 			"-moz-box-sizing",
 			"box-sizing",
@@ -240,6 +243,7 @@
 			"outline-style",
 			"outline-color",
 			"outline-offset",
+      "z-index",
 			"-webkit-transition",
 			"-moz-transition",
 			"-ms-transition",
@@ -314,7 +318,13 @@
 			"-moz-animation-direction",
 			"-ms-animation-direction",
 			"-o-animation-direction",
-			"animation-direction"
+      "animation-direction",
+
+      "$variable",
+      "$extend",
+      "$include",
+
+      "$include columnCountClass"
 		]
 	]
 }

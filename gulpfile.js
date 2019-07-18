@@ -48,9 +48,7 @@ const getFolders = (dir) => {
 //- EJSタスク
 const ejsCompile = () => {
   const json = JSON.parse(fs.readFileSync(dir.root + dir.dev + 'include/meta.json', 'utf-8'));
-  return gulp.src([dir.root + dir.dev + '**/*.ejs', '!' + dir.root + dir.dev + '**/-*.ejs'], {
-    since: gulp.lastRun(ejsCompile)
-  })
+  return gulp.src([dir.root + dir.dev + '**/*.ejs', '!' + dir.root + dir.dev + '**/-*.ejs'])
     .pipe(ejs({json:json}, {}, {ext: '.html'}))
     .pipe(gulp.dest(dir.root));
 };
@@ -123,7 +121,6 @@ const sassComb = () => {
 //- sassファイルコンパイルタスク
 const sassCompile = () => {
   return gulp.src( dir.root + dir.dev + dir.scss + '**/*.scss', {sourcemaps: true})
-    .pipe(cached('cache'))
     .pipe(plumber())
     .pipe(sass().on('error', sass.logError))
     .pipe(inlineimage())
@@ -144,9 +141,7 @@ const productionSassCompile = () => {
 //- webpackタスク
 const bundle = () => {
   const webpackConfig = require('./webpack.development.config');
-  return webpackStream(webpackConfig, webpack).on('error', () => {
-    this.emit('end');
-  })
+  return webpackStream(webpackConfig, webpack)
     .pipe(gulp.dest(dir.root + dir.dev + dir.js));
 };
 
