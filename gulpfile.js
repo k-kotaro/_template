@@ -106,17 +106,19 @@ const spritePublish = (done) => {
     spriteData.img.pipe(gulp.dest(dir.root + dir.dev + dir.img + folder));
     spriteData.css.pipe(gulp.dest(dir.root + dir.dev + dir.scss + '_sprite'));
 
-    childrenFolders.map(function (cfolder) {
-      const spriteData = gulp.src(dir.root + dir.dev + dir.spriteImg + folder + '/' + cfolder + '/*.png')
-      .pipe(sprite({
-        imgName: 'mod_img_sprite.png',
-        imgPath: dir.img + folder + '/' + cfolder + '/' + 'mod_img_sprite.png',
-        cssName: '_' + cfolder + '.scss',
-        padding: 10
-      }));
-      spriteData.img.pipe(gulp.dest(dir.root + dir.dev + dir.img + folder + '/' + cfolder));
-      spriteData.css.pipe(gulp.dest(dir.root + dir.dev + dir.scss + '_sprite/' + folder));
-    });
+    if(childrenFolders.length > 0){
+      childrenFolders.map(function (cfolder) {
+        const spriteData = gulp.src(dir.root + dir.dev + dir.spriteImg + folder + '/' + cfolder + '/*.png')
+        .pipe(sprite({
+          imgName: 'mod_img_sprite.png',
+          imgPath: dir.img + folder + '/' + cfolder + '/' + 'mod_img_sprite.png',
+          cssName: '_' + cfolder + '.scss',
+          padding: 10
+        }));
+        spriteData.img.pipe(gulp.dest(dir.root + dir.dev + dir.img + folder + '/' + cfolder));
+        spriteData.css.pipe(gulp.dest(dir.root + dir.dev + dir.scss + '_sprite/' + folder));
+      });
+    }
   });
   done();
 };
