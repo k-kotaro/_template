@@ -92,8 +92,10 @@ const iconfontCompile = () => {
 
 //- スプライト画像、mixin作成タスク
 const spritePublish = (done) => {
+  let childrenFolders;
   const folders = getFolders(dir.root + dir.dev + dir.spriteImg);
   folders.map(function (folder) {
+    childrenFolders = getFolders(dir.root + dir.dev + dir.spriteImg + folder);
     const spriteData = gulp.src(dir.root + dir.dev + dir.spriteImg + folder + '/*.png')
     .pipe(sprite({
       imgName: 'mod_img_sprite.png',
@@ -103,6 +105,18 @@ const spritePublish = (done) => {
     }));
     spriteData.img.pipe(gulp.dest(dir.root + dir.dev + dir.img + folder));
     spriteData.css.pipe(gulp.dest(dir.root + dir.dev + dir.scss + '_sprite'));
+
+    childrenFolders.map(function (cfolder) {
+      const spriteData = gulp.src(dir.root + dir.dev + dir.spriteImg + folder + '/' + cfolder + '/*.png')
+      .pipe(sprite({
+        imgName: 'mod_img_sprite.png',
+        imgPath: dir.img + folder + '/' + cfolder + '/' + 'mod_img_sprite.png',
+        cssName: '_' + cfolder + '.scss',
+        padding: 10
+      }));
+      spriteData.img.pipe(gulp.dest(dir.root + dir.dev + dir.img + folder + '/' + cfolder));
+      spriteData.css.pipe(gulp.dest(dir.root + dir.dev + dir.scss + '_sprite/' + folder));
+    });
   });
   done();
 };
@@ -154,8 +168,9 @@ const productionBundle = () => {
 
 //- 画像圧縮タスク
 const imageminify = () => {
-  return gulp.src(dir.root + dir.dev + dir.img + '/**/*.+(jpg|jpeg|png|gif|svg)')
-    .pipe(changed(dir.root + dir.img))
+  return gulp.src(dir.root + dir.dev + dir.img + '/**/*.+(jpg|jpeg|png|gif|svg)', {
+    since: gulp.lastRun(imageminify)
+  })
     .pipe(imagemin([
       imagemin.jpegtran({
         quality: 65-80,
@@ -202,16 +217,16 @@ const reload = (done) => {
 const htmlBuild = gulp.series(
   gulp.parallel(ejsCompile, imageminify),
   htmlLint,
-  reload,
-  copy
+  copy,
+  reload
 );
 
 //- CSSパブリッシュタスク
 const cssBuild = gulp.series(
   sassComb,
   sassCompile,
-  reload,
-  copy
+  copy,
+  reload
 );
 
 //- アイコンフォント作成タスク
@@ -228,8 +243,8 @@ const spriteBuild = gulp.series(
 //- JSパブリッシュタスク
 const jsBuild = gulp.series(
   bundle,
-  reload,
-  copy
+  copy,
+  reload
 );
 
 //- 本番ファイル書き出しタスク
@@ -248,4 +263,5 @@ const watchFiles = () => {
 const build = gulp.parallel(watchFiles, browser);
 
 exports.default = build;
+exports.spritePublish = spritePublish;
 exports.productionBuild = productionBuild;
