@@ -130,7 +130,7 @@ const sassComb = () => {
   })
     .pipe(plumber())
     .pipe(csscomb())
-    .pipe(cached('cache'))
+    .pipe(cached('sassComb'))
     .pipe(gulp.dest(dir.root +dir.dev + dir.scss));
 };
 
@@ -170,7 +170,7 @@ const productionBundle = () => {
 
 //- 画像圧縮タスク
 const imageminify = () => {
-  return gulp.src(dir.root + dir.dev + dir.img + '/**/*.+(jpg|jpeg|png|gif|svg)', {
+  return gulp.src(dir.root + dir.dev + dir.img + '/**/*.+(jpg|png|gif|svg)', {
     since: gulp.lastRun(imageminify)
   })
     .pipe(imagemin([
@@ -242,6 +242,11 @@ const spriteBuild = gulp.series(
   imageminify
 );
 
+//- 画像圧縮タスク
+const spriteBuild = gulp.series(
+  imageminify
+);
+
 //- JSパブリッシュタスク
 const jsBuild = gulp.series(
   bundle,
@@ -258,6 +263,7 @@ const watchFiles = () => {
   gulp.watch([dir.root + dir.dev + dir.scss + '**/*.scss', '!' + dir.root + dir.dev + dir.scss + '_setting/_font.scss', '!' + dir.root + dir.dev + dir.scss + '_sprite/*.scss'], cssBuild);
   gulp.watch(dir.root + dir.dev + dir.font + '*.svg', icoBuild);
   gulp.watch(dir.root + dir.dev + dir.spriteImg + '**/*.png', spriteBuild);
+  gulp.watch(dir.root + dir.dev + dir.img + '/**/*.+(jpg|png|gif|svg)', imageComp);
   gulp.watch(dir.root + dir.dev + dir.js + '**/*.js', jsBuild);
 };
 

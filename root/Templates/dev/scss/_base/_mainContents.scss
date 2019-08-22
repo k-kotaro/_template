@@ -14,7 +14,7 @@
 // main set
 //
 // ============================================================================================
-#container{
+#container {
   position: relative;
   margin: 0 auto;
 
@@ -23,7 +23,7 @@
   }
 }
 
-#wrapper{
+#wrapper {
   display: flex;
 
   @media screen and (min-width: $rwdBreakPoint01) {
@@ -34,7 +34,7 @@
     flex-direction: column;
   }
 
-  #mainContents{
+  #mainContents {
     @media screen and (min-width: $rwdBreakPoint01) {
       padding-right: 30px;
     }
@@ -44,7 +44,7 @@
   }
 }
 
-#mainContents{
+#mainContents {
   @media screen and (min-width: $rwdBreakPoint01) {
   }
 

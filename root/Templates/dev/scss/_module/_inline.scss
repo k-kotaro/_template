@@ -11,13 +11,18 @@
 
 /* anchor */
 
-.m_pdf {}
 
-.m_blank {}
+
+
 
 @media screen and (min-width: $rwdBreakPoint01) {
   .m_pcHide {
     display: none !important;
+  }
+  .m_pcbr[class*="_before"]::before,
+  .m_pcbr[class*="_after"]::after {
+    content: "\A";
+    white-space: pre;
   }
 }
 
@@ -25,4 +30,9 @@
   .m_spHide {
     display: none !important;
   }
-}
+  .m_spbr[class*="_before"]::before,
+  .m_spbr[class*="_after"]::after {
+    content: "\A";
+    white-space: pre;
+  }
+}

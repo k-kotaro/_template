@@ -48,6 +48,10 @@
   @return ($value / $_nounit_divisor);
 }
 
-@function vwFontSize ($fontSize, $winSize, $unit: 'vw'){
+@function vwFontSize($fontSize, $winSize, $unit: 'vw') {
   @return ($fontSize / $winSize) * 100 + $unit
-    }
+}
+
+@function lineHeightMargin($margin, $fontSize, $lin) {
+  @return $margin - (($lin - $fontSize) / 2) + px;
+}

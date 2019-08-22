@@ -14,22 +14,22 @@
 // header set
 //
 // ============================================================================================
-#gheader{
-  margin:0 auto;
-  .content{
+#gheader {
+  margin: 0 auto;
+  .content {
     display: flex;
     justify-content: space-between;
   }
-  .logo{
+  .logo {
     margin: 0;
   }
-  .unav{
+  .unav {
     margin: 0;
     padding: 0;
     white-space: nowrap;
-    & > li{
+    & > li {
       @include iblock(middle);
-      &:nth-child(n+2){
+      &:nth-child(n+2) {
         margin-left: 10px;
       }
     }
@@ -37,13 +37,13 @@
 
   @media screen and (min-width: $rwdBreakPoint01) {
     width: $contentWidth;
-    .content{
+    .content {
       margin: 0 0 10px;
     }
   }
 
   @media screen and (max-width: $rwdBreakPoint01 - 1) {
-    .content{
+    .content {
       align-items: center;
       padding-right: 50px;
       height: 50px;

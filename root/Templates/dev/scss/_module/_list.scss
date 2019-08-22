@@ -18,8 +18,8 @@
     }
   }
   &[class*="_unstyled"] > li {
-    text-indent: 0;
     padding: 0;
+    text-indent: 0;
     &::before {
       content: none;
     }
@@ -72,7 +72,7 @@
     @include lastElement;
     a::before {
       position: absolute;
-      top: calc(0.5em);
+      top: calc(.5em);
       left: 0;
       @include triangle(right, #000000, 12px, 8px);
     }
@@ -90,7 +90,7 @@
       width: 100%;
       height: auto;
     }
-    & > figure{
+    & > figure {
       @include lastElement;
     }
   }
@@ -99,19 +99,19 @@
     $marginBottom: 20px;
     &[class*="_col2"] > li {
       width: calc(100% / 2 - 40px);
-      &:nth-last-of-type(n+3){
+      &:nth-last-of-type(n+3) {
         margin-bottom: $marginBottom;
       }
     }
     &[class*="_col3"] > li {
       width: calc(100% / 3 - 30px);
-      &:nth-last-of-type(n+4){
+      &:nth-last-of-type(n+4) {
         margin-bottom: $marginBottom;
       }
     }
     &[class*="_col4"] > li {
       width: calc(100% / 4 - 20px);
-      &:nth-last-of-type(n+5){
+      &:nth-last-of-type(n+5) {
         margin-bottom: $marginBottom;
       }
     }
@@ -130,4 +130,4 @@
 [class*="List"][class*="_horizontal"] > li {
   margin-right: 20px;
   @include iblock(top);
-}
+}

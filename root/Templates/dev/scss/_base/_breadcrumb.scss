@@ -14,20 +14,20 @@
 // breadcrumb set
 //
 // ============================================================================================
-#breadcrumb ol{
+#breadcrumb ol {
   position: relative;
   margin: 0;
-  & > li{
-    @include iblock(middle);
+  & > li {
     padding: 10px 0;
     line-height: 1.2;
-    &:nth-child(n+2)::before{
-      @include iblock(middle);
+    @include iblock(middle);
+    &:nth-child(n+2)::before {
       width: 2em;
-      text-align: center;
       content: ">";
+      text-align: center;
+      @include iblock(middle);
     }
-    em{
+    em {
       font-weight: normal;
     }
   }

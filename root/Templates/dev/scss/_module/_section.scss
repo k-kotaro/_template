@@ -11,21 +11,21 @@
 .m_section {
   position: relative;
   padding: 50px 0;
-  &[class*="_border"]::before{
-    @include createContent(null, 0, null, 0);
+  &[class*="_border"]::before {
     z-index: -1;
+    @include createContent(null, 0, null, 0);
   }
-  &[class*="_borderTop"]::before{
+  &[class*="_borderTop"]::before {
     top: 0;
     border-top: 1px solid;
   }
-  &[class*="_borderBottom"]::before{
+  &[class*="_borderBottom"]::before {
     bottom: 0;
     border-bottom: 1px solid;
   }
-  &[class*="_fullBg"]::before{
-    @include createContent(0, -1000%, 0,  -1000%);
+  &[class*="_fullBg"]::before {
     z-index: -1;
+    @include createContent(0, -1000%, 0,  -1000%);
   }
 }
-
+

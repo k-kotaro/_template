@@ -43,7 +43,7 @@ ul,
 ol {
   margin: 0 0 1.5em;
   padding-left: 0;
-  letter-spacing: -0.5em;
+  letter-spacing: -.5em;
 }
 
 ul,
@@ -57,8 +57,8 @@ li {
 
 table {
   margin: 0 0 1.5em;
-  border-collapse: collapse;
   border-spacing: 0;
+  border-collapse: collapse;
 }
 
 table th,
@@ -84,24 +84,24 @@ input,
 select,
 textarea {
   font-family: $baseFontFamily;
-  @include fts();
   vertical-align: middle;
+  @include fts();
 }
 button,
 input[type="button"],
 input[type="submit"],
-input[type="reset"]{
+input[type="reset"] {
   cursor: pointer;
 }
-button{
+button {
   display: inline;
   border: none;
   padding: 0;
   background: none;
 }
 button::-moz-focus-inner {
-  padding: 0;
   border: 0;
+  padding: 0;
 }
 :placeholder-shown {
   color: $placeholderColor;
@@ -118,7 +118,7 @@ button::-moz-focus-inner {
 }
 em,
 address,
-small{
+small {
   font-style: normal;
 }
 
@@ -141,17 +141,17 @@ video,
 main {
   display: block;
   margin: 0;
-  padding: 0;
   border: 0;
+  padding: 0;
   outline: 0;
 }
 
 fieldset {
   margin: 0;
-  padding: 0;
   border: none;
+  padding: 0;
 }
 
 nav ul {
   list-style: none;
-}
+}

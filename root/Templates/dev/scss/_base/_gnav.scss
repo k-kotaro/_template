@@ -14,14 +14,14 @@
 // gnav set
 //
 // ============================================================================================
-#gnav{
+#gnav {
   position: relative;
   margin: 0 auto;
 
-  ul{
+  ul {
     display: flex;
     margin: 0;
-    & > li a{
+    & > li a {
       display: block;
       text-decoration: none;
     }
@@ -29,14 +29,14 @@
 
   @media screen and (min-width: $rwdBreakPoint01) {
     width: $contentWidth;
-    .menu{
+    .menu {
       display: none;
     }
-    ul{
+    ul {
       justify-content: space-between;
-      & > li{
+      & > li {
         flex: 1;
-        a{
+        a {
           text-align: center;
         }
       }
@@ -44,18 +44,18 @@
   }
 
   @media screen and (max-width: $rwdBreakPoint01 - 1) {
-    .menu{
+    .menu {
       position: absolute;
       top: -50px;
       right: 0;
       //@include gnavBtn($animType: 1);
     }
-    ul{
+    ul {
       flex-direction: column;
-      & > li{
+      & > li {
         border-bottom: 1px solid currentColor;
         padding: 10px;
       }
     }
   }
-}
+}

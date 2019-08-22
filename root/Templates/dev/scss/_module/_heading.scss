@@ -8,7 +8,7 @@
 //
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 //====================================================================================================
-.m_pageTitle {}
+
 
 .m_textHeading {
   margin: 0 0 30px;
@@ -19,7 +19,6 @@
 
   @media screen and (max-width: $rwdBreakPoint01 - 1) {
   }
-
 }
 
 .m_imageHeading {
@@ -29,9 +28,9 @@
   }
 
   @media screen and (max-width: $rwdBreakPoint01 - 1) {
-    img{
+    img {
       max-width: 100%;
       height: auto;
     }
   }
-}
+}

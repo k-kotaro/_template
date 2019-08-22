@@ -15,10 +15,10 @@
   padding: 20px;
   background: #eeeeee;
   @include lastElement;
-  &[class*="_border"]{
+  &[class*="_border"] {
     border: 1px solid;
   }
-  &[class*="_nobg"]{
+  &[class*="_nobg"] {
     background-color: transparent;
   }
 }
@@ -48,8 +48,8 @@
         padding: 0 0 0 30px;
       }
       .body + .image {
-        padding: 0 30px 0 0;
         flex: none;
+        padding: 0 30px 0 0;
         text-align: left;
       }
     }
@@ -124,11 +124,11 @@
 
 
 .m_panel {
-  margin: -20px 0;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
   align-content: space-between;
+  justify-content: space-between;
+  margin: -20px 0;
   & > .panel {
     margin: 20px 0;
     @include lastElement;
@@ -148,32 +148,32 @@
 }
 
 .m_slideshow {
-  position: relative;
   overflow: hidden;
+  position: relative;
   .slides {
-    margin-bottom: 10px;
     position: relative;
+    margin-bottom: 10px;
     &:after {
-      height: 0;
       display: block;
       clear: both;
+      height: 0;
       content: ".";
     }
     & > li {
-      float: left;
       display: none;
+      float: left;
       &:first-child {
         display: block;
       }
     }
   }
   .crossfade .slides > li {
-    position: absolute;
     float: none;
+    position: absolute;
   }
   .slideControl {
     display: none;
-    clear: both
+    clear: both;
   }
   .cursor {
     & > li {
@@ -185,24 +185,23 @@
       &.next {
         right: 0;
       }
-      img {}
     }
   }
   .select {
     & > li {
-      margin: 0 2px;
       display: inline-block;
+      margin: 0 2px;
       & > li a {
-        padding: 5px;
-        border: 1px solid #ccc;
         display: block;
-        background: #ddd;
+        border: 1px solid #cccccc;
+        padding: 5px;
+        background: #dddddd;
         text-decoration: none;
       }
       & > li.active a,
       & > li a:hover {
-        background: #eee;
+        background: #eeeeee;
       }
     }
   }
-}
+}

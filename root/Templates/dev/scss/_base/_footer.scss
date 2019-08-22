@@ -14,29 +14,29 @@
 // footer set
 //
 // ============================================================================================
-#gfooter{
-  margin:0 auto;
-  .unav{
+#gfooter {
+  margin: 0 auto;
+  .unav {
     margin: 0;
-    & > li{
+    & > li {
       @include iblock(middle);
     }
   }
-  .copyright{
+  .copyright {
     text-align: center;
   }
 
   @media screen and (min-width: $rwdBreakPoint01) {
     width: $contentWidth;
-    .unav > li:nth-child(n+2){
+    .unav > li:nth-child(n+2) {
       margin-left: 20px;
     }
   }
 
   @media screen and (max-width: $rwdBreakPoint01 - 1) {
-    .unav{
+    .unav {
       text-align: center;
-      & > li{
+      & > li {
         margin: 0 5px;
       }
     }
