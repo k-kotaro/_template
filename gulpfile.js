@@ -47,9 +47,9 @@ const getFolders = (dir) => {
 
 //- EJSタスク
 const ejsCompile = () => {
-  const json = JSON.parse(fs.readFileSync(dir.root + dir.dev + 'include/meta.json', 'utf-8'));
+  const meta = JSON.parse(fs.readFileSync(dir.root + dir.dev + 'include/meta.json', 'utf-8'));
   return gulp.src([dir.root + dir.dev + '**/*.ejs', '!' + dir.root + dir.dev + '**/-*.ejs'])
-    .pipe(ejs({json:json}, {}, {ext: '.html'}))
+    .pipe(ejs({json:meta}, {}, {ext: '.html'}))
     .pipe(gulp.dest(dir.root));
 };
 

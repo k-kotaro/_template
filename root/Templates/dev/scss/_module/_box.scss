@@ -24,60 +24,56 @@
 }
 
 .m_media {
-  display: flex;
   margin: 0 0 1.5em;
+  .image {
+    flex-shrink: 0;
+  }
   .body {
+    flex-grow: 1;
     @include lastElement;
   }
 
   @media screen and (min-width: $rwdBreakPoint01) {
-    .image {
-      padding: 0 30px 0 0;
+    display: flex;
+    flex-direction: column;
+    &:not([class*="_flipped"]) .image:first-child {
+      margin-right: 30px;
     }
-    .body + .image {
-      flex: 1;
-      padding: 0 0 0 30px;
-      text-align: right;
+    &:not([class*="_flipped"]) .body + .image {
+      margin-left: 30px;
     }
     &[class*="_flipped"] {
       flex-direction: row-reverse;
-      .body:first-of-type {
-        flex: 1;
-      }
-      .image {
-        padding: 0 0 0 30px;
+      .image:first-child {
+        margin-left: 30px;
       }
       .body + .image {
-        flex: none;
-        padding: 0 30px 0 0;
-        text-align: left;
+        margin-right: 30px;
       }
+    }
+    &[class*="_alignTop"] {
+      align-items: flex-start;
+    }
+    &[class*="_alignMiddle"] {
+      align-items: center;
+    }
+    &[class*="_alignbottom"] {
+      align-items: flex-end;
     }
   }
 
   @media screen and (max-width: $rwdBreakPoint01 - 1) {
-    flex-direction: column;
     .image {
-      margin: 0 0 30px;
       text-align: center;
       img {
         max-width: 100%;
         height: auto;
       }
     }
-    .body {
+    .image:first-child,
+    .body:first-child {
       margin: 0 0 30px;
     }
-  }
-
-  &[class*="_alignTop"] {
-    align-items: flex-start;
-  }
-  &[class*="_alignMiddle"] {
-    align-items: center;
-  }
-  &[class*="_alignbottom"] {
-    align-items: flex-end;
   }
 }
 
@@ -93,14 +89,14 @@
 
   @media screen and (min-width: $rwdBreakPoint01) {
     justify-content: space-between;
-    &[class*="_col2"] > .column {
+    &[class*="_pcCol2"] > .column {
       width: calc(100% / 2 - 20px);
     }
-    &[class*="_col3"] > .column {
+    &[class*="_pcCol3"] > .column {
       width: 29.4%;
       width: calc(100% / 3 - 20px);
     }
-    &[class*="_col4"] > .column {
+    &[class*="_pcCol4"] > .column {
       width: calc(100% / 4 - 20px);
     }
   }
