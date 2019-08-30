@@ -3,10 +3,36 @@
 //====================================================================================================
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 //
-//	version: 1.0
-//	created: 2015/01/23
-//	update : -
+//  version: 1.0
+//  created: 2015/01/23
+//  update : -
 //
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 //====================================================================================================
-
+
+.m_liquidImage {
+  text-align: center;
+  .caption {
+    display: block;
+    text-align: right;
+    & > span {
+      display: inline-block;
+      text-align: left;
+    }
+  }
+  @media screen and (min-width: $rwdBreakPoint01) {
+    margin: 0 0 40px;
+    .caption {
+      margin: lineHeightMargin(15, 14, 24) 0 0;
+      @include fts(14, 24);
+    }
+  }
+
+  @media screen and (max-width: $rwdBreakPoint01 - 1) {
+    margin: 0 0 20px;
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+  }
+}

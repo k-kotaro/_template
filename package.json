@@ -45,7 +45,9 @@
     "webpack-merge": "^4.2.1",
     "webpack-stream": "^5.2.1"
   },
-  "dependencies": {},
+  "dependencies": {
+    "picturefill": "^3.0.3"
+  },
   "browserslist": [
     "last 2 version",
     "ie >= 11",

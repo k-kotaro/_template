@@ -242,8 +242,8 @@ const spriteBuild = gulp.series(
   imageminify
 );
 
-//- 画像圧縮タスク
-const spriteBuild = gulp.series(
+//- 画像切り出しタスク
+const imageComp = gulp.series(
   imageminify
 );
 

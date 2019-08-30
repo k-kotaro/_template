@@ -127,6 +127,7 @@ section,
 mark,
 audio,
 video,
+picture,
 main {
   display: block;
   margin: 0;
@@ -555,6 +556,28 @@ a {
 
 /* paragraph module
 --------------------------------------------------------------------------------------------------- */
+.m_liquidImage {
+  text-align: center; }
+  .m_liquidImage .caption {
+    display: block;
+    text-align: right; }
+    .m_liquidImage .caption > span {
+      display: inline-block;
+      text-align: left; }
+  @media screen and (min-width: 768px) {
+    .m_liquidImage {
+      margin: 0 0 40px; }
+      .m_liquidImage .caption {
+        margin: 10px 0 0;
+        font-size: 1.4rem;
+        line-height: 1.71429; } }
+  @media screen and (max-width: 767px) {
+    .m_liquidImage {
+      margin: 0 0 20px; }
+      .m_liquidImage img {
+        max-width: 100%;
+        height: auto; } }
+
 /* list module
 --------------------------------------------------------------------------------------------------- */
 .m_list > li {

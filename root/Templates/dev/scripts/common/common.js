@@ -1,6 +1,10 @@
 // libs js
 import Layzr from './libs/layzr.js';
 
+// picturefill js
+import picturefill from 'picturefill';
+picturefill();
+
 const breakpoint = 768;
 let gnavMenuOpenFlg = 0;
 let contentWidth;

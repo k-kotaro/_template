@@ -18,30 +18,31 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>モジュール集</title>
 <link rel="stylesheet" type="text/css" href="../css/common/styles.css">
+<link rel="stylesheet" href="local.css">
 
 <script type="application/ld+json">
-    [
+  [
+    {
+      "@context": "http://schema.org",
+      "@type": "WebSite",
+      "name": "サイト名",
+      "url": "https://サイトURL"
+    },
+    {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
         {
-            "@context": "http://schema.org",
-            "@type": "WebSite",
-            "name": "サイト名",
-            "url": "https://サイトURL"
-        },
-        {
-            "@context": "http://schema.org",
-            "@type": "BreadcrumbList",
-            "itemListElement": [
-                {
-                    "@type": "ListItem",
-                    "position": 1,
-                    "item": {
-                        "@id": "https://サイトURL",
-                        "name": "サイト名"
-                    }
-                }
-            ]
+          "@type": "ListItem",
+          "position": 1,
+          "item": {
+            "@id": "https://サイトURL",
+            "name": "サイト名"
+          }
         }
-    ]
+      ]
+    }
+  ]
 </script>
 </head>
 <body>
@@ -161,6 +162,15 @@
 <li>.l_spCol：SPレイアウト時に2カラム表示</li>
 <!-- /.m_list --></ul>
 <!-- /.m_box --></div>
+
+
+
+<h1 class="templatesHead">段落</h1>
+<p class="templatesName">画像（.m_liquidImage）</p>
+<picture class="m_liquidImage">
+<source media="(max-width:767px)" srcset="https://placehold.jp/640x480.png 767w" sizes="100vw">
+<img src="https://placehold.jp/495x320.png" alt="" width="495" height="320">
+</picture>
 
 
 

@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <%- include(json['module'].path + 'include/common/-meta', {page: json['module']}) %>
 <%- include(json['module'].path + 'include/common/-headCss', {page: json['module']}) %>
+<link rel="stylesheet" href="local.css">
 <%- include(json['module'].path + 'include/common/-headScript', {page: json['module']}) %>
 <script type="application/ld+json">
   [
@@ -128,6 +129,15 @@
 <li>.l_spCol：SPレイアウト時に2カラム表示</li>
 <!-- /.m_list --></ul>
 <!-- /.m_box --></div>
+
+
+
+<h1 class="templatesHead">段落</h1>
+<p class="templatesName">画像（.m_liquidImage）</p>
+<picture class="m_liquidImage">
+<source media="(max-width:767px)" srcset="https://placehold.jp/640x480.png 767w" sizes="100vw">
+<img src="https://placehold.jp/495x320.png" alt="" width="495" height="320">
+</picture>
 
 
 

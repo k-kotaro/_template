@@ -20,28 +20,28 @@
 <link rel="stylesheet" type="text/css" href="./css/common/styles.css">
 
 <script type="application/ld+json">
-    [
+  [
+    {
+      "@context": "http://schema.org",
+      "@type": "WebSite",
+      "name": "サイト名",
+      "url": "https://サイトURL"
+    },
+    {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
         {
-            "@context": "http://schema.org",
-            "@type": "WebSite",
-            "name": "サイト名",
-            "url": "https://サイトURL"
-        },
-        {
-            "@context": "http://schema.org",
-            "@type": "BreadcrumbList",
-            "itemListElement": [
-                {
-                    "@type": "ListItem",
-                    "position": 1,
-                    "item": {
-                        "@id": "https://サイトURL",
-                        "name": "サイト名"
-                    }
-                }
-            ]
+          "@type": "ListItem",
+          "position": 1,
+          "item": {
+            "@id": "https://サイトURL",
+            "name": "サイト名"
+          }
         }
-    ]
+      ]
+    }
+  ]
 </script>
 </head>
 
