@@ -576,16 +576,17 @@ a {
 /* list module
 --------------------------------------------------------------------------------------------------- */
 .m_list > li {
-  display: table-row; }
+  position: relative;
+  padding-left: 1em; }
   .m_list > li > *:last-child {
     margin-bottom: 0 !important; }
   .m_list > li:before {
-    display: table-cell;
+    position: absolute;
+    left: 0;
     content: "・"; }
 
 .m_list[class*="_unstyled"] > li {
-  padding: 0;
-  text-indent: 0; }
+  padding: 0; }
   .m_list[class*="_unstyled"] > li::before {
     content: none; }
 

@@ -10,16 +10,17 @@
 //====================================================================================================
 .m_list {
   & > li {
-    display: table-row;
+    position: relative;
+    padding-left: 1em;
     @include lastElement;
     &:before {
-      display: table-cell;
+      position: absolute;
+      left: 0;
       content: "・";
     }
   }
   &[class*="_unstyled"] > li {
     padding: 0;
-    text-indent: 0;
     &::before {
       content: none;
     }
