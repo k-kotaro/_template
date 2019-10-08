@@ -83,13 +83,14 @@
 // 　　　　$bottom: bottomプロパティの値
 // 　　　　$left: leftプロパティの値
 // @include createContent(0, 0, 0, 0);
-@mixin createContent($top: null, $right: null, $bottom: null, $left: null) {
+@mixin createContent($top: null, $right: null, $bottom: null, $left: null, $zIndex: z-index) {
   position: absolute;
   top: $top;
   right: $right;
   bottom: $bottom;
   left: $left;
   content: "";
+  z-index: $zIndex;
 }
 
 // CSSスプライトの画像パス

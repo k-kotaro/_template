@@ -61,8 +61,8 @@
 
 
 /* block width */
-@for $widthVal from 0 through 100 {
-  [class*="_width#{$widthVal}Per"] {
-    width:#{$widthVal}% !important;
-  }
-}
+//@for $widthVal from 0 through 100 {
+//  [class*="_width#{$widthVal}Per"] {
+//    width:#{$widthVal}% !important;
+//  }
+//}
