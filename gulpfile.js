@@ -21,6 +21,7 @@ const webpack = require('webpack');
 const webpackStream = require('webpack-stream');
 const browserSync = require('browser-sync');
 
+const purgecss = require('gulp-purgecss');
 
 //- プロジェクト設定
 const project = '_templates';
@@ -154,6 +155,18 @@ const productionSassCompile = () => {
     .pipe(gulp.dest(dir.root + dir.css));
 };
 
+
+//- PurgeCSS
+const purgeCss = () => {
+  return gulp.src(dir.root + dir.css + '**/*.css')
+  .pipe(
+    purgecss({
+      content: [dir.root + '**/*.html']
+    })
+  )
+  .pipe(gulp.dest(dir.root));
+};
+
 //- webpackタスク
 const bundle = () => {
   const webpackConfig = require('./webpack.development.config');
@@ -219,6 +232,7 @@ const reload = (done) => {
 const htmlBuild = gulp.series(
   gulp.parallel(ejsCompile, imageminify),
   htmlLint,
+  purgeCss,
   copy,
   reload
 );
@@ -227,6 +241,7 @@ const htmlBuild = gulp.series(
 const cssBuild = gulp.series(
   sassComb,
   sassCompile,
+  purgeCss,
   copy,
   reload
 );
