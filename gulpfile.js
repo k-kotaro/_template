@@ -49,6 +49,7 @@ const getFolders = (dir) => {
 const ejsCompile = () => {
   const meta = JSON.parse(fs.readFileSync(dir.root + dir.dev + 'include/meta.json', 'utf-8'));
   return gulp.src([dir.root + dir.dev + '**/*.ejs', '!' + dir.root + dir.dev + '**/-*.ejs'])
+    .pipe(plumber())
     .pipe(ejs({json:meta}, {}, {ext: '.html'}))
     .pipe(gulp.dest(dir.root));
 };
@@ -158,6 +159,9 @@ const productionSassCompile = () => {
 const bundle = () => {
   const webpackConfig = require('./webpack.development.config');
   return webpackStream(webpackConfig, webpack)
+    .on('error', function (e) {
+    this.emit('end');
+  })
     .pipe(gulp.dest(dir.root + dir.dev + dir.js));
 };
 
