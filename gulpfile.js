@@ -4,6 +4,7 @@ const fs = require('fs');
 const path = require('path');
 const plumber = require('gulp-plumber');
 const changed = require('gulp-changed');
+const rename = require('gulp-rename');
 const cached  = require('gulp-cached');
 const ejs = require('gulp-ejs');
 const htmlhint = require("gulp-htmlhint");
@@ -20,6 +21,7 @@ const autoprefixer = require('gulp-autoprefixer');
 const webpack = require('webpack');
 const webpackStream = require('webpack-stream');
 const browserSync = require('browser-sync');
+
 
 
 //- プロジェクト設定
@@ -49,7 +51,14 @@ const getFolders = (dir) => {
 const ejsCompile = () => {
   const meta = JSON.parse(fs.readFileSync(dir.root + dir.dev + 'include/meta.json', 'utf-8'));
   return gulp.src([dir.root + dir.dev + '**/*.ejs', '!' + dir.root + dir.dev + '**/-*.ejs'])
-    .pipe(ejs({json:meta}, {}, {ext: '.html'}))
+    .pipe(plumber({
+      errorHandler: function (err) {
+        console.log(err);
+        this.emit('end');
+      }
+    }))
+    .pipe(ejs({json:meta}))
+    .pipe(rename({extname: '.html'}))
     .pipe(gulp.dest(dir.root));
 };
 
