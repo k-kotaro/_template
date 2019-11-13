@@ -182,6 +182,7 @@ const imageminify = () => {
   return gulp.src(dir.root + dir.dev + dir.img + '/**/*.+(jpg|png|gif|svg)', {
     since: gulp.lastRun(imageminify)
   })
+    .pipe(changed(dir.root + dir.img))
     .pipe(imagemin([
       imagemin.jpegtran({
         quality: 65-80,
