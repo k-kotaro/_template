@@ -4,6 +4,7 @@ const fs = require('fs');
 const path = require('path');
 const plumber = require('gulp-plumber');
 const changed = require('gulp-changed');
+const rename = require('gulp-rename');
 const cached  = require('gulp-cached');
 const ejs = require('gulp-ejs');
 const htmlhint = require("gulp-htmlhint");
@@ -20,6 +21,7 @@ const autoprefixer = require('gulp-autoprefixer');
 const webpack = require('webpack');
 const webpackStream = require('webpack-stream');
 const browserSync = require('browser-sync');
+
 
 
 //- プロジェクト設定
@@ -49,8 +51,19 @@ const getFolders = (dir) => {
 const ejsCompile = () => {
   const meta = JSON.parse(fs.readFileSync(dir.root + dir.dev + 'include/meta.json', 'utf-8'));
   return gulp.src([dir.root + dir.dev + '**/*.ejs', '!' + dir.root + dir.dev + '**/-*.ejs'])
+<<<<<<< HEAD
     .pipe(plumber())
     .pipe(ejs({json:meta}, {}, {ext: '.html'}))
+=======
+    .pipe(plumber({
+      errorHandler: function (err) {
+        console.log(err);
+        this.emit('end');
+      }
+    }))
+    .pipe(ejs({json:meta}))
+    .pipe(rename({extname: '.html'}))
+>>>>>>> develop
     .pipe(gulp.dest(dir.root));
 };
 
@@ -126,12 +139,8 @@ const spritePublish = (done) => {
 
 //- sass整形
 const sassComb = () => {
-  return gulp.src([dir.root + dir.dev + dir.scss + '**/*.scss','!' + dir.root + dir.dev + dir.scss + '_setting/*.scss','!' + dir.root + dir.dev + dir.scss + '_sprite/*.scss','!' + dir.root + dir.dev + dir.scss + '_temp/*.scss'], {
-    since: gulp.lastRun(sassComb)
-  })
-    .pipe(plumber())
+  return gulp.src([dir.root + dir.dev + dir.scss + '**/*.scss','!' + dir.root + dir.dev + dir.scss + '_setting/*.scss','!' + dir.root + dir.dev + dir.scss + '_sprite/*.scss','!' + dir.root + dir.dev + dir.scss + '_temp/*.scss'])
     .pipe(csscomb())
-    .pipe(cached('sassComb'))
     .pipe(gulp.dest(dir.root +dir.dev + dir.scss));
 };
 
@@ -139,7 +148,9 @@ const sassComb = () => {
 const sassCompile = () => {
   return gulp.src( dir.root + dir.dev + dir.scss + '**/*.scss', {sourcemaps: true})
     .pipe(plumber())
-    .pipe(sass().on('error', sass.logError))
+    .pipe(sass({
+      outputStyle: 'expanded'
+    }).on('error', sass.logError))
     .pipe(inlineimage())
     .pipe(autoprefixer())
     .pipe(gulp.dest(dir.root + dir.css, {sourcemaps: '../' + dir.dev + dir.sourcemap}));
@@ -177,6 +188,7 @@ const imageminify = () => {
   return gulp.src(dir.root + dir.dev + dir.img + '/**/*.+(jpg|png|gif|svg)', {
     since: gulp.lastRun(imageminify)
   })
+    .pipe(changed(dir.root + dir.img))
     .pipe(imagemin([
       imagemin.jpegtran({
         quality: 65-80,
@@ -229,7 +241,6 @@ const htmlBuild = gulp.series(
 
 //- CSSパブリッシュタスク
 const cssBuild = gulp.series(
-  sassComb,
   sassCompile,
   copy,
   reload
@@ -277,3 +288,4 @@ const build = gulp.parallel(watchFiles, browser);
 exports.default = build;
 exports.spritePublish = spritePublish;
 exports.productionBuild = productionBuild;
+exports.sassComb = sassComb;
