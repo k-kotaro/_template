@@ -51,10 +51,6 @@ const getFolders = (dir) => {
 const ejsCompile = () => {
   const meta = JSON.parse(fs.readFileSync(dir.root + dir.dev + 'include/meta.json', 'utf-8'));
   return gulp.src([dir.root + dir.dev + '**/*.ejs', '!' + dir.root + dir.dev + '**/-*.ejs'])
-<<<<<<< HEAD
-    .pipe(plumber())
-    .pipe(ejs({json:meta}, {}, {ext: '.html'}))
-=======
     .pipe(plumber({
       errorHandler: function (err) {
         console.log(err);
@@ -63,7 +59,6 @@ const ejsCompile = () => {
     }))
     .pipe(ejs({json:meta}))
     .pipe(rename({extname: '.html'}))
->>>>>>> develop
     .pipe(gulp.dest(dir.root));
 };
 
