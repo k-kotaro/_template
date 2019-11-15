@@ -134,12 +134,8 @@ const spritePublish = (done) => {
 
 //- sass整形
 const sassComb = () => {
-  return gulp.src([dir.root + dir.dev + dir.scss + '**/*.scss','!' + dir.root + dir.dev + dir.scss + '_setting/*.scss','!' + dir.root + dir.dev + dir.scss + '_sprite/*.scss','!' + dir.root + dir.dev + dir.scss + '_temp/*.scss'], {
-    since: gulp.lastRun(sassComb)
-  })
-    .pipe(plumber())
+  return gulp.src([dir.root + dir.dev + dir.scss + '**/*.scss','!' + dir.root + dir.dev + dir.scss + '_setting/*.scss','!' + dir.root + dir.dev + dir.scss + '_sprite/*.scss','!' + dir.root + dir.dev + dir.scss + '_temp/*.scss'])
     .pipe(csscomb())
-    .pipe(cached('sassComb'))
     .pipe(gulp.dest(dir.root +dir.dev + dir.scss));
 };
 
@@ -147,7 +143,9 @@ const sassComb = () => {
 const sassCompile = () => {
   return gulp.src( dir.root + dir.dev + dir.scss + '**/*.scss', {sourcemaps: true})
     .pipe(plumber())
-    .pipe(sass().on('error', sass.logError))
+    .pipe(sass({
+      outputStyle: 'expanded'
+    }).on('error', sass.logError))
     .pipe(inlineimage())
     .pipe(autoprefixer())
     .pipe(gulp.dest(dir.root + dir.css, {sourcemaps: '../' + dir.dev + dir.sourcemap}));
@@ -235,7 +233,6 @@ const htmlBuild = gulp.series(
 
 //- CSSパブリッシュタスク
 const cssBuild = gulp.series(
-  sassComb,
   sassCompile,
   copy,
   reload
@@ -283,3 +280,4 @@ const build = gulp.parallel(watchFiles, browser);
 exports.default = build;
 exports.spritePublish = spritePublish;
 exports.productionBuild = productionBuild;
+exports.sassComb = sassComb;
