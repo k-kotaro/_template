@@ -164,8 +164,12 @@ const productionSassCompile = () => {
 const bundle = () => {
   const webpackConfig = require('./webpack.development.config');
   return webpackStream(webpackConfig, webpack)
+    .on('error', function (e) {
+    this.emit('end');
+  })
     .pipe(gulp.dest(dir.root + dir.dev + dir.js));
 };
+
 
 //- 本番用webpackタスク
 const productionBundle = () => {
