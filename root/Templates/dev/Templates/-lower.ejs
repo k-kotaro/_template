@@ -1,12 +1,15 @@
-<!DOCTYPE html>
+<%
+  var pageID = 'template';
+%><!DOCTYPE html>
 <html lang="ja">
 <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
 <meta charset="utf-8">
-<%- include(json['template'].path + 'include/common/-meta', {page: json['template']}) %>
-<%- include(json['template'].path + 'include/common/-headCss', {page: json['template']}) %>
-<%- include(json['template'].path + 'include/common/-headScript', {page: json['template']}) %>
+<%- include(json[pageID].path + 'include/common/-meta', {page: json[pageID]}) %>
+<%- include(json[pageID].path + 'include/common/-headCss', {page: json[pageID]}) %>
+<%- include(json[pageID].path + 'include/common/-headScript', {page: json[pageID]}) %>
 <script type="application/ld+json">
   [
+<%- include(json[pageID].path + 'include/common/-jsonld', {page: json[pageID], type: "WebSite"}) %>
     {
       "@context": "http://schema.org",
       "@type": "WebSite",
@@ -31,16 +34,16 @@
 </script>
 </head>
 <body>
-<div id="document" class="<%= json['template'].pageID %>">
-<%- include(json['template'].path + 'include/common/-header', {page: json['template']}) %>
-<%- include(json['template'].path + 'include/common/-gnav', {page: json['template']}) %>
+<div id="document" class="<%= json[pageID].pageID %>">
+<%- include(json[pageID].path + 'include/common/-header', {page: json[pageID]}) %>
+<%- include(json[pageID].path + 'include/common/-gnav', {page: json[pageID]}) %>
 
 <div id="container">
 <nav id="breadcrumb">
 <ol>
-<li><a href="<%= json['template'].path %>"><span>HOME</span></a></li>
-<li><a href="<%= json['template'].path %>"><span>breadcrumb</span></a></li>
-<li><em><%= json['template'].pageName %></em></li>
+<li><a href="<%= json[pageID].path %>"><span>HOME</span></a></li>
+<li><a href="<%= json[pageID].path %>"><span>breadcrumb</span></a></li>
+<li><em><%= json[pageID].pageName %></em></li>
 </ol>
 <!-- /#breadcrumb --></nav>
 <main>
@@ -50,16 +53,16 @@
 main contents area
 
 
-<%- include(json['template'].path + 'include/common/-pagetop') %>
+<%- include(json[pageID].path + 'include/common/-pagetop') %>
 <!-- /#mainContents ==========--></article>
 </main>
 
-<%- include(json['template'].path + 'include/common/-subContents', {page: json['template']}) %>
+<%- include(json[pageID].path + 'include/common/-subContents', {page: json[pageID]}) %>
 <!-- /#container ==========--></div>
 
-<%- include(json['template'].path + 'include/common/-footer', {page: json['template']}) %>
+<%- include(json[pageID].path + 'include/common/-footer', {page: json[pageID]}) %>
 <!-- /#document ==========--></div>
-<script src="<%= json['template'].path %>scripts/common/bundle.js" defer></script>
+<script src="<%= json[pageID].path %>scripts/common/bundle.js" defer></script>
 </body>
 </body>
 </html>

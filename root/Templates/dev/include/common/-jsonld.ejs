@@ -1,0 +1,29 @@
+<%
+var _default = json['default'];
+for ( var key in _default ) {
+  if ( typeof page[key] === 'undefined' ) {
+    page[key] = _default[key];
+  }
+}
+-%>
+    {
+      "@context": "http://schema.org",
+      "@type": "<%= type %>",
+      "name": "<%= json['default'].siteName %>",
+      "url": "<%= json['default'].siteUrl %>",<% if(type == "Article") { %>
+      "author": {
+        "@type": "Organization",
+        "name": "<%= json['default'].siteName %>"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "<%= json['default'].siteName %>",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://www.otsuka.co.jp/b240/images/common/header_img_logo.png"
+        }
+      },
+      "datePublished": "2019-10-18",
+      "headline": "<%= page['description'] %>",<% } %>
+      "image":  "<%= json['default'].ogp_img %>"
+    },
