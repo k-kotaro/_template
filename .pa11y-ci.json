@@ -1,0 +1,11 @@
+{
+  "defaults": {
+    "standard": "WCAG2AA",
+    "includeWarnings": true,
+    "includeNotices": true
+  },
+  "urls": [
+    "https://www.otsuka.co.jp/cmt/",
+    "https://www.otsuka.co.jp/cmt/product/"
+  ]
+}
