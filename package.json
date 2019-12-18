@@ -4,8 +4,9 @@
   "description": "",
   "main": "gulpfile.js",
   "scripts": {
+    "task": "node ./task/main.js",
     "start": "DEV_TOOL=inline-source-map webpack -w --mode development",
-    "build": "webpack --mode production"
+    "build": "webpack task"
   },
   "author": "metaphase XD",
   "devDependencies": {
