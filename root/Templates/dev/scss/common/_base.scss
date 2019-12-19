@@ -47,9 +47,9 @@ a {
   color: $baseColorType02;
   @media screen and (min-width: $rwdBreakPoint01) {
     &[href*="tel:"] {
-      cursor: text;
       text-decoration: none;
       pointer-events: none;
+      cursor: text;
       img {
         cursor: default;
       }
@@ -90,4 +90,3 @@ a {
 --------------------------------------------------------------------------------------------------- */
 
 @import "../_base/footer";
-
