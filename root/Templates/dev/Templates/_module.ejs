@@ -1,13 +1,16 @@
-<!DOCTYPE html>
+<%
+  var pageID = 'module';
+%><!DOCTYPE html>
 <html lang="ja">
 <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
 <meta charset="utf-8">
-<%- include(json['module'].path + 'include/common/-meta', {page: json['module']}) %>
-<%- include(json['module'].path + 'include/common/-headCss', {page: json['module']}) %>
+<%- include(json[pageID].path + 'include/common/-meta', {page: json[pageID]}) %>
+<%- include(json[pageID].path + 'include/common/-headCss', {page: json[pageID]}) %>
 <link rel="stylesheet" href="local.css">
-<%- include(json['module'].path + 'include/common/-headScript', {page: json['module']}) %>
+<%- include(json[pageID].path + 'include/common/-headScript', {page: json[pageID]}) %>
 <script type="application/ld+json">
   [
+<%- include(json[pageID].path + 'include/common/-jsonld', {page: json[pageID], type: "WebSite"}) %>
     {
       "@context": "http://schema.org",
       "@type": "WebSite",
@@ -32,16 +35,16 @@
 </script>
 </head>
 <body>
-<div id="document" class="<%= json['module'].pageID %>">
-<%- include(json['module'].path + 'include/common/-header', {page: json['module']}) %>
-<%- include(json['module'].path + 'include/common/-gnav', {page: json['module']}) %>
+<div id="document" class="<%= json[pageID].pageID %>">
+<%- include(json[pageID].path + 'include/common/-header', {page: json[pageID]}) %>
+<%- include(json[pageID].path + 'include/common/-gnav', {page: json[pageID]}) %>
 
 <div id="container">
 <nav id="breadcrumb">
 <ol>
-<li><a href="<%= json['module'].path %>"><span>HOME</span></a></li>
-<li><a href="<%= json['module'].path %>"><span>breadcrumb</span></a></li>
-<li><em><%= json['module'].pageName %></em></li>
+<li><a href="<%= json[pageID].path %>"><span>HOME</span></a></li>
+<li><a href="<%= json[pageID].path %>"><span>breadcrumb</span></a></li>
+<li><em><%= json[pageID].pageName %></em></li>
 <!-- /.breadcrumb --></ol>
 </nav>
 <main>
@@ -299,15 +302,15 @@
 <p><span class="pdf"><a href=".pdf" target="_blank">PDFリンク</a></span></p>
 
 
-<%- include(json['module'].path + 'include/common/-pagetop') %>
+<%- include(json[pageID].path + 'include/common/-pagetop') %>
 <!-- /#mainContents ==========--></article>
 </main>
 
-<%- include(json['module'].path + 'include/common/-subContents', {page: json['module']}) %>
+<%- include(json[pageID].path + 'include/common/-subContents', {page: json[pageID]}) %>
 <!-- /#container ==========--></div>
 
-<%- include(json['module'].path + 'include/common/-footer', {page: json['module']}) %>
+<%- include(json[pageID].path + 'include/common/-footer', {page: json[pageID]}) %>
 <!-- /#document ==========--></div>
-<script src="<%= json['module'].path %>scripts/common/bundle.js" defer></script>
+<script src="<%= json[pageID].path %>scripts/common/bundle.js" defer></script>
 </body>
 </html>

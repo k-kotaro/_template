@@ -5,7 +5,6 @@ const path = require('path');
 const plumber = require('gulp-plumber');
 const changed = require('gulp-changed');
 const rename = require('gulp-rename');
-const cached  = require('gulp-cached');
 const ejs = require('gulp-ejs');
 const htmlhint = require("gulp-htmlhint");
 const iconfont = require('gulp-iconfont');
@@ -170,6 +169,7 @@ const bundle = () => {
   })
     .pipe(gulp.dest(dir.root + dir.dev + dir.js));
 };
+
 
 //- 本番用webpackタスク
 const productionBundle = () => {
