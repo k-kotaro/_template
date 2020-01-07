@@ -3,7 +3,7 @@
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 //
 //    version: 1.0
-//    created: 2017/01/01
+//    created: 2020/01/07
 //    update : -
 //
 //////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -14,12 +14,37 @@
 base
 
 ====================================================================================================*/
-
+@font-face {
+  font-family: "Original Yu Gothic";
+  src: local("Yu Gothic Medium");
+  font-weight: 100;
+}
+@font-face {
+  font-family: "Original Yu Gothic";
+  src: local("Yu Gothic Medium");
+  font-weight: 200;
+}
+@font-face {
+  font-family: "Original Yu Gothic";
+  src: local("Yu Gothic Medium");
+  font-weight: 300;
+}
+@font-face {
+  font-family: "Original Yu Gothic";
+  src: local("Yu Gothic Medium");
+  font-weight: 400;
+}
+@font-face {
+  font-family: "Original Yu Gothic";
+  src: local("Yu Gothic Bold");
+  font-weight: bold;
+}
 
 body {
   color: $baseColorType01;
-
   font-feature-settings: "palt" 1;
+  font-family: $baseFontFamily;
+  @include fts();
 
   @media screen and (min-width: $rwdBreakPoint01) {
     @include fts($lin: $baseLin);
@@ -27,19 +52,6 @@ body {
 
   @media screen and (max-width: $rwdBreakPoint01 - 1) {
     @include fts($baseSpFontSize, $baseSpLin);
-  }
-}
-
-#document {
-  overflow: hidden;
-  margin: 0 auto;
-
-  @media screen and (min-width: $rwdBreakPoint01) {
-    min-width: $contentWidth;
-  }
-
-  @media screen and (max-width: $rwdBreakPoint01 - 1) {
-    min-width: $spContentWidth;
   }
 }
 
@@ -56,6 +68,27 @@ a {
     }
   }
   @media screen and (max-width: $rwdBreakPoint01 - 1) {
+  }
+}
+
+button,
+input,
+select,
+textarea {
+  font-family: $baseFontFamily;
+  @include fts();
+}
+
+#document {
+  overflow: hidden;
+  margin: 0 auto;
+
+  @media screen and (min-width: $rwdBreakPoint01) {
+    min-width: $contentWidth;
+  }
+
+  @media screen and (max-width: $rwdBreakPoint01 - 1) {
+    min-width: $spContentWidth;
   }
 }
 
@@ -90,4 +123,4 @@ a {
 --------------------------------------------------------------------------------------------------- */
 
 @import "../_base/footer";
-
+

@@ -229,7 +229,7 @@
 // @include fts(16, 32);
 // @include fts(16, '40px');
 @mixin fts($fts: $baseFontSize, $lin: null, $weight: null) {
-  $rem: $fts / 10;
+  $rem: $fts / 16;
   @if type-of($fts) == 'string'{
     font-size: unquote($fts);
     font-weight: $weight;
