@@ -145,7 +145,6 @@ const sassComb = () => {
 const sassCompile = () => {
   return gulp.src( dir.root + dir.dev + dir.scss + '**/*.scss', {sourcemaps: true})
     .pipe(plumber())
-    .pipe(csscomb())
     .pipe(sass({
       outputStyle: 'expanded'
     }).on('error', sass.logError))

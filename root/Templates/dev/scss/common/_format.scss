@@ -21,7 +21,7 @@ html {
 body {
   margin: 0;
   padding: 0;
-  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 }
 
 h1,
@@ -40,8 +40,8 @@ p {
 ul,
 ol {
   padding-left: 0;
-  letter-spacing: -.5em;
   list-style: none;
+  letter-spacing: -.5em;
 }
 
 li {
@@ -86,8 +86,8 @@ input[type="reset"] {
 button,
 input[type="button"],
 input[type="submit"],
-input[type="reset"] {
-select{
+input[type="reset"],
+select {
   appearance: none;
 }
 button {
