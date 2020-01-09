@@ -134,9 +134,9 @@ const spritePublish = (done) => {
 //- sass整形
 const sassComb = () => {
   return gulp.src([dir.root + dir.dev + dir.scss + '**/*.scss', '!' + dir.root + dir.dev + dir.scss + '_setting/*.scss', '!' + dir.root + dir.dev + dir.scss + '_sprite/*.scss', '!' + dir.root + dir.dev + dir.scss + '_temp/*.scss'], {
-    since: gulp.lastRun(sassComb)
+    //since: gulp.lastRun(sassComb)
   })
-    .pipe(changed(dir.root + dir.dev + dir.scss))
+    //.pipe(changed(dir.root + dir.dev + dir.scss))
     .pipe(csscomb())
     .pipe(gulp.dest(dir.root +dir.dev + dir.scss));
 };
@@ -145,6 +145,7 @@ const sassComb = () => {
 const sassCompile = () => {
   return gulp.src( dir.root + dir.dev + dir.scss + '**/*.scss', {sourcemaps: true})
     .pipe(plumber())
+    .pipe(csscomb())
     .pipe(sass({
       outputStyle: 'expanded'
     }).on('error', sass.logError))
@@ -238,7 +239,7 @@ const htmlBuild = gulp.series(
 
 //- CSSパブリッシュタスク
 const cssBuild = gulp.series(
-  sassComb,
+  //sassComb,
   sassCompile,
   copy
 );
@@ -281,7 +282,7 @@ const watchFiles = () => {
   gulp.watch(dir.root + dir.dev + dir.spriteImg + '**/*.png', spriteBuild);
   gulp.watch(dir.root + dir.dev + dir.img + '/**/*.+(jpg|png|gif|svg)', imageComp);
   gulp.watch(dir.root + dir.dev + dir.js + '**/*.js', jsBuild);
-  gulp.watch([dir.root + '**/*.html', dir.root + dir.css + '**/*.css', dir.root + dir.js + '**/*.js', dir.root + dir.dev + '**/*'], browserReload);
+  gulp.watch([dir.root + '**/*.html', dir.root + dir.css + '**/*.css', dir.root + dir.js + '**/*.js', '!' + dir.root + dir.dev + '**/*'], browserReload);
 };
 
 //- default
