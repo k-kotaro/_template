@@ -16,35 +16,34 @@ base
 ====================================================================================================*/
 @font-face {
   font-family: "Original Yu Gothic";
-  src: local("Yu Gothic Medium");
   font-weight: 100;
+  src: local("Yu Gothic Medium");
 }
 @font-face {
   font-family: "Original Yu Gothic";
-  src: local("Yu Gothic Medium");
   font-weight: 200;
+  src: local("Yu Gothic Medium");
 }
 @font-face {
   font-family: "Original Yu Gothic";
-  src: local("Yu Gothic Medium");
   font-weight: 300;
-}
-@font-face {
-  font-family: "Original Yu Gothic";
   src: local("Yu Gothic Medium");
-  font-weight: 400;
 }
 @font-face {
   font-family: "Original Yu Gothic";
-  src: local("Yu Gothic Bold");
+  font-weight: 400;
+  src: local("Yu Gothic Medium");
+}
+@font-face {
+  font-family: "Original Yu Gothic";
   font-weight: 700;
+  src: local("Yu Gothic Bold");
 }
 
 body {
   color: $baseColorType01;
-  font-feature-settings: "palt" 1;
   font-family: $baseFontFamily;
-  @include fts();
+  font-feature-settings: "palt" 1;
 
   @media screen and (min-width: $rwdBreakPoint01) {
     @include fts($lin: $baseLin);
@@ -123,4 +122,3 @@ textarea {
 --------------------------------------------------------------------------------------------------- */
 
 @import "../_base/footer";
-

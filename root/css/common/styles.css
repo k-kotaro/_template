@@ -20,14 +20,15 @@ format
 ====================================================================================================*/
 html {
   overflow-y: scroll;
-  font-size: 10px;
 }
 
 body {
   margin: 0;
   padding: 0;
-  font-family: "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "メイリオ", Meiryo, sans-serif;
   -webkit-text-size-adjust: 100%;
+     -moz-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+          text-size-adjust: 100%;
 }
 
 h1,
@@ -40,18 +41,13 @@ h6 {
 }
 
 p {
-  margin: 0 0 1.5em;
+  margin-top: 0;
 }
 
 ul,
 ol {
-  margin: 0 0 1.5em;
   padding-left: 0;
   letter-spacing: -.5em;
-}
-
-ul,
-ol {
   list-style: none;
 }
 
@@ -60,7 +56,6 @@ li {
 }
 
 table {
-  margin: 0 0 1.5em;
   border-spacing: 0;
   border-collapse: collapse;
 }
@@ -75,7 +70,7 @@ hr {
 }
 
 img {
-  border: 0;
+  border: none;
   vertical-align: middle;
 }
 
@@ -87,9 +82,7 @@ button,
 input,
 select,
 textarea {
-  font-family: "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "メイリオ", Meiryo, sans-serif;
   vertical-align: middle;
-  font-size: 1.6rem;
 }
 
 button,
@@ -99,15 +92,25 @@ input[type="reset"] {
   cursor: pointer;
 }
 
+button,
+input[type="button"],
+input[type="submit"],
+input[type="reset"],
+select {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+}
+
 button {
-  display: inline;
+  display: inline-block;
   border: none;
   padding: 0;
   background: none;
 }
 
 button::-moz-focus-inner {
-  border: 0;
+  border: none;
   padding: 0;
 }
 
@@ -135,7 +138,7 @@ small {
 }
 
 em {
-  font-weight: bold;
+  font-weight: 700;
 }
 
 article,
@@ -151,6 +154,7 @@ mark,
 audio,
 video,
 picture,
+source,
 main {
   display: block;
   margin: 0;
@@ -165,33 +169,83 @@ fieldset {
   padding: 0;
 }
 
-nav ul {
-  list-style: none;
-}
-
 /*====================================================================================================
 
 base
 
 ====================================================================================================*/
+@font-face {
+  font-family: "Original Yu Gothic";
+  src: local("Yu Gothic Medium");
+  font-weight: 100;
+}
+
+@font-face {
+  font-family: "Original Yu Gothic";
+  src: local("Yu Gothic Medium");
+  font-weight: 200;
+}
+
+@font-face {
+  font-family: "Original Yu Gothic";
+  src: local("Yu Gothic Medium");
+  font-weight: 300;
+}
+
+@font-face {
+  font-family: "Original Yu Gothic";
+  src: local("Yu Gothic Medium");
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "Original Yu Gothic";
+  src: local("Yu Gothic Bold");
+  font-weight: 700;
+}
+
 body {
   color: #000000;
   -webkit-font-feature-settings: "palt" 1;
           font-feature-settings: "palt" 1;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Hiragino Sans", "Noto Sans CJK JP", "Original Yu Gothic", "Yu Gothic", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Sans Emoji";
 }
 
 @media screen and (min-width: 768px) {
   body {
-    font-size: 1.6rem;
+    font-size: 1rem;
     line-height: 1.5;
   }
 }
 
 @media screen and (max-width: 767px) {
   body {
-    font-size: 1.4rem;
+    font-size: 0.875rem;
     line-height: 1.42857;
   }
+}
+
+a {
+  color: #004ba5;
+}
+
+@media screen and (min-width: 768px) {
+  a[href*="tel:"] {
+    cursor: text;
+    text-decoration: none;
+    pointer-events: none;
+  }
+  a[href*="tel:"] img {
+    cursor: default;
+  }
+}
+
+button,
+input,
+select,
+textarea {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Hiragino Sans", "Noto Sans CJK JP", "Original Yu Gothic", "Yu Gothic", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Sans Emoji";
+  font-size: 1rem;
 }
 
 #document {
@@ -208,21 +262,6 @@ body {
 @media screen and (max-width: 767px) {
   #document {
     min-width: 320px;
-  }
-}
-
-a {
-  color: #004ba5;
-}
-
-@media screen and (min-width: 768px) {
-  a[href*="tel:"] {
-    text-decoration: none;
-    pointer-events: none;
-    cursor: text;
-  }
-  a[href*="tel:"] img {
-    cursor: default;
   }
 }
 
@@ -361,7 +400,7 @@ a {
 }
 
 #breadcrumb ol > li em {
-  font-weight: normal;
+  font-weight: 400;
 }
 
 /* MainContents
@@ -502,7 +541,7 @@ a {
 
 @media screen and (min-width: 768px) {
   .m_textHeading {
-    font-size: 1.8rem;
+    font-size: 1.125rem;
   }
 }
 
@@ -792,7 +831,7 @@ a {
   }
   .m_liquidImage .caption {
     margin: 10px 0 0;
-    font-size: 1.4rem;
+    font-size: 0.875rem;
     line-height: 1.71429;
   }
 }
@@ -1205,7 +1244,7 @@ a {
 
 /* font style */
 [class*="_fontBold"] {
-  font-weight: bold;
+  font-weight: 700;
 }
 
 [class*="_fontItalic"] {
@@ -1214,7 +1253,7 @@ a {
 
 [class*="_fontNormal"] {
   font-style: normal !important;
-  font-weight: normal !important;
+  font-weight: 400 !important;
 }
 
 /* fontColor */
