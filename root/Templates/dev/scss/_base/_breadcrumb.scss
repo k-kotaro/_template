@@ -28,7 +28,7 @@
       @include iblock(middle);
     }
     em {
-      font-weight: normal;
+      font-weight: $fontWeightNormal;
     }
   }
 }
