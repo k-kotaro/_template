@@ -37,7 +37,7 @@
 
 /* font style */
 [class*="_fontBold"] {
-  font-weight: bold;
+  font-weight: 700;
 }
 
 [class*="_fontItalic"] {
@@ -46,7 +46,7 @@
 
 [class*="_fontNormal"] {
   font-style: normal !important;
-  font-weight: normal !important;
+  font-weight: $fontWeightNormal !important;
 }
 
 

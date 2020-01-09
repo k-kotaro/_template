@@ -133,7 +133,10 @@ const spritePublish = (done) => {
 
 //- sass整形
 const sassComb = () => {
-  return gulp.src([dir.root + dir.dev + dir.scss + '**/*.scss','!' + dir.root + dir.dev + dir.scss + '_setting/*.scss','!' + dir.root + dir.dev + dir.scss + '_sprite/*.scss','!' + dir.root + dir.dev + dir.scss + '_temp/*.scss'])
+  return gulp.src([dir.root + dir.dev + dir.scss + '**/*.scss', '!' + dir.root + dir.dev + dir.scss + '_setting/*.scss', '!' + dir.root + dir.dev + dir.scss + '_sprite/*.scss', '!' + dir.root + dir.dev + dir.scss + '_temp/*.scss'], {
+    //since: gulp.lastRun(sassComb)
+  })
+    //.pipe(changed(dir.root + dir.dev + dir.scss))
     .pipe(csscomb())
     .pipe(gulp.dest(dir.root +dir.dev + dir.scss));
 };
@@ -142,6 +145,7 @@ const sassComb = () => {
 const sassCompile = () => {
   return gulp.src( dir.root + dir.dev + dir.scss + '**/*.scss', {sourcemaps: true})
     .pipe(plumber())
+    .pipe(csscomb())
     .pipe(sass({
       outputStyle: 'expanded'
     }).on('error', sass.logError))
@@ -230,15 +234,14 @@ const reload = (done) => {
 const htmlBuild = gulp.series(
   gulp.parallel(ejsCompile, imageminify),
   htmlLint,
-  copy,
-  reload
+  copy
 );
 
 //- CSSパブリッシュタスク
 const cssBuild = gulp.series(
+  //sassComb,
   sassCompile,
-  copy,
-  reload
+  copy
 );
 
 //- アイコンフォント作成タスク
@@ -252,7 +255,7 @@ const spriteBuild = gulp.series(
   imageminify
 );
 
-//- 画像切り出しタスク
+//- 画像圧縮タスク
 const imageComp = gulp.series(
   imageminify
 );
@@ -260,7 +263,11 @@ const imageComp = gulp.series(
 //- JSパブリッシュタスク
 const jsBuild = gulp.series(
   bundle,
-  copy,
+  copy
+);
+
+//- ブラウザリロードタスク
+const browserReload = gulp.series(
   reload
 );
 
@@ -275,6 +282,7 @@ const watchFiles = () => {
   gulp.watch(dir.root + dir.dev + dir.spriteImg + '**/*.png', spriteBuild);
   gulp.watch(dir.root + dir.dev + dir.img + '/**/*.+(jpg|png|gif|svg)', imageComp);
   gulp.watch(dir.root + dir.dev + dir.js + '**/*.js', jsBuild);
+  gulp.watch([dir.root + '**/*.html', dir.root + dir.css + '**/*.css', dir.root + dir.js + '**/*.js', '!' + dir.root + dir.dev + '**/*'], browserReload);
 };
 
 //- default
