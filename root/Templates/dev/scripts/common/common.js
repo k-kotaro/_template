@@ -5,15 +5,14 @@ import Layzr from './libs/layzr.js';
 import picturefill from 'picturefill';
 picturefill();
 
-const breakpoint = 768;
-let gnavMenuOpenFlg = 0;
-let contentWidth;
+export const breakpoint = 768;
+export let contentWidth;
 
 // ページロード中は画面見せないようにする
 $('html').prepend('<div class="windowload" style="position: fixed;background-color: #fff;width: 100%; height: 100%;z-index: 20000;"></div>');
 
 // デバイス判定
-const _ua = ((u) => {
+export const _ua = ((u) => {
   return {
     Tablet:(u.indexOf('windows') != -1 && u.indexOf('touch') != -1 && u.indexOf('tablet pc') == -1)
     || u.indexOf('ipad') != -1
@@ -43,15 +42,15 @@ const phoneLink = () => {
 
 // スムーススクロール
 const sroothscroll = () => {
-  $('.pagetop > a[href*="#document"], a[href*="#anc_"]').click(function(){
-    let offset = $($(this).attr('href')).offset();
-    $('html, body').animate({scrollTop:offset.top}, 400);
-    return false;
+  $(document).on('click', '.pagetop > a[href*="#document"], a[href*="#anc_"]', function(e){
+    let offset = $($(this).attr('href')).offset().top;
+    $('html, body').animate({scrollTop:offset}, 400);
+    e.preventDefault();
   });
 };
 
 // グロナビ設定 ※サイト構造に応じて変更
-const gnavMenuOpen = () => {
+const gnav = () => {
   if($('#gnav .menu').length){
     $('#gnav .menu > *').click(function(){
       if($(this).hasClass('s_animate')){
@@ -63,29 +62,19 @@ const gnavMenuOpen = () => {
       }else{
         $(this).toggleClass('is_active');
       }
-
-      if(gnavMenuOpenFlg == 0){
-        $(this).parent().next('ul').slideDown();
-        gnavMenuOpenFlg = 1;
-      }else{
-        $(this).parent().next('ul').slideUp();
-        gnavMenuOpenFlg = 0;
-      }
-
       return false;
     });
-    gnavMenu();
+    gnavSet();
   }
 };
 
-const gnavMenu = () => {
+const gnavSet = () => {
   if($('#gnav .menu').length){
     if($(window).width() < breakpoint){
       $('.menu + ul:visible').hide();
     }else{
       $('#gnav .menu > *').removeClass('is_active');
       $('.menu + ul').removeAttr('style');
-      gnavMenuOpenFlg = 0;
     }
   }
 };
@@ -107,7 +96,7 @@ $(function(){
 $(window).on('load', function(){
   phoneLink();
   sroothscroll();
-  gnavMenuOpen();
+  gnav();
 
   // 画像遅延読み込み実行
   layzr.update().check().handlers(true);
@@ -125,7 +114,7 @@ $(window).on('resize', function(){
   timer = setTimeout(function(){
     let nowSize = $(window).innerWidth();
     if(contentWidth != nowSize){
-      gnavMenu();
+      gnavSet();
       contentWidth = $(window).innerWidth();
     }
   }, 50);

@@ -1,2 +1,4 @@
 // common
-import './common.js';
+import * as common from './common';
+
+console.log(common.breakpoint);
