@@ -49,36 +49,6 @@ const sroothscroll = () => {
   });
 };
 
-// グロナビ設定 ※サイト構造に応じて変更
-const gnav = () => {
-  if($('#gnav .menu').length){
-    $('#gnav .menu > *').click(function(){
-      if($(this).hasClass('s_animate')){
-        if($(this).hasClass('is_active')){
-          $(this).removeClass('is_active').addClass('close');
-        }else{
-          $(this).addClass('is_active').removeClass('close');
-        }
-      }else{
-        $(this).toggleClass('is_active');
-      }
-      return false;
-    });
-    gnavSet();
-  }
-};
-
-const gnavSet = () => {
-  if($('#gnav .menu').length){
-    if($(window).width() < breakpoint){
-      $('.menu + ul:visible').hide();
-    }else{
-      $('#gnav .menu > *').removeClass('is_active');
-      $('.menu + ul').removeAttr('style');
-    }
-  }
-};
-
 // 画像遅延読み込み
 const layzr = Layzr({
   normal: 'data-normal',
@@ -96,7 +66,6 @@ $(function(){
 $(window).on('load', function(){
   phoneLink();
   sroothscroll();
-  gnav();
 
   // 画像遅延読み込み実行
   layzr.update().check().handlers(true);
@@ -106,16 +75,3 @@ $(window).on('load', function(){
   });
 });
 
-let timer = false;
-$(window).on('resize', function(){
-  if(timer !== false){
-    clearTimeout(timer);
-  }
-  timer = setTimeout(function(){
-    let nowSize = $(window).innerWidth();
-    if(contentWidth != nowSize){
-      gnavSet();
-      contentWidth = $(window).innerWidth();
-    }
-  }, 50);
-});
