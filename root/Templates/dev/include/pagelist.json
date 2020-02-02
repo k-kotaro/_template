@@ -1,0 +1,77 @@
+{
+  "default": {
+    "siteName": "サイト名",
+    "siteUrl": "https://サイトURL",
+    "title": "共通ページタイトル",
+    "description": "共通ディスクリプション",
+    "ogp_img": "共通ogp画像"
+  },
+  "template": {
+    "pageName": "テンプレート",
+    "title": "テンプレート",
+    "pageID": "template",
+    "categoryID": "",
+    "pageUrl": "",
+    "path": "../"
+  },
+  "module": {
+    "pageName": "モジュール集",
+    "title": "モジュール集",
+    "pageID": "module",
+    "categoryID": "template",
+    "pageUrl": "",
+    "path": "../"
+  },
+  "pagelist": {
+    "pageName": "ページリスト",
+    "title": "ページリスト",
+    "pageID": "filelist",
+    "categoryID": "template",
+    "pageUrl": "",
+    "path": "../"
+  },
+  "home": {
+    "pageNum": "A001",
+    "pageName": "個別ページタイトル",
+    "title": "個別ページタイトル",
+    "description": "個別discription",
+    "pageID": "home",
+    "categoryID": "home",
+    "dirLevel": 1,
+    "pageUrl": "/",
+    "path": "./"
+  },
+  "lowerB": {
+    "pageNum": "B001",
+    "pageName": "個別ページタイトル02",
+    "title": "個別ページタイトル",
+    "description": "個別discription",
+    "pageID": "home",
+    "categoryID": "home",
+    "dirLevel": 2,
+    "pageUrl": "/lower/",
+    "path": "../"
+  },
+  "lowerC": {
+    "pageNum": "C001",
+    "pageName": "個別ページタイトル03",
+    "title": "個別ページタイトル",
+    "description": "個別discription",
+    "pageID": "home",
+    "categoryID": "home",
+    "dirLevel": 3,
+    "pageUrl": "/lower/",
+    "path": "../"
+  },
+  "lowerD": {
+    "pageNum": "D001",
+    "pageName": "個別ページタイトル04",
+    "title": "個別ページタイトル",
+    "description": "個別discription",
+    "pageID": "home",
+    "categoryID": "home",
+    "dirLevel": 4,
+    "pageUrl": "/lower/",
+    "path": "../"
+  }
+}
