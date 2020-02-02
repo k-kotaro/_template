@@ -48,7 +48,7 @@ const getFolders = (dir) => {
 
 //- EJSタスク
 const ejsCompile = () => {
-  const meta = JSON.parse(fs.readFileSync(dir.root + dir.dev + 'include/meta.json', 'utf-8'));
+  const pages = JSON.parse(fs.readFileSync(dir.root + dir.dev + 'include/pagelist.json', 'utf-8'));
   return gulp.src([dir.root + dir.dev + '**/*.ejs', '!' + dir.root + dir.dev + '**/-*.ejs'])
     .pipe(plumber({
       errorHandler: function (err) {
@@ -56,7 +56,7 @@ const ejsCompile = () => {
         this.emit('end');
       }
     }))
-    .pipe(ejs({json:meta}))
+    .pipe(ejs({json:pages}))
     .pipe(rename({extname: '.html'}))
     .pipe(gulp.dest(dir.root));
 };
