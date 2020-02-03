@@ -22,7 +22,7 @@ const pageList = () => {
         let h = '<tr>\n\r<th>'+ pagelist[i].pageNum +'</th>\n\r'
         + blancCell
         + colspan + pagelist[i].pageName +'</td>\n\r'
-        + '<td><a href="'+ pagelist[i].pageUrl +'">'+ pagelist[i].pageUrl +'</td>\n\r</tr>\n\r';
+        + '<td><a href="'+ pagelist[i].pageUrl +'" target="_blank">'+ pagelist[i].pageUrl +'</td>\n\r</tr>\n\r';
         $("table.jsonPagelist > tbody").append(h);
       }
     }

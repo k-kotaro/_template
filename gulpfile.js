@@ -149,7 +149,9 @@ const sassCompile = () => {
       outputStyle: 'expanded'
     }).on('error', sass.logError))
     .pipe(inlineimage())
-    .pipe(autoprefixer())
+    .pipe(autoprefixer({
+      grid: true
+    }))
     .pipe(gulp.dest(dir.root + dir.css, {sourcemaps: '../' + dir.dev + dir.sourcemap}));
 };
 
@@ -159,7 +161,9 @@ const productionSassCompile = () => {
     .pipe(sass())
     .pipe(cleanCSS())
     .pipe(inlineimage())
-    .pipe(autoprefixer())
+    .pipe(autoprefixer({
+      grid: true
+    }))
     .pipe(gulp.dest(dir.root + dir.css));
 };
 
