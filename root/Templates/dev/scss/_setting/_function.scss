@@ -55,3 +55,7 @@
 @function lineHeightMargin($margin, $fontSize, $lin) {
   @return $margin - (($lin - $fontSize) / 2) + px;
 }
+
+@function rem($value) {
+  @return #{$value / 16}rem;
+}
