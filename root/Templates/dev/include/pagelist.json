@@ -31,7 +31,7 @@
     "path": "../"
   },
   "home": {
-    "pageNum": "A001",
+    "SSID": "A001",
     "pageName": "個別ページタイトル",
     "title": "個別ページタイトル",
     "description": "個別discription",
@@ -42,7 +42,7 @@
     "path": "./"
   },
   "lowerB": {
-    "pageNum": "B001",
+    "SSID": "B001",
     "pageName": "個別ページタイトル02",
     "title": "個別ページタイトル",
     "description": "個別discription",
@@ -53,7 +53,7 @@
     "path": "../"
   },
   "lowerC": {
-    "pageNum": "C001",
+    "SSID": "C001",
     "pageName": "個別ページタイトル03",
     "title": "個別ページタイトル",
     "description": "個別discription",
@@ -64,7 +64,7 @@
     "path": "../"
   },
   "lowerD": {
-    "pageNum": "D001",
+    "SSID": "D001",
     "pageName": "個別ページタイトル04",
     "title": "個別ページタイトル",
     "description": "個別discription",
