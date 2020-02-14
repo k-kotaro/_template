@@ -26,6 +26,7 @@ const browserSync = require('browser-sync');
 //- プロジェクト設定
 const project = '_templates';
 const port = 10000;
+const copyTask = true;
 const dir  = {
   root: 'root/',
   css: 'css/',
@@ -171,7 +172,7 @@ const productionSassCompile = () => {
 const bundle = () => {
   const webpackConfig = require('./webpack.development.config');
   return webpackStream(webpackConfig, webpack)
-    .on('error', function (e) {
+  .on('error', function () {
     this.emit('end');
   })
     .pipe(gulp.dest(dir.root + dir.dev + dir.js));
@@ -208,10 +209,16 @@ const imageminify = () => {
 
 //- ファイルコピータスク
 const copy = () => {
-  const dstDir = '/xampp/htdocs/' + project;
-  //var dstDir = '/Applications/XAMPP/xamppfiles/htdocs/' + project;
-  return gulp.src([dir.root + '**/*'])
-    .pipe(gulp.dest(dstDir));
+  if(copyTask){
+    let dstDir;
+    if(process.platform==='win32'){
+      dstDir = '/xampp/htdocs/' + project;
+    }else if(process.platform==='darwin'){
+      dstDir = '/Applications/XAMPP/xamppfiles/htdocs/' + project;
+    }
+    return gulp.src([dir.root + '**/*'])
+      .pipe(gulp.dest(dstDir));
+  }
 };
 
 //- ブラウザ同期表示設定
