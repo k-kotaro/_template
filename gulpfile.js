@@ -249,7 +249,6 @@ const htmlBuild = gulp.series(
 
 //- CSSパブリッシュタスク
 const cssBuild = gulp.series(
-  //sassComb,
   sassCompile,
   copy
 );
@@ -296,7 +295,10 @@ const watchFiles = () => {
 };
 
 //- default
-const build = gulp.parallel(watchFiles, browser);
+const build = gulp.series(
+  sassComb,
+  gulp.parallel(watchFiles, browser)
+);
 
 exports.default = build;
 exports.spritePublish = spritePublish;
