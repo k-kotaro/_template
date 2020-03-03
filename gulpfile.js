@@ -26,6 +26,7 @@ const browserSync = require('browser-sync');
 //- プロジェクト設定
 const project = '_templates';
 const port = 10000;
+const copyTask = true;
 const dir  = {
   root: 'root/',
   css: 'css/',
