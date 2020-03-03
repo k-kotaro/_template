@@ -207,11 +207,18 @@ const imageminify = () => {
 };
 
 //- ファイルコピータスク
-const copy = () => {
-  const dstDir = '/xampp/htdocs/' + project;
-  //var dstDir = '/Applications/XAMPP/xamppfiles/htdocs/' + project;
-  return gulp.src([dir.root + '**/*'])
-    .pipe(gulp.dest(dstDir));
+const copy = (done) => {
+  if(copyTask){
+    let dstDir;
+    if(process.platform==='win32'){
+      dstDir = '/xampp/htdocs/' + project;
+    }else if(process.platform==='darwin'){
+      dstDir = '/Applications/XAMPP/xamppfiles/htdocs/' + project;
+    }
+    return gulp.src([dir.root + '**/*'])
+      .pipe(gulp.dest(dstDir));
+  }
+  done();
 };
 
 //- ブラウザ同期表示設定
