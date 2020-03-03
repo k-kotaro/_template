@@ -208,7 +208,7 @@ const imageminify = () => {
 };
 
 //- ファイルコピータスク
-const copy = () => {
+const copy = (done) => {
   if(copyTask){
     let dstDir;
     if(process.platform==='win32'){
@@ -219,6 +219,7 @@ const copy = () => {
     return gulp.src([dir.root + '**/*'])
       .pipe(gulp.dest(dstDir));
   }
+  done();
 };
 
 //- ブラウザ同期表示設定
