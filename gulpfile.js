@@ -236,15 +236,13 @@ const reload = (done) => {
 //- HTMLパブリッシュタスク
 const htmlBuild = gulp.series(
   gulp.parallel(ejsCompile, imageminify),
-  htmlLint,
-  copy
+  htmlLint
 );
 
 //- CSSパブリッシュタスク
 const cssBuild = gulp.series(
   //sassComb,
-  sassCompile,
-  copy
+  sassCompile
 );
 
 //- アイコンフォント作成タスク
@@ -265,13 +263,13 @@ const imageComp = gulp.series(
 
 //- JSパブリッシュタスク
 const jsBuild = gulp.series(
-  bundle,
-  copy
+  bundle
 );
 
 //- ブラウザリロードタスク
 const browserReload = gulp.series(
-  reload
+  reload,
+  copy
 );
 
 //- 本番ファイル書き出しタスク
