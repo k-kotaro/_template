@@ -26,6 +26,7 @@ const browserSync = require('browser-sync');
 //- プロジェクト設定
 const project = '_templates';
 const port = 10000;
+const copyTask = true;
 const dir  = {
   root: 'root/',
   css: 'css/',
@@ -207,11 +208,18 @@ const imageminify = () => {
 };
 
 //- ファイルコピータスク
-const copy = () => {
-  const dstDir = '/xampp/htdocs/' + project;
-  //var dstDir = '/Applications/XAMPP/xamppfiles/htdocs/' + project;
-  return gulp.src([dir.root + '**/*'])
-    .pipe(gulp.dest(dstDir));
+const copy = (done) => {
+  if(copyTask){
+    let dstDir;
+    if(process.platform==='win32'){
+      dstDir = '/xampp/htdocs/' + project;
+    }else if(process.platform==='darwin'){
+      dstDir = '/Applications/XAMPP/xamppfiles/htdocs/' + project;
+    }
+    return gulp.src([dir.root + '**/*'])
+      .pipe(gulp.dest(dstDir));
+  }
+  done();
 };
 
 //- ブラウザ同期表示設定
@@ -236,15 +244,13 @@ const reload = (done) => {
 //- HTMLパブリッシュタスク
 const htmlBuild = gulp.series(
   gulp.parallel(ejsCompile, imageminify),
-  htmlLint,
-  copy
+  htmlLint
 );
 
 //- CSSパブリッシュタスク
 const cssBuild = gulp.series(
   //sassComb,
-  sassCompile,
-  copy
+  sassCompile
 );
 
 //- アイコンフォント作成タスク
@@ -265,13 +271,13 @@ const imageComp = gulp.series(
 
 //- JSパブリッシュタスク
 const jsBuild = gulp.series(
-  bundle,
-  copy
+  bundle
 );
 
 //- ブラウザリロードタスク
 const browserReload = gulp.series(
-  reload
+  reload,
+  copy
 );
 
 //- 本番ファイル書き出しタスク
