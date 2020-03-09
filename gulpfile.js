@@ -188,9 +188,7 @@ const productionBundle = () => {
 
 //- 画像圧縮タスク
 const imageminify = () => {
-  return gulp.src(dir.root + dir.dev + dir.img + '/**/*.+(jpg|png|gif|svg)', {
-    since: gulp.lastRun(imageminify)
-  })
+  return gulp.src(dir.root + dir.dev + dir.img + '/**/*.+(jpg|png|gif|svg)')
     .pipe(changed(dir.root + dir.img))
     .pipe(imagemin([
       imagemin.jpegtran({
@@ -289,7 +287,7 @@ const watchFiles = () => {
   gulp.watch([dir.root + dir.dev + dir.scss + '**/*.scss', '!' + dir.root + dir.dev + dir.scss + '_setting/_font.scss', '!' + dir.root + dir.dev + dir.scss + '_sprite/*.scss'], cssBuild);
   gulp.watch(dir.root + dir.dev + dir.font + '*.svg', icoBuild);
   gulp.watch(dir.root + dir.dev + dir.spriteImg + '**/*.png', spriteBuild);
-  gulp.watch(dir.root + dir.dev + dir.img + '/**/*.+(jpg|png|gif|svg)', imageComp);
+  gulp.watch(dir.root + dir.dev + dir.img + '**/*.+(jpg|png|gif|svg)', imageComp);
   gulp.watch(dir.root + dir.dev + dir.js + '**/*.js', jsBuild);
   gulp.watch([dir.root + '**/*.html', dir.root + dir.css + '**/*.css', dir.root + dir.js + '**/*.js', '!' + dir.root + dir.dev + '**/*'], browserReload);
 };
