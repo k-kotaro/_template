@@ -134,10 +134,7 @@ const spritePublish = (done) => {
 
 //- sass整形
 const sassComb = () => {
-  return gulp.src([dir.root + dir.dev + dir.scss + '**/*.scss', '!' + dir.root + dir.dev + dir.scss + '_setting/*.scss', '!' + dir.root + dir.dev + dir.scss + '_sprite/*.scss', '!' + dir.root + dir.dev + dir.scss + '_temp/*.scss'], {
-    //since: gulp.lastRun(sassComb)
-  })
-    //.pipe(changed(dir.root + dir.dev + dir.scss))
+  return gulp.src([dir.root + dir.dev + dir.scss + '**/*.scss', '!' + dir.root + dir.dev + dir.scss + '_setting/*.scss', '!' + dir.root + dir.dev + dir.scss + '_sprite/*.scss', '!' + dir.root + dir.dev + dir.scss + '_temp/*.scss'])
     .pipe(csscomb())
     .pipe(gulp.dest(dir.root +dir.dev + dir.scss));
 };
@@ -247,7 +244,6 @@ const htmlBuild = gulp.series(
 
 //- CSSパブリッシュタスク
 const cssBuild = gulp.series(
-  //sassComb,
   sassCompile
 );
 
@@ -293,7 +289,10 @@ const watchFiles = () => {
 };
 
 //- default
-const build = gulp.parallel(watchFiles, browser);
+const build = gulp.series(
+  sassComb,
+  gulp.parallel(watchFiles, browser)
+);
 
 exports.default = build;
 exports.spritePublish = spritePublish;
