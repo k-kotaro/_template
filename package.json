@@ -36,6 +36,7 @@
     "gulp-rename": "^1.4.0",
     "gulp-sass": "^4.0.2",
     "gulp.spritesmith": "^6.11.0",
+    "imagemin-mozjpeg": "^8.0.0",
     "imagemin-pngquant": "^8.0.0",
     "jquery": "^3.4.1",
     "layzr.js": "^2.2.2",
