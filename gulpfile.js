@@ -186,7 +186,7 @@ const productionBundle = () => {
 
 //- 画像圧縮タスク
 const imageminify = () => {
-  return gulp.src(dir.root + dir.dev + dir.img + '/**/*.+(jpg|png|gif|svg)')
+  return gulp.src(dir.root + dir.dev + dir.img + '**/*.+(jpg|png|gif|svg)')
     .pipe(changed(dir.root + dir.img))
     .pipe(imagemin([
       mozjpeg({
