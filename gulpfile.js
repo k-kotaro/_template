@@ -15,6 +15,7 @@ const csscomb = require('gulp-csscomb');
 const inlineimage = require('gulp-inline-image');
 const imagemin = require('gulp-imagemin');
 const pngquant  = require('imagemin-pngquant');
+const mozjpeg = require('imagemin-mozjpeg');
 const cleanCSS = require('gulp-clean-css');
 const autoprefixer = require('gulp-autoprefixer');
 const webpack = require('webpack');
@@ -188,14 +189,13 @@ const imageminify = () => {
   return gulp.src(dir.root + dir.dev + dir.img + '/**/*.+(jpg|png|gif|svg)')
     .pipe(changed(dir.root + dir.img))
     .pipe(imagemin([
-      imagemin.jpegtran({
-        quality: 65-80,
+      mozjpeg({
+        quality: 80,
       }),
       pngquant({
-        quality: [.7, .85],
+        quality: [0.65, 0.8],
       }),
       imagemin.gifsicle(),
-      imagemin.optipng(),
       imagemin.svgo(),
     ]))
     .pipe(imagemin())
