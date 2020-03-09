@@ -1,9 +1,12 @@
-// libs js
-import Layzr from './libs/layzr.js';
+// Layzr js
+import Layzr from 'layzr';
 
 // picturefill js
 import picturefill from 'picturefill';
 picturefill();
+
+// css browser selector js
+//import cssbrowserSelector from './libs/css_browser_selector.js';
 
 export const breakpoint = 768;
 export let contentWidth;
@@ -33,9 +36,9 @@ export const _ua = ((u) => {
 // phone to のPC非活性化
 const phoneLink = () => {
   const $phoneLink = $('a[href*="tel:"]');
-  $phoneLink.click(function(){
+  $phoneLink.on('click', function(e){
     if(!_ua.Mobile){
-      return false;
+      e.preventDefault();
     }
   });
 };
