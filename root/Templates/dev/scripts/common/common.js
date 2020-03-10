@@ -1,12 +1,12 @@
 // Layzr js
-import Layzr from 'layzr';
+import Layzr from 'layzr.js';
 
 // picturefill js
 import picturefill from 'picturefill';
 picturefill();
 
 // css browser selector js
-//import cssbrowserSelector from './libs/css_browser_selector.js';
+//import './libs/css_browser_selector';
 
 export const breakpoint = 768;
 export let contentWidth;
