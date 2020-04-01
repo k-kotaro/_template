@@ -29,7 +29,7 @@ const project = '_templates';
 const port = 10000;
 const copyTask = true;
 const dir  = {
-  root: 'root/',
+  root: 'htdocs/',
   css: 'css/',
   img: 'images/',
   js: 'scripts/',
