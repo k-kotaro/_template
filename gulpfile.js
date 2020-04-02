@@ -226,7 +226,8 @@ const browser = () => {
     server: {
       baseDir: dir.root,
       index: 'index.html'
-    }
+    },
+    open: 'external'
   });
 };
 
