@@ -41,6 +41,7 @@
     "jquery": "^3.4.1",
     "layzr.js": "^2.2.2",
     "picturefill": "^3.0.3",
+    "uglify-es-webpack-plugin": "^0.10.0",
     "webpack": "^4.41.2",
     "webpack-cli": "^3.3.10",
     "webpack-merge": "^4.2.2",
