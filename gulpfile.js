@@ -291,7 +291,7 @@ const browserReload = gulp.series(
 );
 
 //- 本番ファイル書き出しタスク
-const productionBuild = gulp.parallel(productionBundle, productionSassCompile);
+const productionBuild = gulp.parallel(productionBundle, productionSassCompile, fileEncoding);
 
 //- 監視タスク
 const watchFiles = () => {
