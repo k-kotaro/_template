@@ -3,10 +3,10 @@ const webpack = require('webpack');
 const glob = require('glob');
 
 const entries = {};
-glob.sync("./root/Templates/dev/**/entry.js", {
-  ignore: './root/Templates/dev/**/_*.js'
+glob.sync("./htdocs/Templates/dev/**/entry.js", {
+  ignore: './htdocs/Templates/dev/**/_*.js'
 }).map(function (file) {
-  const regEx = new RegExp(`./root/Templates/dev/scripts`);
+  const regEx = new RegExp(`./htdocs/Templates/dev/scripts`);
   const fileOriginalName = file.replace(regEx, '');
   const key = fileOriginalName.replace('entry.js', 'bundle.js');
   //const name = fileOriginalName.replace('entry.js', '');
@@ -33,17 +33,17 @@ module.exports = {
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        use: {
-          loader: 'babel-loader',
-          options: {
-            presets: [
-              [
+        use: [
+          {
+            loader: 'babel-loader',
+            options: {
+              presets: [
                 "@babel/preset-env"
               ]
-            ]
+            }
           }
-        },
-      },
+        ]
+      }
     ]
   },
   plugins: [
