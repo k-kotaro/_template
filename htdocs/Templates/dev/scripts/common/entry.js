@@ -1,3 +1,5 @@
+import "@babel/polyfill";
+
 // common
 import * as common from './common';
 
@@ -5,47 +7,48 @@ let timer = false;
 
 // グロナビ設定 ※サイト構造に応じて変更
 const gnav = () => {
-  if($('#gnav .menu').length){
-    $('#gnav .menu > *').click(function(){
-      if($(this).hasClass('s_animate')){
-        if($(this).hasClass('is_active')){
-          $(this).removeClass('is_active').addClass('close');
+  const btnElm = document.querySelector('#gnav .menu > *');
+  if(document.querySelector('#gnav .menu') != null){
+    btnElm.addEventListener('click', (e) => {
+      if(btnElm.classList.contains('s_animate')){
+        if(btnElm.classList.contains('is_active')){
+          btnElm.classList.remove('is_active').classList.add('close');
         }else{
-          $(this).addClass('is_active').removeClass('close');
+          btnElm.classList.add('is_active').classList.remove('close');
         }
       }else{
-        $(this).toggleClass('is_active');
+        btnElm.classList.toggle('is_active');
       }
-      return false;
+      e.preventDefault();
     });
     gnavSet();
   }
 };
 
 const gnavSet = () => {
-  if($('#gnav .menu').length){
-    if($(window).width() < common.breakpoint){
-      $('.menu + ul:visible').hide();
+  if(document.querySelector('#gnav .menu') != null){
+    if(window.innerWidth < common.breakpoint){
+      document.querySelector('.menu + ul').style.display = 'none';
     }else{
-      $('#gnav .menu > *').removeClass('is_active');
-      $('.menu + ul').removeAttr('style');
+      document.querySelector('#gnav .menu > *').classList.remove('is_active');
+      document.querySelector('.menu + ul').removeAttribute('style');
     }
   }
 };
 
-$(window).on('load', function(){
+window.addEventListener('load', () => {
   gnav();
 });
 
-$(window).on('resize', function(){
+window.addEventListener('resize', () => {
   if(timer !== false){
     clearTimeout(timer);
   }
-  timer = setTimeout(function(){
-    let nowSize = $(window).innerWidth();
+  timer = setTimeout(() => {
+    let nowSize = window.innerWidth;
     if(common.contentWidth != nowSize){
       gnavSet();
-      common.contentWidth = $(window).innerWidth();
+      common.contentWidth = window.innerWidth;
     }
   }, 50);
 });
