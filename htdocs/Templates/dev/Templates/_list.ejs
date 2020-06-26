@@ -1,0 +1,78 @@
+<%
+  var pagelistID = 'module';
+%><!DOCTYPE html>
+<html lang="ja">
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+<meta charset="utf-8">
+<%- include(json[pagelistID].path + 'include/common/-meta', {page: json[pagelistID]}) %>
+<%- include(json[pagelistID].path + 'include/common/-headCss', {page: json[pagelistID]}) %>
+<link rel="stylesheet" href="local.css">
+<%- include(json[pagelistID].path + 'include/common/-headScript', {page: json[pagelistID]}) %>
+<script type="application/ld+json">
+  [
+<%- include(json[pagelistID].path + 'include/common/-jsonld', {page: json[pagelistID], type: "WebSite"}) %>
+    {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "item": {
+            "@id": "<%= json['default'].siteUrl %>",
+            "name": "<%= json['default'].siteName %>"
+          }
+        }
+      ]
+    }
+  ]
+</script>
+</head>
+<body>
+<div id="document" class="<%= json[pagelistID].pageID %>">
+<%- include(json[pagelistID].path + 'include/common/-header', {page: json[pagelistID]}) %>
+<%- include(json[pagelistID].path + 'include/common/-gnav', {page: json[pagelistID]}) %>
+
+<div id="container">
+<nav id="breadcrumb">
+<ol>
+<li><a href="<%= json[pagelistID].path %>"><span>HOME</span></a></li>
+<li><a href="<%= json[pagelistID].path %>"><span>breadcrumb</span></a></li>
+<li><em><%= json[pagelistID].pageName %></em></li>
+<!-- /.breadcrumb --></ol>
+</nav>
+<main>
+<article id="mainContents">
+
+
+  <table class="pageList">
+    <tbody>
+      <tr>
+        <th>A001</th>
+        <td>個別ページタイトル</td>
+        <td><a href="<%= json[pagelistID].path %>">/</a></td>
+      </tr>
+      <tr>
+        <th>B001</th>
+        <td>個別ページタイトル</td>
+        <td><a href="/lower/">/</a></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <table class="jsonPagelist">
+    <tbody></tbody>
+  </table>
+
+<%- include(json[pagelistID].path + 'include/common/-pagetop') %>
+<!-- /#mainContents ==========--></article>
+</main>
+
+<%- include(json[pagelistID].path + 'include/common/-subContents', {page: json[pagelistID]}) %>
+<!-- /#container ==========--></div>
+
+<%- include(json[pagelistID].path + 'include/common/-footer', {page: json[pagelistID]}) %>
+<!-- /#document ==========--></div>
+<script src="<%= json[pagelistID].path %>scripts/Templates/bundle.js" defer></script>
+</body>
+</html>

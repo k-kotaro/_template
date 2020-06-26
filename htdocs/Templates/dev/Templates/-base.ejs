@@ -1,0 +1,49 @@
+<%
+  var pagelistID = 'template';
+%><!DOCTYPE html>
+<html lang="ja">
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+<meta charset="utf-8">
+<%- include(json[pagelistID].path + 'include/common/-meta', {page: json[pagelistID]}) %>
+<%- include(json[pagelistID].path + 'include/common/-headCss', {page: json[pagelistID]}) %>
+<%- include(json[pagelistID].path + 'include/common/-headScript', {page: json[pagelistID]}) %>
+<script type="application/ld+json">
+  [
+<%- include(json[pagelistID].path + 'include/common/-jsonld', {page: json[pagelistID], type: "WebSite"}) %>
+    {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "item": {
+            "@id": "<%= json['default'].siteUrl %>",
+            "name": "<%= json['default'].siteName %>"
+          }
+        }
+      ]
+    }
+  ]
+</script>
+</head>
+
+<body>
+<div id="document" class="<%= json[pagelistID].pageID %>">
+<%- include(json[pagelistID].path + 'include/common/-header', {page: json[pagelistID]}) %>
+<%- include(json[pagelistID].path + 'include/common/-gnav', {page: json[pagelistID]}) %>
+
+<div id="container">
+
+
+    <% main() %>
+
+
+<%- include(json[pagelistID].path + 'include/common/-pagetop') %>
+<!-- /#container ==========--></div>
+
+<%- include(json[pagelistID].path + 'include/common/-footer', {page: json[pagelistID]}) %>
+<!-- /#document ==========--></div>
+<script src="<%= json[pagelistID].path %>scripts/common/bundle.js" defer></script>
+</body>
+</html>
