@@ -27,7 +27,7 @@ const browserSync = require('browser-sync');
 const project = '_templates';
 const port = 10000;
 const dir  = {
-  root: 'root/',
+  root: 'htdocs/',
   css: 'css/',
   img: 'images/',
   js: 'scripts/',
