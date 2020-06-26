@@ -5,6 +5,8 @@ import * as common from './common';
 
 let timer = false;
 
+
+
 // グロナビ設定 ※サイト構造に応じて変更
 const gnav = () => {
   const btnElm = document.querySelector('#gnav .menu > *');
