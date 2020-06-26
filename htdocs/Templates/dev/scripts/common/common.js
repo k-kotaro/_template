@@ -12,7 +12,9 @@ export const breakpoint = 768;
 export let contentWidth;
 
 // ページロード中は画面見せないようにする
-$('html').prepend('<div class="windowload" style="position: fixed;background-color: #fff;width: 100%; height: 100%;z-index: 20000;"></div>');
+const body = document.body;
+const loadWindow = '<div class="loadWindow">';
+body.insertAdjacentHTML('afterbegin', loadWindow);
 
 // デバイス判定
 export const _ua = ((u) => {
@@ -35,20 +37,30 @@ export const _ua = ((u) => {
 
 // phone to のPC非活性化
 const phoneLink = () => {
-  const $phoneLink = $('a[href*="tel:"]');
-  $phoneLink.on('click', function(e){
-    if(!_ua.Mobile){
-      e.preventDefault();
-    }
+  const phoneTarget = document.querySelectorAll('a[href*="tel:"]');
+  const phoneNumArr = Array.prototype.slice.call(phoneTarget);
+  phoneNumArr.forEach((target) => {
+    target.addEventListener('click', (e) => {
+      if(!_ua.Mobile){
+        e.preventDefault();
+      }
+    });
   });
 };
 
 // スムーススクロール
 const sroothscroll = () => {
-  $(document).on('click', '.pagetop > a[href*="#document"], a[href*="#anc_"]', function(e){
-    let offset = $($(this).attr('href')).offset().top;
-    $('html, body').animate({scrollTop:offset}, 400);
-    e.preventDefault();
+  const ancTarget = document.querySelectorAll('.pagetop > a[href*="#document"], a[href*="#anc_"]');
+  const ancTargetArr = Array.prototype.slice.call(ancTarget);
+  ancTargetArr.forEach((target) => {
+    target.addEventListener('click', (e) => {
+      let getId = target.getAttribute('href').replace('#', '');
+      let offset = document.getElementById(getId).offsetTop;
+      $('html, body').animate({
+        scrollTop: offset
+      }, 400);
+      e.preventDefault();
+    });
   });
 };
 
@@ -62,19 +74,21 @@ const layzr = Layzr({
   //image.classList.add('is-show'); // 今回はクラス名を追加してみました。
 });*/
 
-$(function(){
-  contentWidth = $(window).innerWidth();
+document.addEventListener('load', () => {
+  contentWidth = window.innerWidth;
 });
 
-$(window).on('load', function(){
+window.addEventListener('load', () => {
   phoneLink();
   sroothscroll();
 
   // 画像遅延読み込み実行
   layzr.update().check().handlers(true);
 
-  $('.windowload').fadeOut(250, function(){
-    $('.windowload').remove();
-  });
+  const loadWindow = document.querySelector('.loadWindow');
+  loadWindow.classList.add('is_anim');
+  setTimeout(() => {
+    loadWindow.parentNode.removeChild(loadWindow);
+  }, 300);
 });
 
