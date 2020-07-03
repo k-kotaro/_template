@@ -75,17 +75,12 @@ const htmlLint = () => {
 //- アイコンフォント作成タスク
 const iconfontCompile = () => {
   return gulp.src(dir.root + dir.dev + dir.font + '*.svg')
-    .pipe(imagemin([
-      imagemin.svgo({
-        removeViewBox: false,
-        removeMetadata: false,
-        removeUnknownsAndDefaults: false,
-        convertShapeToPath: false,
-        collapseGroups: false,
-        cleanupIDs: false,
-      }),
-    ]))
-    .pipe(imagemin())
+    .pipe(plumber({
+      errorHandler: function (err) {
+        console.log(err);
+        this.emit('end');
+      }
+    }))
     .pipe(iconfontCss({
       fontName: 'icon',
       path: dir.root + dir.dev + dir.scss + '_temp/_font.scss',
