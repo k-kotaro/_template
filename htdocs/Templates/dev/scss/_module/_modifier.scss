@@ -1,0 +1,128 @@
+@charset "utf-8";
+//====================================================================================================
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+//
+//    version: 1.0
+//    created: 2015/05/13
+//    update : -
+//
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+//====================================================================================================
+
+/* text align */
+[class*="_alignLeft"] {
+  text-align: left !important;
+}
+@media screen and (min-width: $rwdBreakPoint01) {
+  [class*="_pcAlignLeft"] {
+    text-align: left !important;
+  }
+}
+@media screen and (max-width: $rwdBreakPoint01 - 1) {
+  [class*="_spAlignLeft"] {
+    text-align: left !important;
+  }
+}
+
+[class*="_alignCenter"] {
+  text-align: center !important;
+}
+@media screen and (min-width: $rwdBreakPoint01) {
+  [class*="_pcAlignCenter"] {
+    text-align: center !important;
+  }
+}
+@media screen and (max-width: $rwdBreakPoint01 - 1) {
+  [class*="_spAlignCenter"] {
+    text-align: center !important;
+  }
+}
+
+[class*="_alignRight"] {
+  text-align: right !important;
+}
+@media screen and (min-width: $rwdBreakPoint01) {
+  [class*="_pcAlignRight"] {
+    text-align: right !important;
+  }
+}
+@media screen and (max-width: $rwdBreakPoint01 - 1) {
+  [class*="_spAlignRight"] {
+    text-align: right !important;
+  }
+}
+
+[class*="_alignTop"] {
+  vertical-align: top !important;
+}
+@media screen and (min-width: $rwdBreakPoint01) {
+  [class*="_pcAlignTop"] {
+    vertical-align: top !important;
+  }
+}
+@media screen and (max-width: $rwdBreakPoint01 - 1) {
+  [class*="_spAlignTop"] {
+    vertical-align: top !important;
+  }
+}
+
+[class*="_alignMiddle"] {
+  vertical-align: middle !important;
+}
+@media screen and (min-width: $rwdBreakPoint01) {
+  [class*="_pcAlignMiddle"] {
+    vertical-align: middle !important;
+  }
+}
+@media screen and (max-width: $rwdBreakPoint01 - 1) {
+  [class*="_spAlignMiddle"] {
+    vertical-align: middle !important;
+  }
+}
+
+[class*="_alignBottom"] {
+  vertical-align: bottom !important;
+}
+@media screen and (min-width: $rwdBreakPoint01) {
+  [class*="_pcAlignBottom"] {
+    vertical-align: bottom !important;
+  }
+}
+@media screen and (max-width: $rwdBreakPoint01 - 1) {
+  [class*="_spAlignBottom"] {
+    vertical-align: bottom !important;
+  }
+}
+
+
+/* font style */
+[class*="_fontBold"] {
+  font-weight: 700;
+}
+
+[class*="_fontItalic"] {
+  font-style: italic;
+}
+
+[class*="_fontNormal"] {
+  font-weight: $fontWeightNormal !important;
+  font-style: normal !important;
+}
+
+
+/* fontColor */
+[class*="_colorType01"] {
+  color: $baseColorType01;
+}
+
+[class*="_colorType02"] {
+  color: $baseColorType02;
+}
+
+
+/* block width */
+//@for $widthVal from 0 through 100 {
+//  [class*="_width#{$widthVal}Per"] {
+//    width:#{$widthVal}% !important;
+//  }
+//}
