@@ -1,5 +1,4 @@
 const webpack = require('webpack');
-//const path = require('path');
 const glob = require('glob');
 
 const entries = {};
@@ -9,7 +8,6 @@ glob.sync("./htdocs/Templates/dev/**/entry.js", {
   const regEx = new RegExp(`./htdocs/Templates/dev/scripts`);
   const fileOriginalName = file.replace(regEx, '');
   const key = fileOriginalName.replace('entry.js', 'bundle.js');
-  //const name = fileOriginalName.replace('entry.js', '');
   entries[key] = file;
 });
 
@@ -47,9 +45,5 @@ module.exports = {
     ]
   },
   plugins: [
-    new webpack.ProvidePlugin({
-      $: 'jquery',
-      jQuery: 'jquery'
-    }),
   ]
 };

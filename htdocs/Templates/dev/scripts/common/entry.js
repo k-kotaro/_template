@@ -1,13 +1,17 @@
 import "@babel/polyfill";
 
-// Layzr js
+// smoothscroll-polyfill
+import smoothscroll from 'smoothscroll-polyfill';
+smoothscroll.polyfill();
+
+// Layzr
 import Layzr from 'layzr.js';
 
-// picturefill js
+// picturefill
 import picturefill from 'picturefill';
 picturefill();
 
-// css browser selector js
+// css browser selector
 //import './libs/css_browser_selector';
 
 export const breakpoint = 768;
@@ -59,7 +63,8 @@ const sroothscroll = () => {
   ancTargetArr.forEach((target) => {
     target.addEventListener('click', (e) => {
       let getId = target.getAttribute('href').replace('#', '');
-      let offset = document.getElementById(getId).offsetTop;
+      let rect = document.getElementById(getId).getBoundingClientRect();
+      let offset = rect.top + window.pageYOffset;
 
       window.scrollTo({
         top: offset,

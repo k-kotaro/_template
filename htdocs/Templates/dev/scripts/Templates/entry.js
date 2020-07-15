@@ -1,5 +1,10 @@
+import "@babel/polyfill";
+
+// jquery
+import $ from "jquery";
+
 // common
-import '../common/common';
+import '../common/entry';
 
 const pageList = () => {
   $.getJSON("dev/include/pagelist.json", function(pagelist){

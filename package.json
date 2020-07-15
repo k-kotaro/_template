@@ -43,6 +43,7 @@
     "jquery": "^3.4.1",
     "layzr.js": "^2.2.2",
     "picturefill": "^3.0.3",
+    "smoothscroll-polyfill": "^0.4.4",
     "uglify-es-webpack-plugin": "^0.10.0",
     "webpack": "^4.41.2",
     "webpack-cli": "^3.3.10",
