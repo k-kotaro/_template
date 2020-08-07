@@ -1,21 +1,15 @@
 <%
-  var pageID = 'home';
+  var pagelistID = 'home';
 %><!DOCTYPE html>
 <html lang="ja">
 <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
 <meta charset="utf-8">
-<%- include(json[pageID].path + 'include/common/-meta', {page: json[pageID]}) %>
-<%- include(json[pageID].path + 'include/common/-headCss', {page: json[pageID]}) %>
-<%- include(json[pageID].path + 'include/common/-headScript', {page: json[pageID]}) %>
+<%- include(json[pagelistID].path + 'include/common/-meta', {page: json[pagelistID]}) %>
+<%- include(json[pagelistID].path + 'include/common/-headCss', {page: json[pagelistID]}) %>
+<%- include(json[pagelistID].path + 'include/common/-headScript', {page: json[pagelistID]}) %>
 <script type="application/ld+json">
   [
-<%- include(json[pageID].path + 'include/common/-jsonld', {page: json[pageID], type: "WebSite"}) %>
-    {
-      "@context": "http://schema.org",
-      "@type": "WebSite",
-      "name": "<%= json[pageID].siteName %>",
-      "url": "<%= json[pageID].siteUrl %>"
-    },
+<%- include(json[pagelistID].path + 'include/common/-jsonld', {page: json[pagelistID], type: "WebSite"}) %>
     {
       "@context": "http://schema.org",
       "@type": "BreadcrumbList",
@@ -24,8 +18,8 @@
           "@type": "ListItem",
           "position": 1,
           "item": {
-            "@id": "<%= json[pageID].siteUrl %>",
-            "name": "<%= json[pageID].siteName %>"
+            "@id": "<%= json[pagelistID].siteUrl %>",
+            "name": "<%= json[pagelistID].siteName %>"
           }
         }
       ]
@@ -35,9 +29,9 @@
 </head>
 
 <body>
-<div id="document" class="<%= json[pageID].pageID %>">
-<%- include(json[pageID].path + 'include/common/-header', {page: json[pageID]}) %>
-<%- include(json[pageID].path + 'include/common/-gnav', {page: json[pageID]}) %>
+<div id="document" class="<%= json[pagelistID].pageID %>">
+<%- include(json[pagelistID].path + 'include/common/-header', {page: json[pagelistID]}) %>
+<%- include(json[pagelistID].path + 'include/common/-gnav', {page: json[pagelistID]}) %>
 
 <div id="container">
 
@@ -45,11 +39,11 @@
 container
 
 
-<%- include(json[pageID].path + 'include/common/-pagetop') %>
+<%- include(json[pagelistID].path + 'include/common/-pagetop') %>
 <!-- /#container ==========--></div>
 
-<%- include(json[pageID].path + 'include/common/-footer', {page: json[pageID]}) %>
+<%- include(json[pagelistID].path + 'include/common/-footer', {page: json[pagelistID]}) %>
 <!-- /#document ==========--></div>
-<script src="<%= json[pageID].path %>scripts/common/bundle.js" defer></script>
+<script src="<%= json[pagelistID].path %>scripts/common/bundle.js" defer></script>
 </body>
 </html>

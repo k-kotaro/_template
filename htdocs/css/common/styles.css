@@ -176,24 +176,6 @@ base
 ====================================================================================================*/
 @font-face {
   font-family: "Original Yu Gothic";
-  font-weight: 100;
-  src: local("Yu Gothic Medium");
-}
-
-@font-face {
-  font-family: "Original Yu Gothic";
-  font-weight: 200;
-  src: local("Yu Gothic Medium");
-}
-
-@font-face {
-  font-family: "Original Yu Gothic";
-  font-weight: 300;
-  src: local("Yu Gothic Medium");
-}
-
-@font-face {
-  font-family: "Original Yu Gothic";
   font-weight: 400;
   src: local("Yu Gothic Medium");
 }
@@ -263,6 +245,20 @@ textarea {
   #document {
     min-width: 320px;
   }
+}
+
+.loadWindow {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  background-color: #ffffff;
+  z-index: 9999;
+  -webkit-transition: opacity .3s ease;
+  transition: opacity .3s ease;
+}
+
+.loadWindow.is_anim {
+  opacity: 0;
 }
 
 /* Header
@@ -1215,31 +1211,103 @@ textarea {
   }
 }
 
-/* modifire module
+/* modifier module
 --------------------------------------------------------------------------------------------------- */
 /* text align */
 [class*="_alignLeft"] {
   text-align: left !important;
 }
 
+@media screen and (min-width: 768px) {
+  [class*="_pcAlignLeft"] {
+    text-align: left !important;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  [class*="_spAlignLeft"] {
+    text-align: left !important;
+  }
+}
+
 [class*="_alignCenter"] {
   text-align: center !important;
+}
+
+@media screen and (min-width: 768px) {
+  [class*="_pcAlignCenter"] {
+    text-align: center !important;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  [class*="_spAlignCenter"] {
+    text-align: center !important;
+  }
 }
 
 [class*="_alignRight"] {
   text-align: right !important;
 }
 
+@media screen and (min-width: 768px) {
+  [class*="_pcAlignRight"] {
+    text-align: right !important;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  [class*="_spAlignRight"] {
+    text-align: right !important;
+  }
+}
+
 [class*="_alignTop"] {
   vertical-align: top !important;
+}
+
+@media screen and (min-width: 768px) {
+  [class*="_pcAlignTop"] {
+    vertical-align: top !important;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  [class*="_spAlignTop"] {
+    vertical-align: top !important;
+  }
 }
 
 [class*="_alignMiddle"] {
   vertical-align: middle !important;
 }
 
+@media screen and (min-width: 768px) {
+  [class*="_pcAlignMiddle"] {
+    vertical-align: middle !important;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  [class*="_spAlignMiddle"] {
+    vertical-align: middle !important;
+  }
+}
+
 [class*="_alignBottom"] {
   vertical-align: bottom !important;
+}
+
+@media screen and (min-width: 768px) {
+  [class*="_pcAlignBottom"] {
+    vertical-align: bottom !important;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  [class*="_spAlignBottom"] {
+    vertical-align: bottom !important;
+  }
 }
 
 /* font style */

@@ -16,21 +16,6 @@ base
 ====================================================================================================*/
 @font-face {
   font-family: "Original Yu Gothic";
-  font-weight: 100;
-  src: local("Yu Gothic Medium");
-}
-@font-face {
-  font-family: "Original Yu Gothic";
-  font-weight: 200;
-  src: local("Yu Gothic Medium");
-}
-@font-face {
-  font-family: "Original Yu Gothic";
-  font-weight: 300;
-  src: local("Yu Gothic Medium");
-}
-@font-face {
-  font-family: "Original Yu Gothic";
   font-weight: 400;
   src: local("Yu Gothic Medium");
 }
@@ -88,6 +73,18 @@ textarea {
 
   @media screen and (max-width: $rwdBreakPoint01 - 1) {
     min-width: $spContentWidth;
+  }
+}
+
+.loadWindow {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  background-color: #ffffff;
+  z-index: 9999;
+  transition: opacity .3s ease;
+  &.is_anim {
+    opacity: 0;
   }
 }
 

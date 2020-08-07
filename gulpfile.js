@@ -1,26 +1,28 @@
 //- gulpモジュール
-const gulp = require('gulp');
-const fs = require('fs');
-const path = require('path');
-const plumber = require('gulp-plumber');
-const changed = require('gulp-changed');
-const rename = require('gulp-rename');
-const ejs = require('gulp-ejs');
-const htmlhint = require("gulp-htmlhint");
-const iconfont = require('gulp-iconfont');
-const iconfontCss = require('gulp-iconfont-css');
-const sprite = require('gulp.spritesmith');
-const sass = require('gulp-sass');
-const csscomb = require('gulp-csscomb');
-const inlineimage = require('gulp-inline-image');
-const imagemin = require('gulp-imagemin');
-const pngquant  = require('imagemin-pngquant');
-const mozjpeg = require('imagemin-mozjpeg');
-const cleanCSS = require('gulp-clean-css');
-const autoprefixer = require('gulp-autoprefixer');
-const webpack = require('webpack');
-const webpackStream = require('webpack-stream');
-const browserSync = require('browser-sync');
+const gulp = require('gulp'),
+      fs = require('fs'),
+      path = require('path'),
+      plumber = require('gulp-plumber'),
+      changed = require('gulp-changed'),
+      rename = require('gulp-rename'),
+      ejs = require('gulp-ejs'),
+      htmlhint = require("gulp-htmlhint"),
+      iconfont = require('gulp-iconfont'),
+      iconfontCss = require('gulp-iconfont-css'),
+      sprite = require('gulp.spritesmith'),
+      sass = require('gulp-sass'),
+      csscomb = require('gulp-csscomb'),
+      inlineimage = require('gulp-inline-image'),
+      imagemin = require('gulp-imagemin'),
+      pngquant  = require('imagemin-pngquant'),
+      mozjpeg = require('imagemin-mozjpeg'),
+      cleanCSS = require('gulp-clean-css'),
+      autoprefixer = require('gulp-autoprefixer'),
+      webpack = require('webpack'),
+      webpackStream = require('webpack-stream'),
+      convertEncoding = require('gulp-convert-encoding'),
+      crLfReplace = require('gulp-cr-lf-replace'),
+      browserSync = require('browser-sync');
 
 
 
@@ -73,17 +75,12 @@ const htmlLint = () => {
 //- アイコンフォント作成タスク
 const iconfontCompile = () => {
   return gulp.src(dir.root + dir.dev + dir.font + '*.svg')
-    .pipe(imagemin([
-      imagemin.svgo({
-        removeViewBox: false,
-        removeMetadata: false,
-        removeUnknownsAndDefaults: false,
-        convertShapeToPath: false,
-        collapseGroups: false,
-        cleanupIDs: false,
-      }),
-    ]))
-    .pipe(imagemin())
+    .pipe(plumber({
+      errorHandler: function (err) {
+        console.log(err);
+        this.emit('end');
+      }
+    }))
     .pipe(iconfontCss({
       fontName: 'icon',
       path: dir.root + dir.dev + dir.scss + '_temp/_font.scss',
@@ -184,6 +181,18 @@ const productionBundle = () => {
     .pipe(gulp.dest(dir.root + dir.dev + dir.js));
 };
 
+//- 文字コード、改行コード変換タスク
+const fileEncoding = () => {
+  return gulp.src( dir.root + dir.js + '**/*.js')
+    .pipe(convertEncoding({to: 'EUC-JP'}))
+    .pipe(convertEncoding({to: 'utf8'}))
+    .pipe(crLfReplace({
+      changeCode: 'CR+LF'
+    }))
+    .pipe(gulp.dest(dir.root + dir.js));
+};
+
+
 //- 画像圧縮タスク
 const imageminify = () => {
   return gulp.src(dir.root + dir.dev + dir.img + '**/*.+(jpg|png|gif|svg)')
@@ -226,7 +235,8 @@ const browser = () => {
     server: {
       baseDir: dir.root,
       index: 'index.html'
-    }
+    },
+    open: 'external'
   });
 };
 
@@ -265,7 +275,8 @@ const imageComp = gulp.series(
 
 //- JSパブリッシュタスク
 const jsBuild = gulp.series(
-  bundle
+  gulp.parallel(bundle),
+  fileEncoding
 );
 
 //- ブラウザリロードタスク
