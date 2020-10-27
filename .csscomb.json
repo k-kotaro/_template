@@ -23,10 +23,8 @@
   "unitless-zero": true,
   "sort-order": [
     [
-      "display",
-      "visibility",
-      "float",
-      "clear",
+      "$variable",
+
       "overflow",
       "overflow-x",
       "overflow-y",
@@ -37,8 +35,12 @@
       "right",
       "bottom",
       "left",
+      "float",
+      "clear",
       "clip",
       "zoom",
+      "display",
+      "visibility",
       "flex-wrap",
       "flex-direction",
       "flex-order",
@@ -321,7 +323,6 @@
       "-o-animation-direction",
       "animation-direction",
 
-      "$variable",
       "$extend",
       "$include",
 
