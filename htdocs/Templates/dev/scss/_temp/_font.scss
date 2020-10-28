@@ -16,7 +16,7 @@
   font-style: normal;
   font-variant: normal;
   font-weight: 400;
-  // speak: none; // only necessary if not using the private unicode range (firstGlyph option)
+  speak: none; // only necessary if not using the private unicode range (firstGlyph option)
   text-decoration: none;
   text-transform: none;
 }
@@ -29,30 +29,45 @@
   $char: "";
   <% _.each(glyphs, function(glyph) { %>
     @if $filename == <%= glyph.fileName %> {
-      $char: "\<%= glyph.codePoint %>";
+      $char: \<%= glyph.codePoint %>;
     }<% }); %>
 
   @return $char;
 }
 
-@mixin <%= cssClass%>($filename, $size: null, $color: null, $insert: before) {
-  &::#{$insert} {
+@mixin <%= cssClass%>($filename, $size: null, $color: null, $insert: null) {
+  $content: unquote("\"") + <%= cssClass%>-char($filename) + unquote("\"");
+  @if $insert == null{
     @include <%= cssClass%>-styles;
     color: $color;
     font-size: $size;
     vertical-align: middle;
-    content: <%= cssClass%>-char($filename);
+    content: $content;
+  }@else{
+    &::#{$insert} {
+      @include <%= cssClass%>-styles;
+      color: $color;
+      font-size: $size;
+      vertical-align: middle;
+      content: $content;
+    }
   }
 }
 
-@mixin <%= cssClass%>Char($filename, $size: null, $insert: before) {
-  &::#{$insert} {
+@mixin <%= cssClass%>Char($filename, $size: null, $insert: null) {
+  $content: unquote("\"") + <%= cssClass%>-char($filename) + unquote("\"");
+  @if $insert == null{
     font-size: $size;
-    content: <%= cssClass%>-char($filename);
+    content: $content;
+  }@else{
+    &::#{$insert} {
+      font-size: $size;
+      content: $content;
+    }
   }
 }
 
-//<% _.each(glyphs, function(glyph) { %>.<%= cssClass%>-<%= glyph.fileName %> {
-//    @include <%= cssClass%>(<%= glyph.fileName %>);
-//}
-//<% }); %>
+<% _.each(glyphs, function(glyph) { %>.<%= cssClass%>-<%= glyph.fileName %> {
+    @include <%= cssClass%>(<%= glyph.fileName %>);
+}
+<% }); %>
