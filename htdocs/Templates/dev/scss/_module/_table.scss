@@ -24,13 +24,13 @@
     table-layout: fixed;
   }
 
-  @media screen and (min-width: $rwdBreakPoint01) {
+
   }
 
-  @media screen and (max-width: $rwdBreakPoint01 - 1) {
+  @include mq(sp){
     overflow: auto;
     table th {
       white-space: nowrap;
     }
   }
-}
+}

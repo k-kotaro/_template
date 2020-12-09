@@ -15,10 +15,10 @@
 //
 // ============================================================================================
 #subContents {
-  @media screen and (min-width: $rwdBreakPoint01) {
+  @include mq(pc){
     flex-basis: 200px;
   }
 
-  @media screen and (max-width: $rwdBreakPoint01 - 1) {
+  @include mq(sp){
   }
 }

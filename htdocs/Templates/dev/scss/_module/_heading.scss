@@ -13,24 +13,24 @@
 .m_textHeading {
   margin: 0 0 30px;
 
-  @media screen and (min-width: $rwdBreakPoint01) {
+  @include mq(pc){
     @include fts(18);
   }
 
-  @media screen and (max-width: $rwdBreakPoint01 - 1) {
+  @include mq(sp){
   }
 }
 
 .m_imageHeading {
   margin: 0 0 30px;
 
-  @media screen and (min-width: $rwdBreakPoint01) {
+  @include mq(pc){
   }
 
-  @media screen and (max-width: $rwdBreakPoint01 - 1) {
+  @include mq(sp){
     img {
       max-width: 100%;
       height: auto;
     }
   }
-}
+}

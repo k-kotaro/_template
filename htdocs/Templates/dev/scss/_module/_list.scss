@@ -96,7 +96,7 @@
     }
   }
 
-  @media screen and (min-width: $rwdBreakPoint01) {
+  @include mq(pc){
     $marginBottom: 20px;
     &[class*="_col2"] > li {
       width: calc(100% / 2 - 40px);
@@ -118,7 +118,7 @@
     }
   }
 
-  @media screen and (max-width: $rwdBreakPoint01 - 1) {
+  @include mq(sp){
     &:not([class*="_spCol"]) {
       flex-direction: column;
     }
@@ -131,4 +131,4 @@
 [class*="List"][class*="_horizontal"] > li {
   margin-right: 20px;
   @include iblock(top);
-}
+}

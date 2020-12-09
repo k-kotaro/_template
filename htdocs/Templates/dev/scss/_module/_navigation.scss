@@ -33,7 +33,7 @@
     background: #c1c1c1;
   }
 
-  @media screen and (min-width: $rwdBreakPoint01) {
+  @include mq(pc){
     margin: -10px 0 30px;
     & > li {
       margin: 10px 5px 0;
@@ -53,7 +53,7 @@
     }
   }
 
-  @media screen and (max-width: $rwdBreakPoint01 - 1) {
+  @include mq(sp){
     margin: 0 0 30px;
     & > li:nth-child(n+2) {
       margin-top: 10px;
@@ -102,7 +102,7 @@
     }
   }
 
-  @media screen and (min-width: $rwdBreakPoint01) {
+  @include mq(pc){
     & > li {
       &:not([class]) a,
       &.is_active a {
@@ -112,7 +112,7 @@
     }
   }
 
-  @media screen and (max-width: $rwdBreakPoint01 - 1) {
+  @include mq(sp){
     & > li {
       &:not([class]) a,
       &.is_active a {
@@ -128,4 +128,4 @@
       }
     }
   }
-}
+}

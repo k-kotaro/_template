@@ -193,7 +193,7 @@ body {
           font-feature-settings: "palt" 1;
 }
 
-@media screen and (min-width: 768px) {
+@media (min-width: 768px) {
   body {
     font-size: 1rem;
     line-height: 1.5;
@@ -211,7 +211,7 @@ a {
   color: #004ba5;
 }
 
-@media screen and (min-width: 768px) {
+@media (min-width: 768px) {
   a[href*="tel:"] {
     cursor: text;
     text-decoration: none;
@@ -235,7 +235,7 @@ textarea {
   margin: 0 auto;
 }
 
-@media screen and (min-width: 768px) {
+@media (min-width: 768px) {
   #document {
     min-width: 1024px;
   }
@@ -295,7 +295,7 @@ textarea {
   margin-left: 10px;
 }
 
-@media screen and (min-width: 768px) {
+@media (min-width: 768px) {
   #gheader {
     width: 1024px;
   }
@@ -333,7 +333,7 @@ textarea {
   text-decoration: none;
 }
 
-@media screen and (min-width: 768px) {
+@media (min-width: 768px) {
   #gnav {
     width: 1024px;
   }
@@ -406,7 +406,7 @@ textarea {
   margin: 0 auto;
 }
 
-@media screen and (min-width: 768px) {
+@media (min-width: 768px) {
   #container {
     width: 1024px;
   }
@@ -418,7 +418,7 @@ textarea {
   display: flex;
 }
 
-@media screen and (min-width: 768px) {
+@media (min-width: 768px) {
   #wrapper {
     -webkit-box-pack: justify;
         -ms-flex-pack: justify;
@@ -435,7 +435,7 @@ textarea {
   }
 }
 
-@media screen and (min-width: 768px) {
+@media (min-width: 768px) {
   #wrapper #mainContents {
     padding-right: 30px;
   }
@@ -443,7 +443,7 @@ textarea {
 
 /* SubContents
 --------------------------------------------------------------------------------------------------- */
-@media screen and (min-width: 768px) {
+@media (min-width: 768px) {
   #subContents {
     -ms-flex-preferred-size: 200px;
         flex-basis: 200px;
@@ -469,7 +469,7 @@ textarea {
   text-align: center;
 }
 
-@media screen and (min-width: 768px) {
+@media (min-width: 768px) {
   #gfooter {
     width: 1024px;
   }
@@ -535,7 +535,7 @@ textarea {
   margin: 0 0 30px;
 }
 
-@media screen and (min-width: 768px) {
+@media (min-width: 768px) {
   .m_textHeading {
     font-size: 1.125rem;
   }
@@ -593,7 +593,7 @@ textarea {
   margin-bottom: 0 !important;
 }
 
-@media screen and (min-width: 768px) {
+@media (min-width: 768px) {
   .m_media {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -667,7 +667,7 @@ textarea {
   margin-bottom: 0 !important;
 }
 
-@media screen and (min-width: 768px) {
+@media (min-width: 768px) {
   .m_column {
     -webkit-box-pack: justify;
         -ms-flex-pack: justify;
@@ -749,15 +749,15 @@ textarea {
 }
 
 .m_slideshow .slides:after {
-  display: block;
   clear: both;
+  display: block;
   height: 0;
   content: ".";
 }
 
 .m_slideshow .slides > li {
-  display: none;
   float: left;
+  display: none;
 }
 
 .m_slideshow .slides > li:first-child {
@@ -765,13 +765,13 @@ textarea {
 }
 
 .m_slideshow .crossfade .slides > li {
-  float: none;
   position: absolute;
+  float: none;
 }
 
 .m_slideshow .slideControl {
-  display: none;
   clear: both;
+  display: none;
 }
 
 .m_slideshow .cursor > li {
@@ -961,7 +961,7 @@ textarea {
   margin-bottom: 0 !important;
 }
 
-@media screen and (min-width: 768px) {
+@media (min-width: 768px) {
   .m_imageList[class*="_col2"] > li {
     width: calc(100% / 2 - 40px);
   }
@@ -1070,7 +1070,7 @@ textarea {
   background: #c1c1c1;
 }
 
-@media screen and (min-width: 768px) {
+@media (min-width: 768px) {
   .m_button {
     margin: -10px 0 30px;
   }
@@ -1159,7 +1159,7 @@ textarea {
   content: ">>";
 }
 
-@media screen and (min-width: 768px) {
+@media (min-width: 768px) {
   .m_pager > li:not([class]) a,
   .m_pager > li.is_active a {
     width: 30px;
@@ -1189,7 +1189,7 @@ textarea {
   white-space: pre;
 }
 
-@media screen and (min-width: 768px) {
+@media (min-width: 768px) {
   .m_pcHide {
     display: none !important;
   }
@@ -1218,7 +1218,7 @@ textarea {
   text-align: left !important;
 }
 
-@media screen and (min-width: 768px) {
+@media (min-width: 768px) {
   [class*="_pcAlignLeft"] {
     text-align: left !important;
   }
@@ -1234,7 +1234,7 @@ textarea {
   text-align: center !important;
 }
 
-@media screen and (min-width: 768px) {
+@media (min-width: 768px) {
   [class*="_pcAlignCenter"] {
     text-align: center !important;
   }
@@ -1250,7 +1250,7 @@ textarea {
   text-align: right !important;
 }
 
-@media screen and (min-width: 768px) {
+@media (min-width: 768px) {
   [class*="_pcAlignRight"] {
     text-align: right !important;
   }
@@ -1266,7 +1266,7 @@ textarea {
   vertical-align: top !important;
 }
 
-@media screen and (min-width: 768px) {
+@media (min-width: 768px) {
   [class*="_pcAlignTop"] {
     vertical-align: top !important;
   }
@@ -1282,7 +1282,7 @@ textarea {
   vertical-align: middle !important;
 }
 
-@media screen and (min-width: 768px) {
+@media (min-width: 768px) {
   [class*="_pcAlignMiddle"] {
     vertical-align: middle !important;
   }
@@ -1298,7 +1298,7 @@ textarea {
   vertical-align: bottom !important;
 }
 
-@media screen and (min-width: 768px) {
+@media (min-width: 768px) {
   [class*="_pcAlignBottom"] {
     vertical-align: bottom !important;
   }

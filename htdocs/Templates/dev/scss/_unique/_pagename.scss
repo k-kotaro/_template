@@ -12,17 +12,17 @@
 
 #document.xxx {
   /*
-    @media screen and (min-width: $rwdBreakPoint01) {
+
     }
 
-    @media screen and (min-width: $contentWidth + 1) {
+  @include mq(pc){
         &::before{
             right: calc(50% - 50vw);
             left: calc(50% - 50vw);
         }
     }
 
-    @media screen and (max-width: $rwdBreakPoint01 - 1) {
+    @include mq(sp){
     }
     */
-}
+}

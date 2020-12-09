@@ -33,7 +33,7 @@
     @include lastElement;
   }
 
-  @media screen and (min-width: $rwdBreakPoint01) {
+  @include mq(pc){
     display: flex;
     flex-direction: column;
     &:not([class*="_flipped"]) .image:first-child {
@@ -62,7 +62,7 @@
     }
   }
 
-  @media screen and (max-width: $rwdBreakPoint01 - 1) {
+  @include mq(sp){
     .image {
       text-align: center;
       img {
@@ -87,7 +87,7 @@
     }
   }
 
-  @media screen and (min-width: $rwdBreakPoint01) {
+  @include mq(pc){
     justify-content: space-between;
     &[class*="_pcCol2"] > .column {
       width: calc(100% / 2 - 20px);
@@ -101,7 +101,7 @@
     }
   }
 
-  @media screen and (max-width: $rwdBreakPoint01 - 1) {
+  @include mq(sp){
     &:not([class*="_spCol"]) {
       flex-direction: column;
     }
@@ -200,4 +200,4 @@
       }
     }
   }
-}
+}

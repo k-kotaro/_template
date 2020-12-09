@@ -274,3 +274,17 @@
   white-space: nowrap !important;
   border: 0 !important;
 }
+
+
+// メディアクエリ
+//     $device: デバイス
+// @include mq($device){};
+@mixin mq($device) {
+//  $media: null;
+//  @if $device == 'sp'{
+//    $media: 'screen and';
+//  }
+  @media #{map-get($breakpoints, $device)} {
+    @content;
+  }
+}

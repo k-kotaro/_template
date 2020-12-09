@@ -27,7 +27,7 @@
     }
   }
 
-  @media screen and (min-width: $rwdBreakPoint01) {
+  @include mq(pc){
     width: $contentWidth;
     .menu {
       display: none;
@@ -43,7 +43,7 @@
     }
   }
 
-  @media screen and (max-width: $rwdBreakPoint01 - 1) {
+  @include mq(sp){
     .menu {
       position: absolute;
       top: -50px;
@@ -58,4 +58,4 @@
       }
     }
   }
-}
+}

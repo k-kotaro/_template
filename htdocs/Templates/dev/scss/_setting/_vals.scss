@@ -33,3 +33,11 @@ $baseSpFontSize: 14;
 $baseSpLin: 20;
 
 $fontWeightNormal: 400;
+
+// breakpoints
+$breakpoints: (
+  "sp": "screen and (max-width: #{$rwdBreakPoint01 - 1px})",
+  "tab": "screen and (max-width: #{$rwdBreakPoint02})",
+  "pc": "(min-width: #{$rwdBreakPoint01})",
+  "full": "(min-width: #{$contentWidth + 1px})"
+);

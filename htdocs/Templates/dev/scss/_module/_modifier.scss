@@ -13,12 +13,12 @@
 [class*="_alignLeft"] {
   text-align: left !important;
 }
-@media screen and (min-width: $rwdBreakPoint01) {
+@include mq(pc){
   [class*="_pcAlignLeft"] {
     text-align: left !important;
   }
 }
-@media screen and (max-width: $rwdBreakPoint01 - 1) {
+@include mq(sp){
   [class*="_spAlignLeft"] {
     text-align: left !important;
   }
@@ -27,12 +27,12 @@
 [class*="_alignCenter"] {
   text-align: center !important;
 }
-@media screen and (min-width: $rwdBreakPoint01) {
+@include mq(pc){
   [class*="_pcAlignCenter"] {
     text-align: center !important;
   }
 }
-@media screen and (max-width: $rwdBreakPoint01 - 1) {
+@include mq(sp){
   [class*="_spAlignCenter"] {
     text-align: center !important;
   }
@@ -41,12 +41,12 @@
 [class*="_alignRight"] {
   text-align: right !important;
 }
-@media screen and (min-width: $rwdBreakPoint01) {
+@include mq(pc){
   [class*="_pcAlignRight"] {
     text-align: right !important;
   }
 }
-@media screen and (max-width: $rwdBreakPoint01 - 1) {
+@include mq(sp){
   [class*="_spAlignRight"] {
     text-align: right !important;
   }
@@ -55,12 +55,12 @@
 [class*="_alignTop"] {
   vertical-align: top !important;
 }
-@media screen and (min-width: $rwdBreakPoint01) {
+@include mq(pc){
   [class*="_pcAlignTop"] {
     vertical-align: top !important;
   }
 }
-@media screen and (max-width: $rwdBreakPoint01 - 1) {
+@include mq(sp){
   [class*="_spAlignTop"] {
     vertical-align: top !important;
   }
@@ -69,12 +69,12 @@
 [class*="_alignMiddle"] {
   vertical-align: middle !important;
 }
-@media screen and (min-width: $rwdBreakPoint01) {
+@include mq(pc){
   [class*="_pcAlignMiddle"] {
     vertical-align: middle !important;
   }
 }
-@media screen and (max-width: $rwdBreakPoint01 - 1) {
+@include mq(sp){
   [class*="_spAlignMiddle"] {
     vertical-align: middle !important;
   }
@@ -83,12 +83,12 @@
 [class*="_alignBottom"] {
   vertical-align: bottom !important;
 }
-@media screen and (min-width: $rwdBreakPoint01) {
+@include mq(pc){
   [class*="_pcAlignBottom"] {
     vertical-align: bottom !important;
   }
 }
-@media screen and (max-width: $rwdBreakPoint01 - 1) {
+@include mq(sp){
   [class*="_spAlignBottom"] {
     vertical-align: bottom !important;
   }
@@ -125,4 +125,4 @@
 //  [class*="_width#{$widthVal}Per"] {
 //    width:#{$widthVal}% !important;
 //  }
-//}
+//}

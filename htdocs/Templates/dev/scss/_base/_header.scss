@@ -35,14 +35,14 @@
     }
   }
 
-  @media screen and (min-width: $rwdBreakPoint01) {
+  @include mq(pc){
     width: $contentWidth;
     .content {
       margin: 0 0 10px;
     }
   }
 
-  @media screen and (max-width: $rwdBreakPoint01 - 1) {
+  @include mq(sp){
     .content {
       align-items: center;
       padding-right: 50px;

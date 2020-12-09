@@ -30,18 +30,18 @@ body {
   font-family: $baseFontFamily;
   font-feature-settings: "palt" 1;
 
-  @media screen and (min-width: $rwdBreakPoint01) {
+  @include mq(pc){
     @include fts($lin: $baseLin);
   }
 
-  @media screen and (max-width: $rwdBreakPoint01 - 1) {
+  @include mq(sp){
     @include fts($baseSpFontSize, $baseSpLin);
   }
 }
 
 a {
   color: $baseColorType02;
-  @media screen and (min-width: $rwdBreakPoint01) {
+  @include mq(pc){
     &[href*="tel:"] {
       cursor: text;
       text-decoration: none;
@@ -51,7 +51,7 @@ a {
       }
     }
   }
-  @media screen and (max-width: $rwdBreakPoint01 - 1) {
+  @include mq(sp){
   }
 }
 
@@ -67,11 +67,11 @@ textarea {
   overflow: hidden;
   margin: 0 auto;
 
-  @media screen and (min-width: $rwdBreakPoint01) {
+  @include mq(pc){
     min-width: $contentWidth;
   }
 
-  @media screen and (max-width: $rwdBreakPoint01 - 1) {
+  @include mq(sp){
     min-width: $spContentWidth;
   }
 }
@@ -118,4 +118,4 @@ textarea {
 /* Footer
 --------------------------------------------------------------------------------------------------- */
 
-@import "../_base/footer";
+@import "../_base/footer";

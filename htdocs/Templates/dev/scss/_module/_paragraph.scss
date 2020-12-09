@@ -20,7 +20,7 @@
       text-align: left;
     }
   }
-  @media screen and (min-width: $rwdBreakPoint01) {
+
     margin: 0 0 40px;
     .caption {
       margin: lineHeightMargin(15, 14, 24) 0 0;
@@ -28,7 +28,7 @@
     }
   }
 
-  @media screen and (max-width: $rwdBreakPoint01 - 1) {
+  @include mq(sp){
     margin: 0 0 20px;
     img {
       max-width: 100%;
