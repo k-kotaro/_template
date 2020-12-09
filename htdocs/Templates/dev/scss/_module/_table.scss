@@ -9,6 +9,14 @@
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 //====================================================================================================
 .m_table {
+  @include mq(pc) {
+  }
+  @include mq(sp) {
+    overflow: auto;
+    table th {
+      white-space: nowrap;
+    }
+  }
   table {
     box-sizing: border-box;
     border: solid currentColor;
@@ -23,14 +31,4 @@
   &[class*="_fixed"] table {
     table-layout: fixed;
   }
-
-
-  }
-
-  @include mq(sp){
-    overflow: auto;
-    table th {
-      white-space: nowrap;
-    }
-  }
-}
+}

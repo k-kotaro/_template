@@ -84,19 +84,8 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  margin: 0 0 30px;
-  & > li {
-    @include lastElement;
-    .image img {
-      width: 100%;
-      height: auto;
-    }
-    & > figure {
-      @include lastElement;
-    }
-  }
-
-  @include mq(pc){
+  margin: 0 0 30px;
+  @include mq(pc) {
     $marginBottom: 20px;
     &[class*="_col2"] > li {
       width: calc(100% / 2 - 40px);
@@ -117,8 +106,7 @@
       }
     }
   }
-
-  @include mq(sp){
+  @include mq(sp) {
     &:not([class*="_spCol"]) {
       flex-direction: column;
     }
@@ -126,9 +114,19 @@
       width: calc(100% / 2 - 10px);
     }
   }
+  & > li {
+    @include lastElement;
+    .image img {
+      width: 100%;
+      height: auto;
+    }
+    & > figure {
+      @include lastElement;
+    }
+  }
 }
 
 [class*="List"][class*="_horizontal"] > li {
   margin-right: 20px;
   @include iblock(top);
-}
+}

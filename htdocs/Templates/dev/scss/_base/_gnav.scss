@@ -16,18 +16,8 @@
 // ============================================================================================
 #gnav {
   position: relative;
-  margin: 0 auto;
-
-  ul {
-    display: flex;
-    margin: 0;
-    & > li a {
-      display: block;
-      text-decoration: none;
-    }
-  }
-
-  @include mq(pc){
+  margin: 0 auto;
+  @include mq(pc) {
     width: $contentWidth;
     .menu {
       display: none;
@@ -42,8 +32,7 @@
       }
     }
   }
-
-  @include mq(sp){
+  @include mq(sp) {
     .menu {
       position: absolute;
       top: -50px;
@@ -58,4 +47,13 @@
       }
     }
   }
-}
+
+  ul {
+    display: flex;
+    margin: 0;
+    & > li a {
+      display: block;
+      text-decoration: none;
+    }
+  }
+}

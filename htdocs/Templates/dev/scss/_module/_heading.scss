@@ -12,25 +12,21 @@
 
 .m_textHeading {
   margin: 0 0 30px;
-
-  @include mq(pc){
+  @include mq(pc) {
     @include fts(18);
   }
-
-  @include mq(sp){
+  @include mq(sp) {
   }
 }
 
 .m_imageHeading {
   margin: 0 0 30px;
-
-  @include mq(pc){
+  @include mq(pc) {
   }
-
-  @include mq(sp){
+  @include mq(sp) {
     img {
       max-width: 100%;
       height: auto;
     }
   }
-}
+}

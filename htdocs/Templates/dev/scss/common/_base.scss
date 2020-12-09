@@ -14,34 +14,34 @@
 base
 
 ====================================================================================================*/
-@font-face {
-  font-family: "Original Yu Gothic";
-  font-weight: 400;
-  src: local("Yu Gothic Medium");
-}
-@font-face {
-  font-family: "Original Yu Gothic";
-  font-weight: 700;
-  src: local("Yu Gothic Bold");
+@if $fontFamilySet == 'yugo' {
+  @font-face {
+    font-family: "Original Yu Gothic";
+    font-weight: 400;
+    src: local("Yu Gothic Medium");
+  }
+  @font-face {
+    font-family: "Original Yu Gothic";
+    font-weight: 700;
+    src: local("Yu Gothic Bold");
+  }
 }
 
 body {
   color: $baseColorType01;
-  font-family: $baseFontFamily;
+  font-family: map-get($fontFamily, $fontFamilySet);
   font-feature-settings: "palt" 1;
-
-  @include mq(pc){
-    @include fts($lin: $baseLin);
+  @include mq(pc) {
+    @include fts(map-get($fontSize, 'pc'), map-get($lineHeight, 'pc'));
   }
-
-  @include mq(sp){
-    @include fts($baseSpFontSize, $baseSpLin);
+  @include mq(sp) {
+    @include fts(map-get($fontSize, 'sp'), map-get($lineHeight, 'sp'));
   }
 }
 
 a {
   color: $baseColorType02;
-  @include mq(pc){
+  @include mq(pc) {
     &[href*="tel:"] {
       cursor: text;
       text-decoration: none;
@@ -51,7 +51,7 @@ a {
       }
     }
   }
-  @include mq(sp){
+  @include mq(sp) {
   }
 }
 
@@ -59,19 +59,22 @@ button,
 input,
 select,
 textarea {
-  font-family: $baseFontFamily;
-  @include fts();
+  font-family: map-get($fontFamily, $fontFamilySet);
+  @include mq(pc) {
+    @include fts(map-get($fontSize, 'pc'), map-get($lineHeight, 'pc'));
+  }
+  @include mq(sp) {
+    @include fts(map-get($fontSize, 'sp'), map-get($lineHeight, 'sp'));
+  }
 }
 
 #document {
   overflow: hidden;
   margin: 0 auto;
-
-  @include mq(pc){
+  @include mq(pc) {
     min-width: $contentWidth;
   }
-
-  @include mq(sp){
+  @include mq(sp) {
     min-width: $spContentWidth;
   }
 }

@@ -17,37 +17,32 @@
 #container {
   position: relative;
   margin: 0 auto;
-
-  @include mq(pc){
+  @include mq(pc) {
     width: $contentWidth;
   }
 }
 
 #wrapper {
   display: flex;
-
-  @include mq(pc){
+  @include mq(pc) {
     justify-content: space-between;
   }
-
-  @include mq(sp){
+  @include mq(sp) {
     flex-direction: column;
   }
 
   #mainContents {
-    @include mq(pc){
+    @include mq(pc) {
       padding-right: 30px;
     }
-
-    @include mq(sp){
+    @include mq(sp) {
     }
   }
 }
 
 #mainContents {
-  @include mq(pc){
+  @include mq(pc) {
   }
-
-  @include mq(sp){
+  @include mq(sp) {
   }
-}
+}

@@ -15,10 +15,9 @@
 //
 // ============================================================================================
 #subContents {
-  @include mq(pc){
+  @include mq(pc) {
     flex-basis: 200px;
   }
-
-  @include mq(sp){
+  @include mq(sp) {
   }
-}
+}

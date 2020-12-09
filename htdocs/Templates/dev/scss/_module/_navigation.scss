@@ -9,7 +9,41 @@
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 //====================================================================================================
 .m_button {
-  text-align: center;
+  text-align: center;
+  @include mq(pc) {
+    margin: -10px 0 30px;
+    & > li {
+      margin: 10px 5px 0;
+      @include iblock(middle);
+    }
+    a,
+    button,
+    input[type="button"],
+    input[type="submit"],
+    input[type="reset"] {
+      min-width: 300px;
+      transition: opacity .5s ease;
+      @include iblock(middle);
+      &:hover {
+        opacity: .7;
+      }
+    }
+  }
+  @include mq(sp) {
+    margin: 0 0 30px;
+    & > li:nth-child(n+2) {
+      margin-top: 10px;
+    }
+    a,
+    button,
+    input[type="button"],
+    input[type="submit"],
+    input[type="reset"],
+    span {
+      display: block;
+      width: 100%;
+    }
+  }
   a,
   button,
   input[type="button"],
@@ -32,47 +66,36 @@
   span {
     background: #c1c1c1;
   }
-
-  @include mq(pc){
-    margin: -10px 0 30px;
-    & > li {
-      margin: 10px 5px 0;
-      @include iblock(middle);
-    }
-    a,
-    button,
-    input[type="button"],
-    input[type="submit"],
-    input[type="reset"] {
-      min-width: 300px;
-      transition: opacity .5s ease;
-      @include iblock(middle);
-      &:hover {
-        opacity: .7;
-      }
-    }
-  }
-
-  @include mq(sp){
-    margin: 0 0 30px;
-    & > li:nth-child(n+2) {
-      margin-top: 10px;
-    }
-    a,
-    button,
-    input[type="button"],
-    input[type="submit"],
-    input[type="reset"],
-    span {
-      display: block;
-      width: 100%;
-    }
-  }
 }
 
 .m_pager {
   margin: 0 0 30px;
-  text-align: center;
+  text-align: center;
+  @include mq(pc) {
+    & > li {
+      &:not([class]) a,
+      &.is_active a {
+        width: 30px;
+        line-height: 30px;
+      }
+    }
+  }
+  @include mq(sp) {
+    & > li {
+      &:not([class]) a,
+      &.is_active a {
+        width: 36px;
+        line-height: 36px;
+      }
+      a > span {
+        display: none;
+      }
+      &.first,
+      &.last {
+        display: none;
+      }
+    }
+  }
   & > li {
     box-sizing: border-box;
     margin: 0 5px;
@@ -101,31 +124,4 @@
       content: ">>";
     }
   }
-
-  @include mq(pc){
-    & > li {
-      &:not([class]) a,
-      &.is_active a {
-        width: 30px;
-        line-height: 30px;
-      }
-    }
-  }
-
-  @include mq(sp){
-    & > li {
-      &:not([class]) a,
-      &.is_active a {
-        width: 36px;
-        line-height: 36px;
-      }
-      a > span {
-        display: none;
-      }
-      &.first,
-      &.last {
-        display: none;
-      }
-    }
-  }
-}
+}

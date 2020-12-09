@@ -24,16 +24,8 @@
 }
 
 .m_media {
-  margin: 0 0 1.5em;
-  .image {
-    flex-shrink: 0;
-  }
-  .body {
-    flex-grow: 1;
-    @include lastElement;
-  }
-
-  @include mq(pc){
+  margin: 0 0 1.5em;
+  @include mq(pc) {
     display: flex;
     flex-direction: column;
     &:not([class*="_flipped"]) .image:first-child {
@@ -61,8 +53,7 @@
       align-items: flex-end;
     }
   }
-
-  @include mq(sp){
+  @include mq(sp) {
     .image {
       text-align: center;
       img {
@@ -75,19 +66,19 @@
       margin: 0 0 30px;
     }
   }
+  .image {
+    flex-shrink: 0;
+  }
+  .body {
+    flex-grow: 1;
+    @include lastElement;
+  }
 }
 
 .m_column {
   display: flex;
-  margin: 0 0 30px;
-  & > .column {
-    @include lastElement;
-    & > section {
-      @include lastElement;
-    }
-  }
-
-  @include mq(pc){
+  margin: 0 0 30px;
+  @include mq(pc) {
     justify-content: space-between;
     &[class*="_pcCol2"] > .column {
       width: calc(100% / 2 - 20px);
@@ -100,8 +91,7 @@
       width: calc(100% / 4 - 20px);
     }
   }
-
-  @include mq(sp){
+  @include mq(sp) {
     &:not([class*="_spCol"]) {
       flex-direction: column;
     }
@@ -110,6 +100,12 @@
     }
     &[class*="_spCol"] > li {
       width: calc(100% / 2 - 10px);
+    }
+  }
+  & > .column {
+    @include lastElement;
+    & > section {
+      @include lastElement;
     }
   }
 }
@@ -200,4 +196,4 @@
       }
     }
   }
-}
+}
