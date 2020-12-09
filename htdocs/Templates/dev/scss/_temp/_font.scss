@@ -39,17 +39,19 @@
   $content: unquote("\"") + <%= cssClass%>-char($filename) + unquote("\"");
   @if $insert == null{
     @include <%= cssClass%>-styles;
+    content: $content;
     color: $color;
     font-size: $size;
+    line-height: $size;
     vertical-align: middle;
-    content: $content;
   }@else{
     &::#{$insert} {
       @include <%= cssClass%>-styles;
+      content: $content;
       color: $color;
       font-size: $size;
+      line-height: $size;
       vertical-align: middle;
-      content: $content;
     }
   }
 }
@@ -57,12 +59,14 @@
 @mixin <%= cssClass%>Char($filename, $size: null, $insert: null) {
   $content: unquote("\"") + <%= cssClass%>-char($filename) + unquote("\"");
   @if $insert == null{
-    font-size: $size;
     content: $content;
+    font-size: $size;
+    line-height: $size;
   }@else{
     &::#{$insert} {
-      font-size: $size;
       content: $content;
+      font-size: $size;
+      line-height: $size;
     }
   }
 }
