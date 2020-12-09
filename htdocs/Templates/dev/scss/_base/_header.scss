@@ -15,7 +15,20 @@
 //
 // ============================================================================================
 #gheader {
-  margin: 0 auto;
+  margin: 0 auto;
+  @include mq(pc) {
+    width: $contentWidth;
+    .content {
+      margin: 0 0 10px;
+    }
+  }
+  @include mq(sp) {
+    .content {
+      align-items: center;
+      padding-right: 50px;
+      height: 50px;
+    }
+  }
   .content {
     display: flex;
     justify-content: space-between;
@@ -34,19 +47,4 @@
       }
     }
   }
-
-  @media screen and (min-width: $rwdBreakPoint01) {
-    width: $contentWidth;
-    .content {
-      margin: 0 0 10px;
-    }
-  }
-
-  @media screen and (max-width: $rwdBreakPoint01 - 1) {
-    .content {
-      align-items: center;
-      padding-right: 50px;
-      height: 50px;
-    }
-  }
-}
+}

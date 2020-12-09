@@ -16,7 +16,7 @@
   font-style: normal;
   font-variant: normal;
   font-weight: 400;
-  // speak: none; // only necessary if not using the private unicode range (firstGlyph option)
+  speak: none; // only necessary if not using the private unicode range (firstGlyph option)
   text-decoration: none;
   text-transform: none;
 }
@@ -29,30 +29,49 @@
   $char: "";
   <% _.each(glyphs, function(glyph) { %>
     @if $filename == <%= glyph.fileName %> {
-      $char: "\<%= glyph.codePoint %>";
+      $char: \<%= glyph.codePoint %>;
     }<% }); %>
 
   @return $char;
 }
 
-@mixin <%= cssClass%>($filename, $size: null, $color: null, $insert: before) {
-  &::#{$insert} {
+@mixin <%= cssClass%>($filename, $size: null, $color: null, $insert: null) {
+  $content: unquote("\"") + <%= cssClass%>-char($filename) + unquote("\"");
+  @if $insert == null{
     @include <%= cssClass%>-styles;
+    content: $content;
     color: $color;
     font-size: $size;
+    line-height: $size;
     vertical-align: middle;
-    content: <%= cssClass%>-char($filename);
+  }@else{
+    &::#{$insert} {
+      @include <%= cssClass%>-styles;
+      content: $content;
+      color: $color;
+      font-size: $size;
+      line-height: $size;
+      vertical-align: middle;
+    }
   }
 }
 
-@mixin <%= cssClass%>Char($filename, $size: null, $insert: before) {
-  &::#{$insert} {
+@mixin <%= cssClass%>Char($filename, $size: null, $insert: null) {
+  $content: unquote("\"") + <%= cssClass%>-char($filename) + unquote("\"");
+  @if $insert == null{
+    content: $content;
     font-size: $size;
-    content: <%= cssClass%>-char($filename);
+    line-height: $size;
+  }@else{
+    &::#{$insert} {
+      content: $content;
+      font-size: $size;
+      line-height: $size;
+    }
   }
 }
 
-//<% _.each(glyphs, function(glyph) { %>.<%= cssClass%>-<%= glyph.fileName %> {
-//    @include <%= cssClass%>(<%= glyph.fileName %>);
-//}
-//<% }); %>
+<% _.each(glyphs, function(glyph) { %>.<%= cssClass%>-<%= glyph.fileName %> {
+    @include <%= cssClass%>(<%= glyph.fileName %>);
+}
+<% }); %>

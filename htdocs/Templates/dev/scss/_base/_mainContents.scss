@@ -17,37 +17,32 @@
 #container {
   position: relative;
   margin: 0 auto;
-
-  @media screen and (min-width: $rwdBreakPoint01) {
+  @include mq(pc) {
     width: $contentWidth;
   }
 }
 
 #wrapper {
   display: flex;
-
-  @media screen and (min-width: $rwdBreakPoint01) {
+  @include mq(pc) {
     justify-content: space-between;
   }
-
-  @media screen and (max-width: $rwdBreakPoint01 - 1) {
+  @include mq(sp) {
     flex-direction: column;
   }
 
   #mainContents {
-    @media screen and (min-width: $rwdBreakPoint01) {
+    @include mq(pc) {
       padding-right: 30px;
     }
-
-    @media screen and (max-width: $rwdBreakPoint01 - 1) {
+    @include mq(sp) {
     }
   }
 }
 
 #mainContents {
-  @media screen and (min-width: $rwdBreakPoint01) {
+  @include mq(pc) {
   }
-
-  @media screen and (max-width: $rwdBreakPoint01 - 1) {
+  @include mq(sp) {
   }
-}
+}

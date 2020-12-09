@@ -228,7 +228,7 @@
 //     $weight: ウェイト。
 // @include fts(16, 32);
 // @include fts(16, '40px');
-@mixin fts($fts: $baseFontSize, $lin: null, $weight: null) {
+@mixin fts($fts: map-get($fontSize, 'pc'), $lin: null, $weight: null) {
   $rem: $fts / 16;
   @if type-of($fts) == 'string'{
     font-size: unquote($fts);
@@ -273,4 +273,14 @@
   clip: rect(0, 0, 0, 0) !important;
   white-space: nowrap !important;
   border: 0 !important;
+}
+
+
+// メディアクエリ
+//     $device: デバイス
+// @include mq($device){};
+@mixin mq($device) {
+  @media #{map-get($breakpoints, $device)} {
+    @content;
+  }
 }

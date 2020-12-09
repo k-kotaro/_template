@@ -15,7 +15,21 @@
 //
 // ============================================================================================
 #gfooter {
-  margin: 0 auto;
+  margin: 0 auto;
+  @include mq(pc) {
+    width: $contentWidth;
+    .unav > li:nth-child(n+2) {
+      margin-left: 20px;
+    }
+  }
+  @include mq(sp) {
+    .unav {
+      text-align: center;
+      & > li {
+        margin: 0 5px;
+      }
+    }
+  }
   .unav {
     margin: 0;
     & > li {
@@ -25,20 +39,4 @@
   .copyright {
     text-align: center;
   }
-
-  @media screen and (min-width: $rwdBreakPoint01) {
-    width: $contentWidth;
-    .unav > li:nth-child(n+2) {
-      margin-left: 20px;
-    }
-  }
-
-  @media screen and (max-width: $rwdBreakPoint01 - 1) {
-    .unav {
-      text-align: center;
-      & > li {
-        margin: 0 5px;
-      }
-    }
-  }
-}
+}

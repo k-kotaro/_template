@@ -15,7 +15,7 @@
   white-space: pre;
 }
 
-@media screen and (min-width: $rwdBreakPoint01) {
+@include mq(pc) {
   .m_pcHide {
     display: none !important;
   }
@@ -26,7 +26,7 @@
   }
 }
 
-@media screen and (max-width: $rwdBreakPoint01 - 1) {
+@include mq(sp) {
   .m_spHide {
     display: none !important;
   }
@@ -35,4 +35,4 @@
     content: "\A";
     white-space: pre;
   }
-}
+}
