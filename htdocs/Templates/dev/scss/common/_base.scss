@@ -14,7 +14,7 @@
 base
 
 ====================================================================================================*/
-@if $fontFamilySet == 'yugo' {
+@if $fontFamilySet == "yugo" {
   @font-face {
     font-family: "Original Yu Gothic";
     font-weight: 400;
@@ -32,10 +32,10 @@ body {
   font-family: map-get($fontFamily, $fontFamilySet);
   font-feature-settings: "palt" 1;
   @include mq(pc) {
-    @include fts(map-get($fontSize, 'pc'), map-get($lineHeight, 'pc'));
+    @include fts(map-get($fontSize, "pc"), map-get($lineHeight, "pc"));
   }
   @include mq(sp) {
-    @include fts(map-get($fontSize, 'sp'), map-get($lineHeight, 'sp'));
+    @include fts(map-get($fontSize, "sp"), map-get($lineHeight, "sp"));
   }
 }
 
@@ -61,10 +61,10 @@ select,
 textarea {
   font-family: map-get($fontFamily, $fontFamilySet);
   @include mq(pc) {
-    @include fts(map-get($fontSize, 'pc'), map-get($lineHeight, 'pc'));
+    @include fts(map-get($fontSize, "pc"), map-get($lineHeight, "pc"));
   }
   @include mq(sp) {
-    @include fts(map-get($fontSize, 'sp'), map-get($lineHeight, 'sp'));
+    @include fts(map-get($fontSize, "sp"), map-get($lineHeight, "sp"));
   }
 }
 
@@ -121,4 +121,4 @@ textarea {
 /* Footer
 --------------------------------------------------------------------------------------------------- */
 
-@import "../_base/footer";
+@import "../_base/footer";

@@ -202,7 +202,7 @@ const imageminify = () => {
         quality: 80,
       }),
       pngquant({
-        quality: [0.65, 0.8],
+        quality: [0.75, 0.85],
       }),
       imagemin.gifsicle(),
       imagemin.svgo(),
