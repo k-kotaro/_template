@@ -12,7 +12,7 @@ export const breakpoint = 768;
 export let contentWidth,
   timer = false;
 
-document.body.insertAdjacentHTML('afterbegin', '<div class="windowload" style="position: fixed;background-color: #fff;width: 100%; height: 100%;z-index: 20000;">');
+
 
 // デバイス判定
 export const _ua = ((u) => {
